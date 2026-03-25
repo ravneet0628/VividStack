@@ -1,0 +1,123 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro"; 
+---
+
+<Layout title="Sophisticated Web Architecture">
+  <Navbar /> 
+  
+  <main class="relative min-h-screen flex items-center justify-center bg-vivid-cream overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none" 
+         style="background-image: linear-gradient(var(--color-vivid-navy) 1px, transparent 1px), linear-gradient(90deg, var(--color-vivid-navy) 1px, transparent 1px); background-size: 50px 50px;">
+    </div>
+
+    <div class="z-10 text-center px-6">
+      <h1 id="hero-title" class="text-7xl md:text-[10rem] font-bold tracking-tighter text-vivid-navy leading-none opacity-0 translate-y-10">
+        Vivid<span class="text-vivid-mint">Stack</span>
+      </h1>
+      
+      <p id="hero-subtitle" class="mt-6 text-lg md:text-2xl text-vivid-navy/60 font-medium tracking-wide opacity-0">
+        Sophisticated Tech. <span class="italic text-vivid-mint">Uncompromising Design.</span>
+      </p>
+
+      <div id="hero-cta" class="mt-10 opacity-0">
+        <a href="#tools" class="group relative inline-flex items-center gap-2 px-8 py-4 bg-vivid-navy text-vivid-cream rounded-full overflow-hidden transition-all hover:pr-12">
+          <span class="relative z-10 font-semibold">Explore the Stack</span>
+          <div class="absolute right-4 translate-x-10 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100">
+            →
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <section id="tools" class="py-32 bg-vivid-cream border-y border-vivid-navy/5 overflow-hidden">
+    <div class="text-center mb-16 px-6">
+      <span class="inline-block text-vivid-mint font-bold uppercase tracking-[0.2em] text-xs">The Best-in-Class Tools</span>
+      <h2 class="text-4xl md:text-6xl font-bold text-vivid-navy mt-4 tracking-tighter uppercase">Our Technical Stack</h2>
+    </div>
+
+    <div class="flex whitespace-nowrap overflow-hidden py-10">
+      <div class="animate-marquee flex gap-20 items-center px-10">
+        <span class="text-5xl md:text-8xl font-bold text-vivid-navy/20 uppercase tracking-tighter hover:text-vivid-mint transition-colors cursor-default">Astro</span>
+        <span class="text-5xl md:text-8xl font-bold text-vivid-navy/20 uppercase tracking-tighter hover:text-vivid-mint transition-colors cursor-default">Tailwind CSS</span>
+        <span class="text-5xl md:text-8xl font-bold text-vivid-navy/20 uppercase tracking-tighter hover:text-vivid-mint transition-colors cursor-default">GSAP</span>
+        <span class="text-5xl md:text-8xl font-bold text-vivid-navy/20 uppercase tracking-tighter hover:text-vivid-mint transition-colors cursor-default">Lenis</span>
+        <span class="text-5xl md:text-8xl font-bold text-vivid-navy/20 uppercase tracking-tighter hover:text-vivid-mint transition-colors cursor-default">React</span>
+        <span class="text-5xl md:text-8xl font-bold text-vivid-navy/20 uppercase tracking-tighter hover:text-vivid-mint transition-colors cursor-default">TypeScript</span>
+        <span class="text-5xl md:text-8xl font-bold text-vivid-navy/20 uppercase tracking-tighter hover:text-vivid-mint transition-colors cursor-default">Astro</span>
+        <span class="text-5xl md:text-8xl font-bold text-vivid-navy/20 uppercase tracking-tighter hover:text-vivid-mint transition-colors cursor-default">Tailwind CSS</span>
+        <span class="text-5xl md:text-8xl font-bold text-vivid-navy/20 uppercase tracking-tighter hover:text-vivid-mint transition-colors cursor-default">GSAP</span>
+        <span class="text-5xl md:text-8xl font-bold text-vivid-navy/20 uppercase tracking-tighter hover:text-vivid-mint transition-colors cursor-default">Lenis</span>
+        <span class="text-5xl md:text-8xl font-bold text-vivid-navy/20 uppercase tracking-tighter hover:text-vivid-mint transition-colors cursor-default">React</span>
+        <span class="text-5xl md:text-8xl font-bold text-vivid-navy/20 uppercase tracking-tighter hover:text-vivid-mint transition-colors cursor-default">TypeScript</span>
+      </div>
+    </div>
+  </section>
+  <section id="process" class="py-32 bg-vivid-navy text-vivid-cream">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="mb-20">
+        <span class="text-vivid-mint font-bold uppercase tracking-[0.2em] text-xs">How We Work</span>
+        <h2 class="text-5xl md:text-7xl font-bold mt-4 tracking-tighter uppercase">The Architecture of Success</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-12">
+        <div class="process-card group">
+          <div class="text-6xl font-bold text-vivid-cream/10 group-hover:text-vivid-mint/20 transition-colors duration-500">01</div>
+          <h3 class="text-2xl font-bold mt-4 mb-4 uppercase tracking-tight">Discovery</h3>
+          <p class="text-vivid-cream/60 leading-relaxed font-light">
+            We dive deep into your business goals, target audience, and brand soul to map out a strategic digital blueprint.
+          </p>
+        </div>
+
+        <div class="process-card group border-t md:border-t-0 md:border-l border-vivid-cream/10 pt-12 md:pt-0 md:pl-12">
+          <div class="text-6xl font-bold text-vivid-cream/10 group-hover:text-vivid-mint/20 transition-colors duration-500">02</div>
+          <h3 class="text-2xl font-bold mt-4 mb-4 uppercase tracking-tight">Design</h3>
+          <p class="text-vivid-cream/60 leading-relaxed font-light">
+            Where sophisticated tech meets uncompromising aesthetics. We craft a visual identity that commands attention.
+          </p>
+        </div>
+
+        <div class="process-card group border-t md:border-t-0 md:border-l border-vivid-cream/10 pt-12 md:pt-0 md:pl-12">
+          <div class="text-6xl font-bold text-vivid-cream/10 group-hover:text-vivid-mint/20 transition-colors duration-500">03</div>
+          <h3 class="text-2xl font-bold mt-4 mb-4 uppercase tracking-tight">Development</h3>
+          <p class="text-vivid-cream/60 leading-relaxed font-light">
+            Using the modern stack (Astro, GSAP, React), we build a high-performance engine that is fast, secure, and scalable.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Standard CSS works fine for animations */
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+
+<script>
+  import Lenis from "lenis";
+  import gsap from "gsap";
+
+  const lenis = new Lenis();
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  const tl = gsap.timeline({ defaults: { ease: "power4.out", duration: 1.4 } });
+  tl.to("#main-nav", { opacity: 1, y: 0, delay: 0.2 })
+    .to("#hero-title", { opacity: 1, y: 0 }, "-=1.1") 
+    .to("#hero-subtitle", { opacity: 1, y: 0 }, "-=1.1")
+    .to("#hero-cta", { opacity: 1, y: 0 }, "-=1.1");
+</script>

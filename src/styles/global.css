@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+    /* Our Professional Palette */
+    --color-vivid-navy: #253644;
+    --color-vivid-teal: #5DFFEC;
+    --color-vivid-mint: #95CBD0;
+    --color-vivid-cream: #F8F9FA;
+
+    /* Setting Montserrat as the primary font */
+    --font-sans: "Montserrat", sans-serif;
+}
+
+/* A smooth background for the whole site */
+html,
+body {
+    background-color: var(--color-vivid-cream);
+    color: var(--color-vivid-navy);
+}
