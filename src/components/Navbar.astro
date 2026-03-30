@@ -1,0 +1,39 @@
+---
+/* Navbar Component — used on every page via Layout */
+---
+
+<nav id="main-nav" class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-6 flex justify-between items-center opacity-0 translate-y-[-10px]">
+  <!-- Logo -->
+  <a href="/" class="group flex items-center">
+    <div class="relative p-0.5 rounded-full border border-vivid-navy/10 bg-white/50 backdrop-blur-sm shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-all duration-300 group-hover:border-vivid-navy/20 group-hover:scale-110">
+      <img id="nav-icon" src="/logo.png" alt="VividStack" class="h-20 w-20 rounded-full object-cover" />
+    </div>
+  </a>
+
+  <!-- Navigation Links -->
+  <div class="hidden md:flex gap-10 items-center">
+    <a href="/" class="nav-link">Home</a>
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#platform" class="nav-link">Case Studies</a>
+    <a href="#process" class="nav-link">Process</a>
+    <a href="#portfolio" class="nav-link">Portfolio</a>
+    <a href="#contact" class="px-8 py-3.5 bg-vivid-navy text-vivid-cream rounded-full text-[0.7rem] font-bold uppercase tracking-[0.25em] hover:bg-[#1a2834] hover:scale-105 transition-all duration-300 shadow-[0_8px_24px_rgba(37,54,68,0.15)]">
+      Contact Us
+    </a>
+  </div>
+</nav>
+
+<style>
+  .nav-link {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(37, 54, 68, 0.55);
+    transition: color 0.3s ease;
+  }
+  .nav-link:hover {
+    color: #253644;
+  }
+</style>
