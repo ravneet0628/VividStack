@@ -5,15 +5,22 @@ import logo from "../assets/logo.png";
 ---
 
 <nav id="main-nav" class="nav-container">
-  <!-- Logo -->
-  <a href="/" class="group flex items-center">
+  <!-- Logo - Centered -->
+  <a href="/" class="group flex items-center logo-center">
     <div class="logo-wrapper">
       <Image id="nav-icon" src={logo} alt="VividStack" width={200} height={200} class="logo-img" />
     </div>
   </a>
 
+  <!-- Mobile Menu Button -->
+  <button id="mobile-menu-btn" class="mobile-menu-btn">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
   <!-- Navigation Links -->
-  <div class="nav-links">
+  <div class="nav-links" id="nav-links">
     <a href="/" class="nav-link">Home</a>
     <a href="#services" class="nav-link">Services</a>
     <a href="#platform" class="nav-link">Case Studies</a>
@@ -28,6 +35,8 @@ import logo from "../assets/logo.png";
 <script>
   // @ts-ignore
   const nav = document.getElementById('main-nav');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const navLinks = document.getElementById('nav-links');
   
   const handleScroll = () => {
     if (window.scrollY > 50) {
@@ -35,11 +44,38 @@ import logo from "../assets/logo.png";
     } else {
       nav?.classList.remove('scrolled');
     }
+
+    // Check if we're in a dark section
+    const sections = document.querySelectorAll('section');
+    let inDarkSection = false;
+    
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= 100 && rect.bottom >= 100) {
+        // Check if section has dark background
+        const bgColor = window.getComputedStyle(section).backgroundColor;
+        if (bgColor.includes('rgb(5, 25, 45)') || bgColor.includes('rgb(0, 0, 0)') || bgColor.includes('#000')) {
+          inDarkSection = true;
+        }
+      }
+    });
+
+    if (inDarkSection) {
+      nav?.classList.add('dark-section');
+    } else {
+      nav?.classList.remove('dark-section');
+    }
+  };
+
+  const toggleMobileMenu = () => {
+    mobileMenuBtn?.classList.toggle('active');
+    navLinks?.classList.toggle('active');
   };
 
   // Check on load in case page is already scrolled
   handleScroll();
   window.addEventListener('scroll', handleScroll);
+  mobileMenuBtn?.addEventListener('click', toggleMobileMenu);
 </script>
 
 <style>
@@ -49,48 +85,52 @@ import logo from "../assets/logo.png";
     left: 0;
     width: 100%;
     z-index: 50;
-    padding: 1rem 1.5rem; /* Reduced padding on mobile */
+    padding: 1rem 1.5rem;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem; /* Reduced gap */
+    justify-content: space-between;
+    align-items: center;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     background: transparent;
     border-bottom: 1px solid transparent;
-  }
-
-  @media (min-width: 768px) {
-    .nav-container {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      padding-left: 3rem;
-      padding-right: 3rem;
-      gap: 0;
-    }
   }
 
   /* Scrolled State */
   .nav-container.scrolled {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border-bottom: 1px solid rgba(37, 54, 68, 0.02);
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.01);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(37, 54, 68, 0.05);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
   }
 
-  @media (min-width: 768px) {
-    .nav-container.scrolled {
-      padding-top: 0.75rem;
-      padding-bottom: 0.75rem;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(37, 54, 68, 0.03);
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.02);
-    }
+  /* Dark section state */
+  .nav-container.dark-section {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-container.dark-section .hamburger-line,
+  .nav-container.dark-section .nav-link {
+    color: #ffffff;
+  }
+
+  .nav-container.dark-section .logo-wrapper {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .nav-container.dark-section .nav-links {
+    background: rgba(0, 0, 0, 0.8);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .logo-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .logo-wrapper {
@@ -112,8 +152,8 @@ import logo from "../assets/logo.png";
   }
 
   .logo-img {
-    height: 3rem; /* Smaller on mobile */
-    width: 3rem;  /* Smaller on mobile */
+    height: 3.5rem;
+    width: 3.5rem;
     border-radius: 9999px;
     object-fit: cover;
     mix-blend-mode: multiply;
@@ -121,26 +161,122 @@ import logo from "../assets/logo.png";
 
   @media (min-width: 768px) {
     .logo-img {
-      height: 5rem; /* h-20 */
-      width: 5rem;  /* w-20 */
+      height: 5rem;
+      width: 5rem;
     }
   }
 
-  .nav-links {
+  .mobile-menu-btn {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
-    gap: 1rem; /* gap-4 */
     align-items: center;
-    width: 100%;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+    z-index: 60;
+  }
+
+  .mobile-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .hamburger-line {
+    width: 1.5rem;
+    height: 2px;
+    background: #253644;
+    margin: 2px 0;
+    transition: all 0.3s ease;
+    border-radius: 1px;
+  }
+
+  .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-container.scrolled .hamburger-line {
+    background: #253644;
+  }
+
+  .nav-container.dark-section .hamburger-line {
+    background: #ffffff;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 55;
+    padding: 2rem;
+    border-left: 1px solid rgba(37, 54, 68, 0.1);
+  }
+
+  .nav-links.active {
+    transform: translateX(0);
   }
 
   @media (min-width: 768px) {
+    .nav-container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+
+    .nav-container.scrolled {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(37, 54, 68, 0.05);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    }
+
+    .nav-container.dark-section {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .logo-center {
+      position: static;
+      transform: none;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+    }
+
     .nav-links {
-      flex-wrap: nowrap;
-      gap: 2.5rem; /* gap-10 */
-      justify-content: flex-end;
+      position: static;
       width: auto;
+      height: auto;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      flex-direction: row;
+      transform: none;
+      gap: 2.5rem;
+      padding: 0;
+      border-left: none;
     }
   }
 
@@ -170,6 +306,11 @@ import logo from "../assets/logo.png";
   .nav-container.scrolled .nav-link {
     color: #253644;
     opacity: 0.8;
+  }
+
+  .nav-container.dark-section .nav-link {
+    color: #ffffff;
+    opacity: 0.9;
   }
 
   .contact-btn {
