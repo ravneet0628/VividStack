@@ -1,36 +1,68 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
+import ScatteredDesk from "../components/ScatteredDesk.astro";
+import { Image } from "astro:assets";
+
+import heroCode from "../assets/hero_code.png";
+import resetat30Img from "../assets/resetat30.png";
+import hmglobalImg from "../assets/hmglobal.png";
+import securechoiceImg from "../assets/securechoice.png";
+import photolpImg from "../assets/photolp.png";
+import lighthouseImg from "../assets/lighthouse-100.png";
+
+
 const portfolioProjects = [
   {
     title: "Reset at 30",
     category: "Core_System_01",
-    stack: "Astro + Cloudflare Edge",
-    image: "/resetat30.png",
+    stack: "Astro v4.0",
+    stack2: "Cloudflare Edge",
+    image: resetat30Img,
     accent: "#00ffcc",
+    url: "https://resetat30.pages.dev/",
+    displayUrl: "resetat30.com // active",
+    systemId: "Core_System_01",
+    cropY: "-top-[5%]"
   },
   {
     title: "HM Global",
     category: "Industrial Node",
-    stack: "Enterprise Architecture",
-    image: "/images/hmglobal.png",
+    stack: "Industrial Solutions",
+    stack2: "Enterprise Architecture",
+    image: hmglobalImg,
     accent: "#0066ff",
+    url: "https://hmglobalinc.com/",
+    displayUrl: "hmglobalinc.com // industrial_node",
+    systemId: "Core_System_02",
+    cropY: "top-0"
   },
   {
     title: "Secure Choice",
     category: "Secure API",
     stack: "Risk Architecture",
-    image: "/securechoice.png",
+    stack2: "Security Protocol",
+    image: securechoiceImg,
     accent: "#9900ff",
+    url: "https://top-insurance.pages.dev/",
+    displayUrl: "top-insurance.pages.dev // encrypted",
+    systemId: "Core_System_03",
+    cropY: "-top-[11%]"
   },
   {
     title: "PhotoLP",
     category: "Asset Node",
-    stack: "React + Vite + Render",
-    image: "/photolp.png",
+    stack: "Creative Delivery",
+    stack2: "React + Vite",
+    image: photolpImg,
     accent: "#ff9900",
+    url: "https://shivstudio.onrender.com/",
+    displayUrl: "shivstudio.onrender.com // asset_node",
+    systemId: "Core_System_04",
+    cropY: "-top-[11%]"
   },
 ];
+
 ---
 
 <Layout title="Sophisticated Web Architecture">
@@ -83,10 +115,13 @@ const portfolioProjects = [
       id="hero-background"
       class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[85vw] max-w-[1200px] opacity-[0.03] pointer-events-none z-[-1] transition-opacity duration-1000"
     >
-      <img
-        src="/hero_code.png"
+      <Image
+        src={heroCode}
         alt="Code Architecture"
         class="w-full h-auto grayscale"
+        widths={[400, 800, 1200, 1600]}
+        sizes="85vw"
+        loading="eager"
       />
     </div>
 
@@ -347,9 +382,12 @@ const portfolioProjects = [
     class="relative bg-white border-t border-black bg-grid-tech"
   >
     <div id="selected-works" class="relative">
+
+
       <div
         class="pin-wrap flex gap-32 pl-[15vw] pr-[50vw] items-center h-screen will-change-transform"
       >
+
         <!-- Section Title Card -->
         <div
           class="flex-shrink-0 w-[40vw] flex items-center justify-start relative will-change-transform"
@@ -369,372 +407,103 @@ const portfolioProjects = [
           </div>
         </div>
 
-        <!-- Project Card 1: Reset at 30 -->
-        <div
-          class="project-card flex-shrink-0 w-[55vw] h-[80vh] flex items-center justify-center relative will-change-transform"
-        >
-          <!-- Ambient Glow -->
-          <div class="absolute inset-0 flex items-center justify-center -z-10">
-            <div
-              class="w-[60%] h-[60%] bg-[#00ffcc]/10 blur-[100px] rounded-full"
-            >
-            </div>
-          </div>
-
-          <div class="relative w-full max-w-5xl">
-            <div
-              class="browser-window bg-white border border-black relative z-10 shadow-[20px_20px_0_0_#000000] overflow-hidden"
-            >
+        {portfolioProjects.map((project) => (
+          <div
+            class="project-card flex-shrink-0 w-[55vw] h-[80vh] flex items-center justify-center relative will-change-transform"
+          >
+            <!-- Ambient Glow -->
+            <div class="absolute inset-0 flex items-center justify-center -z-10">
               <div
-                class="h-8 bg-[#f3f3f4] border-b border-black flex items-center px-4 gap-2"
+                class="w-[60%] h-[60%] blur-[100px] rounded-full"
+                style={`background: ${project.accent}20;`}
               >
-                <div class="w-2.5 h-2.5 rounded-full bg-black/20"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-black/20"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-black/20"></div>
-                <div
-                  class="flex-grow text-[10px] text-black/40 font-mono text-center truncate uppercase tracking-widest pl-4"
-                >
-                  resetat30.com // active
-                </div>
               </div>
-              <a
-                href="https://resetat30.pages.dev/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="aspect-[16/10] bg-white relative overflow-hidden block group cursor-pointer"
+            </div>
+
+            <div class="relative w-full max-w-5xl">
+              <div
+                class="browser-window bg-white border border-black relative z-10 shadow-[20px_20px_0_0_#000000] overflow-hidden"
               >
-                <img
-                  src="/resetat30.png"
-                  alt="Reset at 30"
-                  class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div
-                  class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                <!-- Browser Header with Traffic Lights -->
+                <div class="h-8 bg-[#f3f3f4] border-b border-black flex items-center px-4 gap-2">
+                  <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f57] border border-black/10"></div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] border border-black/10"></div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f] border border-black/10"></div>
+                  <div class="flex-grow text-[9px] text-vivid-navy/40 font-mono text-center truncate uppercase tracking-[0.2em] font-bold pr-10">
+                    {project.displayUrl}
+                  </div>
+                </div>
+
+                <!-- Project Inner Mockup Body -->
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="aspect-[16/10] bg-white relative overflow-hidden block group cursor-pointer"
                 >
+                  <div class={`image-crop-wrapper w-full h-[115%] absolute ${project.cropY}`}>
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      widths={[400, 800, 1200]}
+                      sizes="(max-width: 768px) 100vw, 55vw"
+                    />
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-20"
+                  >
+                    <span
+                      class="bg-white text-black px-4 py-2 text-[10px] font-bold uppercase tracking-widest shadow-lg"
+                      >Visit Website ↗</span
+                    >
+                  </div>
+                </a>
+              </div>
+
+
+              <!-- Technical Metadata -->
+              <div
+                class="mt-8 flex items-center justify-between border-b border-black/10 pb-4"
+              >
+                <div class="flex gap-4">
                   <span
-                    class="bg-white text-black px-4 py-2 text-[10px] font-bold uppercase tracking-widest shadow-lg"
-                    >Visit Website ↗</span
+                    class="text-[10px] font-bold uppercase tracking-widest text-black"
+                    style="font-family: 'Inter', sans-serif;">{project.stack}</span
+                  >
+                  <span
+                    class="text-[10px] font-bold uppercase tracking-widest text-black/40"
+                    style="font-family: 'Inter', sans-serif;"
+                    >{project.stack2}</span
                   >
                 </div>
-              </a>
-            </div>
-
-            <!-- Technical Metadata -->
-            <div
-              class="mt-8 flex items-center justify-between border-b border-black/10 pb-4"
-            >
-              <div class="flex gap-4">
-                <span
-                  class="text-[10px] font-bold uppercase tracking-widest text-black"
-                  style="font-family: 'Inter', sans-serif;">Astro v4.0</span
-                >
-                <span
-                  class="text-[10px] font-bold uppercase tracking-widest text-black/40"
-                  style="font-family: 'Inter', sans-serif;"
-                  >Cloudflare Edge</span
+                <span class="text-[10px] font-mono text-black/20 uppercase"
+                  >{project.systemId}</span
                 >
               </div>
-              <span class="text-[10px] font-mono text-black/20 uppercase"
-                >Core_System_01</span
-              >
-            </div>
 
-            <!-- Mobile Mockup -->
-            <div
-              class="mobile-mockup absolute -bottom-16 -right-12 w-1/4 max-w-[200px] z-20 border border-black bg-white shadow-[12px_12px_0_0_#000000] will-change-transform"
-            >
+              <!-- Mobile Mockup -->
               <div
-                class="p-2 bg-[#f3f3f4] border-b border-black h-4 flex items-center justify-center"
+                class="mobile-mockup absolute -bottom-16 -right-12 w-1/4 max-w-[200px] z-20 border border-black bg-white shadow-[12px_12px_0_0_#000000] will-change-transform"
               >
-                <div class="w-8 h-1 bg-black/20 rounded-full"></div>
-              </div>
-              <div class="aspect-[9/19.5] overflow-hidden">
-                <img
-                  src="/resetat30.png"
-                  alt="Mobile View"
-                  class="w-full h-full object-cover grayscale brightness-110"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project Card 2: HM Global -->
-        <div
-          class="project-card flex-shrink-0 w-[55vw] h-[80vh] flex items-center justify-center relative will-change-transform"
-        >
-          <!-- Ambient Glow -->
-          <div class="absolute inset-0 flex items-center justify-center -z-10">
-            <div
-              class="w-[60%] h-[60%] bg-[#0066ff]/10 blur-[100px] rounded-full"
-            >
-            </div>
-          </div>
-
-          <div class="relative w-full max-w-5xl">
-            <div
-              class="browser-window bg-white border border-black relative z-10 shadow-[20px_20px_0_0_#000000] overflow-hidden"
-            >
-              <div
-                class="h-8 bg-[#f3f3f4] border-b border-black flex items-center px-4 gap-2"
-              >
-                <div class="w-2.5 h-2.5 rounded-full bg-black/20"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-black/20"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-black/20"></div>
                 <div
-                  class="flex-grow text-[10px] text-black/40 font-mono text-center truncate uppercase tracking-widest pl-4"
+                  class="p-2 bg-[#f3f3f4] border-b border-black h-4 flex items-center justify-center"
                 >
-                  hmglobalinc.com // industrial_node
+                  <div class="w-8 h-1 bg-black/20 rounded-full"></div>
+                </div>
+                <div class="aspect-[9/19.5] overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} Mobile View`}
+                    class="w-full h-full object-cover grayscale brightness-110"
+                    width={300}
+                  />
                 </div>
               </div>
-              <a
-                href="https://hmglobalinc.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="aspect-[16/10] bg-white relative overflow-hidden block group cursor-pointer"
-              >
-                <img
-                  src="/images/hmglobal.png"
-                  alt="HM Global - Specialty Materials & Industrial Solutions Dashboard"
-                  class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div
-                  class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
-                >
-                  <span
-                    class="bg-white text-black px-4 py-2 text-[10px] font-bold uppercase tracking-widest shadow-lg"
-                    >Visit Website ↗</span
-                  >
-                </div>
-              </a>
-            </div>
-
-            <!-- Technical Metadata -->
-            <div
-              class="mt-8 flex items-center justify-between border-b border-black/10 pb-4"
-            >
-              <div class="flex gap-4">
-                <span
-                  class="text-[10px] font-bold uppercase tracking-widest text-black"
-                  style="font-family: 'Inter', sans-serif;"
-                  >Industrial Solutions</span
-                >
-                <span
-                  class="text-[10px] font-bold uppercase tracking-widest text-black/40"
-                  style="font-family: 'Inter', sans-serif;"
-                  >Enterprise Architecture</span
-                >
-              </div>
-              <span class="text-[10px] font-mono text-black/20 uppercase"
-                >Core_System_02</span
-              >
-            </div>
-
-            <div
-              class="mobile-mockup absolute -bottom-16 -right-12 w-1/4 max-w-[200px] z-20 border border-black bg-white shadow-[12px_12px_0_0_#000000] will-change-transform"
-            >
-              <div
-                class="p-2 bg-[#f3f3f4] border-b border-black h-4 flex items-center justify-center"
-              >
-                <div class="w-8 h-1 bg-black/20 rounded-full"></div>
-              </div>
-              <div class="aspect-[9/19.5] overflow-hidden">
-                <img
-                  src="/images/hmglobal.png"
-                  alt="HM Global Mobile View"
-                  class="w-full h-full object-cover grayscale brightness-110"
-                  loading="lazy"
-                />
-              </div>
             </div>
           </div>
-        </div>
+        ))}
 
-        <!-- Project Card 3: SecureChoice -->
-        <div
-          class="project-card flex-shrink-0 w-[55vw] h-[80vh] flex items-center justify-center relative will-change-transform"
-        >
-          <!-- Ambient Glow -->
-          <div class="absolute inset-0 flex items-center justify-center -z-10">
-            <div
-              class="w-[60%] h-[60%] bg-[#9900ff]/10 blur-[100px] rounded-full"
-            >
-            </div>
-          </div>
-
-          <div class="relative w-full max-w-5xl">
-            <div
-              class="browser-window bg-white border border-black relative z-10 shadow-[20px_20px_0_0_#000000] overflow-hidden"
-            >
-              <div
-                class="h-8 bg-[#f3f3f4] border-b border-black flex items-center px-4 gap-2"
-              >
-                <div class="w-2.5 h-2.5 rounded-full bg-black/20"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-black/20"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-black/20"></div>
-                <div
-                  class="flex-grow text-[10px] text-black/40 font-mono text-center truncate uppercase tracking-widest pl-4"
-                >
-                  top-insurance.pages.dev // encrypted
-                </div>
-              </div>
-              <a
-                href="https://top-insurance.pages.dev/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="aspect-[16/10] bg-white relative overflow-hidden block group cursor-pointer"
-              >
-                <img
-                  src="/securechoice.png"
-                  alt="SecureChoice Insurance"
-                  class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div
-                  class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
-                >
-                  <span
-                    class="bg-white text-black px-4 py-2 text-[10px] font-bold uppercase tracking-widest shadow-lg"
-                    >Visit Website ↗</span
-                  >
-                </div>
-              </a>
-            </div>
-
-            <!-- Technical Metadata -->
-            <div
-              class="mt-8 flex items-center justify-between border-b border-black/10 pb-4"
-            >
-              <div class="flex gap-4">
-                <span
-                  class="text-[10px] font-bold uppercase tracking-widest text-black"
-                  style="font-family: 'Inter', sans-serif;"
-                  >Risk Architecture</span
-                >
-                <span
-                  class="text-[10px] font-bold uppercase tracking-widest text-black/40"
-                  style="font-family: 'Inter', sans-serif;"
-                  >Security Protocol</span
-                >
-              </div>
-              <span class="text-[10px] font-mono text-black/20 uppercase"
-                >Core_System_03</span
-              >
-            </div>
-
-            <div
-              class="mobile-mockup absolute -bottom-16 -right-12 w-1/4 max-w-[200px] z-20 border border-black bg-white shadow-[12px_12px_0_0_#000000] will-change-transform"
-            >
-              <div
-                class="p-2 bg-[#f3f3f4] border-b border-black h-4 flex items-center justify-center"
-              >
-                <div class="w-8 h-1 bg-black/20 rounded-full"></div>
-              </div>
-              <div class="aspect-[9/19.5] overflow-hidden">
-                <img
-                  src="/securechoice.png"
-                  alt="Mobile View"
-                  class="w-full h-full object-cover grayscale brightness-110"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project Card 4: PhotoLP -->
-        <div
-          class="project-card flex-shrink-0 w-[55vw] h-[80vh] flex items-center justify-center relative will-change-transform"
-        >
-          <!-- Ambient Glow -->
-          <div class="absolute inset-0 flex items-center justify-center -z-10">
-            <div
-              class="w-[60%] h-[60%] bg-[#ff9900]/10 blur-[100px] rounded-full"
-            >
-            </div>
-          </div>
-
-          <div class="relative w-full max-w-5xl">
-            <div
-              class="browser-window bg-white border border-black relative z-10 shadow-[20px_20px_0_0_#000000] overflow-hidden"
-            >
-              <div
-                class="h-8 bg-[#f3f3f4] border-b border-black flex items-center px-4 gap-2"
-              >
-                <div class="w-2.5 h-2.5 rounded-full bg-black/20"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-black/20"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-black/20"></div>
-                <div
-                  class="flex-grow text-[10px] text-black/40 font-mono text-center truncate uppercase tracking-widest pl-4"
-                >
-                  shivstudio.onrender.com // asset_node
-                </div>
-              </div>
-              <a
-                href="https://shivstudio.onrender.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="aspect-[16/10] bg-white relative overflow-hidden block group cursor-pointer"
-              >
-                <img
-                  src="/photolp.png"
-                  alt="PhotoLP Portfolio"
-                  class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div
-                  class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
-                >
-                  <span
-                    class="bg-white text-black px-4 py-2 text-[10px] font-bold uppercase tracking-widest shadow-lg"
-                    >Visit Website ↗</span
-                  >
-                </div>
-              </a>
-            </div>
-
-            <!-- Technical Metadata -->
-            <div
-              class="mt-8 flex items-center justify-between border-b border-black/10 pb-4"
-            >
-              <div class="flex gap-4">
-                <span
-                  class="text-[10px] font-bold uppercase tracking-widest text-black"
-                  style="font-family: 'Inter', sans-serif;"
-                  >Creative Delivery</span
-                >
-                <span
-                  class="text-[10px] font-bold uppercase tracking-widest text-black/40"
-                  style="font-family: 'Inter', sans-serif;">React + Vite</span
-                >
-              </div>
-              <span class="text-[10px] font-mono text-black/20 uppercase"
-                >Core_System_04</span
-              >
-            </div>
-
-            <div
-              class="mobile-mockup absolute -bottom-16 -right-12 w-1/4 max-w-[200px] z-20 border border-black bg-white shadow-[12px_12px_0_0_#000000] will-change-transform"
-            >
-              <div
-                class="p-2 bg-[#f3f3f4] border-b border-black h-4 flex items-center justify-center"
-              >
-                <div class="w-8 h-1 bg-black/20 rounded-full"></div>
-              </div>
-              <div class="aspect-[9/19.5] overflow-hidden">
-                <img
-                  src="/photolp.png"
-                  alt="Mobile View"
-                  class="w-full h-full object-cover grayscale brightness-110"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -761,88 +530,111 @@ const portfolioProjects = [
           </h2>
         </div>
 
-        <div class="flex flex-col border-t border-[#000000]">
-          <!-- Phase 1 -->
-          <div
-            class="process-row grid grid-cols-1 md:grid-cols-12 border-b border-[#000000] bg-white transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
-          >
-            <div
-              class="p-8 md:p-12 md:col-span-5 flex flex-col md:flex-row items-start md:items-center border-b md:border-b-0 border-[#000000]"
-            >
-              <h3
-                class="phase-title text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-[#000000] tracking-tighter transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
-                style="font-family: 'Space Grotesk', sans-serif; font-weight: 800;"
-              >
-                01 DISCOVERY
-              </h3>
+        <div class="process-split-container relative">
+          <!-- Central Vertical Line -->
+          <div class="process-vertical-line"></div>
+
+          <!-- Stage 01 -->
+          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 relative mb-24 last:mb-0">
+            <!-- Left: YOU (Client) -->
+            <div class="process-column-you">
+              <div class="process-card glass-panel text-left">
+                <span class="process-label client">YOU</span>
+                <h3 class="process-title">Submit Brief</h3>
+                <p class="process-description">Define goals, target audience, and core functional requirements.</p>
+              </div>
             </div>
-            <div
-              class="p-8 md:p-12 md:col-span-7 flex items-center justify-start md:justify-end text-left md:text-right border-l-0 md:border-l border-[#000000]"
-            >
-              <p
-                class="text-base md:text-lg text-[#000000]/80 leading-relaxed font-normal max-w-lg"
-                style="font-family: 'Inter', sans-serif;"
-              >
-                We dive deep into your business goals, target audience, and
-                brand soul to map out a strategic digital blueprint before
-                writing a single line of code.
-              </p>
+
+            <!-- Central Icon -->
+            <div class="process-icon-wrapper">
+              <div class="process-icon-glow">🌩️</div>
+            </div>
+
+            <!-- Right: WE (Vivid Stack) -->
+            <div class="process-column-we">
+              <div class="process-card glass-panel agency-card text-left">
+                <span class="process-label agency">WE</span>
+                <h3 class="process-title">Strategic Analysis</h3>
+                <p class="process-description">Comprehensive technical audit and architectural blueprinting.</p>
+              </div>
             </div>
           </div>
 
-          <!-- Phase 2 -->
-          <div
-            class="process-row grid grid-cols-1 md:grid-cols-12 border-b border-[#000000] bg-[#f8f9fa] transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
-          >
-            <div
-              class="p-8 md:p-12 md:col-span-5 flex flex-col md:flex-row items-start md:items-center border-b md:border-b-0 border-[#000000]"
-            >
-              <h3
-                class="phase-title text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-[#000000] tracking-tighter transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
-                style="font-family: 'Space Grotesk', sans-serif; font-weight: 800;"
-              >
-                02 ARCHITECTURE
-              </h3>
+          <!-- Stage 02 -->
+          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 relative mb-24 last:mb-0">
+            <!-- Left: YOU (Client) -->
+            <div class="process-column-you">
+              <div class="process-card glass-panel text-left">
+                <span class="process-label client">YOU</span>
+                <h3 class="process-title">Asset Delivery</h3>
+                <p class="process-description">Provide brand guides, content, and existing data schemas.</p>
+              </div>
             </div>
-            <div
-              class="p-8 md:p-12 md:col-span-7 flex items-center justify-start md:justify-end text-left md:text-right border-l-0 md:border-l border-[#000000]"
-            >
-              <p
-                class="text-base md:text-lg text-[#000000]/80 leading-relaxed font-normal max-w-lg"
-                style="font-family: 'Inter', sans-serif;"
-              >
-                Where sophisticated tech meets uncompromising aesthetics. We
-                craft a rigid visual identity and data schema that commands
-                total authority.
-              </p>
+
+            <!-- Central Icon -->
+            <div class="process-icon-wrapper">
+              <div class="process-icon-glow">💎</div>
+            </div>
+
+            <!-- Right: WE (Vivid Stack) -->
+            <div class="process-column-we">
+              <div class="process-card glass-panel agency-card text-left">
+                <span class="process-label agency">WE</span>
+                <h3 class="process-title">Infrastructure Setup</h3>
+                <p class="process-description">Initializing high-performance edge environments and CDNs.</p>
+              </div>
             </div>
           </div>
 
-          <!-- Phase 3 -->
-          <div
-            class="process-row grid grid-cols-1 md:grid-cols-12 border-b border-[#000000] bg-white transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
-          >
-            <div
-              class="p-8 md:p-12 md:col-span-5 flex flex-col md:flex-row items-start md:items-center border-b md:border-b-0 border-[#000000]"
-            >
-              <h3
-                class="phase-title text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-[#000000] tracking-tighter transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
-                style="font-family: 'Space Grotesk', sans-serif; font-weight: 800;"
-              >
-                03 DEPLOYMENT
-              </h3>
+          <!-- Stage 03 -->
+          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 relative mb-24 last:mb-0">
+            <!-- Left: YOU (Client) -->
+            <div class="process-column-you">
+              <div class="process-card glass-panel text-left">
+                <span class="process-label client">YOU</span>
+                <h3 class="process-title">Feedback Loop</h3>
+                <p class="process-description">Continuous review of iterative builds and design systems.</p>
+              </div>
             </div>
-            <div
-              class="p-8 md:p-12 md:col-span-7 flex items-center justify-start md:justify-end text-left md:text-right border-l-0 md:border-l border-[#000000]"
-            >
-              <p
-                class="text-base md:text-lg text-[#000000]/80 leading-relaxed font-normal max-w-lg"
-                style="font-family: 'Inter', sans-serif;"
-              >
-                Using the modern stack, we launch a high-performance engine that
-                is fast, secure, and infinitely scalable across global edge
-                networks.
-              </p>
+
+            <!-- Central Icon -->
+            <div class="process-icon-wrapper">
+              <div class="process-icon-glow">⚙️</div>
+            </div>
+
+            <!-- Right: WE (Vivid Stack) -->
+            <div class="process-column-we">
+              <div class="process-card glass-panel agency-card text-left">
+                <span class="process-label agency">WE</span>
+                <h3 class="process-title">Precision Build</h3>
+                <p class="process-description">Full-stack engineering with uncompromising aesthetic standards.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 04 -->
+          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 relative mb-24 last:mb-0">
+            <!-- Left: YOU (Client) -->
+            <div class="process-column-you">
+              <div class="process-card glass-panel text-left">
+                <span class="process-label client">YOU</span>
+                <h3 class="process-title">Final Sign-off</h3>
+                <p class="process-description">Validation of performance metrics and security protocols.</p>
+              </div>
+            </div>
+
+            <!-- Central Icon -->
+            <div class="process-icon-wrapper">
+              <div class="process-icon-glow">🚀</div>
+            </div>
+
+            <!-- Right: WE (Vivid Stack) -->
+            <div class="process-column-we">
+              <div class="process-card glass-panel agency-card text-left">
+                <span class="process-label agency">WE</span>
+                <h3 class="process-title">Global Deployment</h3>
+                <p class="process-description">Sub-second launch across the global edge network.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -853,11 +645,14 @@ const portfolioProjects = [
       id="portfolio"
       class="section-tracer-target relative py-32 bg-vivid-cream bg-grid-tech"
     >
+
+
       <div
         class="section-tracer absolute top-0 left-0 w-full h-px bg-vivid-navy origin-left scale-x-0 z-20 will-change-transform"
       >
       </div>
 
+      <!-- Section heading — constrained -->
       <div class="max-w-7xl mx-auto px-6 relative z-10">
         <div class="mb-24 text-center">
           <span
@@ -868,75 +663,79 @@ const portfolioProjects = [
             class="text-6xl md:text-8xl font-black tracking-tighter uppercase text-vivid-navy"
             style="font-family: 'Space Grotesk', sans-serif;"
           >
-            Portfolio
+            Capabilities <span class="text-vivid-mint">&</span> Performance
           </h2>
-        </div>
 
-        <div class="portfolio-grid grid grid-cols-1 md:grid-cols-2 gap-12">
-          {
-            portfolioProjects.map((project, index) => (
-              <a
-                href="#contact"
-                class="portfolio-item group relative bg-white border border-black transition-all duration-300 hover:-translate-y-2 flex flex-col h-full shadow-[12px_12px_0_0_#000000] cursor-pointer overflow-hidden"
-              >
-                <!-- Browser Header -->
-                <div class="h-8 bg-[#f3f3f4] border-b border-black flex items-center px-4 gap-2">
-                  <div class="w-2 h-2 rounded-full bg-black/20" />
-                  <div class="w-2 h-2 rounded-full bg-black/20" />
-                  <div class="w-2 h-2 rounded-full bg-black/20" />
-                  <div class="flex-grow text-[9px] text-black/40 font-mono text-center truncate uppercase tracking-widest pl-4">
-                    {project.title.toLowerCase().replace(/\s+/g, '')}.stk // active
-                  </div>
-                </div>
 
-                <div class="relative overflow-hidden aspect-[16/10]">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    class="w-full h-full object-cover transition-all duration-700 ease-architectural scale-100 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
 
-                <div class="p-8 md:p-12 border-t border-vivid-navy/5 flex flex-col justify-between flex-grow">
-                  <div>
-                    <div class="flex items-center gap-3 mb-6">
-                      <span class="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-vivid-navy text-white font-sans">
-                        {project.category}
-                      </span>
-                      <span
-                        class="text-[10px] font-semibold uppercase tracking-[0.2em] text-vivid-navy/40"
-                        style="font-family: 'Inter', sans-serif;"
-                      >
-                        {project.stack}
-                      </span>
-                    </div>
-                    <h3
-                      class="text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-vivid-navy leading-none"
-                      style="font-family: 'Space Grotesk', sans-serif;"
-                    >
-                      {project.title}
-                    </h3>
-                  </div>
-
-                  <div class="mt-12 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                      <div class="w-12 h-px bg-vivid-navy group-hover:w-20 group-hover:bg-vivid-mint transition-all duration-500" />
-                      <span class="text-[10px] font-bold uppercase tracking-widest text-vivid-navy group-hover:text-vivid-mint transition-colors duration-500">
-                        Case Study
-                      </span>
-                    </div>
-                    <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-vivid-mint font-bold translate-x-[-10px] group-hover:translate-x-0">
-                      →
-                    </div>
-                  </div>
-                </div>
-              </a>
-            ))
-          }
         </div>
       </div>
+
+      <!-- Unified Master Dashboard (Expanded 1400px) -->
+      <div class="max-w-[1400px] mx-auto px-6 relative z-10">
+
+        <div class="dashboard-container">
+          <div class="dashboard-split">
+            <!-- Left: Lighthouse Identity -->
+            <div class="dashboard-left">
+              <Image 
+                src={lighthouseImg} 
+                alt="Lighthouse 100/100 Score" 
+                class="dashboard-image"
+                widths={[400, 800]}
+                sizes="(max-width: 768px) 100vw, 550px"
+              />
+            </div>
+
+            <!-- Right: Performance Logic -->
+            <div class="dashboard-right">
+              <div class="performance-main">
+                <span class="text-vivid-mint font-bold uppercase tracking-[0.3em] text-[10px] mb-3 block">Technical Core</span>
+                <h3 class="text-3xl md:text-6xl font-black uppercase tracking-tighter text-vivid-navy leading-none mb-6">
+                  Performance: <br/>Sub-second load times
+                </h3>
+
+                <p class="text-vivid-navy/70 text-lg md:text-xl font-medium leading-relaxed max-w-lg">
+                  Every Vivid Stack project is engineered for maximum velocity, ensuring zero latency at the edge.
+                </p>
+
+
+              </div>
+
+              <hr class="dashboard-divider" />
+
+              <div class="service-stack">
+                <div class="service-item">
+                  <h4 class="text-vivid-navy font-extrabold uppercase tracking-widest text-sm mb-1">SEO Mastery</h4>
+                  <p class="text-vivid-navy/60 text-[11px] leading-relaxed">Built-in JSON-LD & Semantic HTML.</p>
+                </div>
+                <div class="service-item">
+                  <h4 class="text-vivid-navy font-extrabold uppercase tracking-widest text-sm mb-1">The 2026 Stack</h4>
+                  <p class="text-vivid-navy/60 text-[11px] leading-relaxed">Astro + Cloudflare Global CDN.</p>
+                </div>
+                <div class="service-item">
+                  <h4 class="text-vivid-navy font-extrabold uppercase tracking-widest text-sm mb-1">Mobile-First</h4>
+                  <p class="text-vivid-navy/60 text-[11px] leading-relaxed">Pixel-perfect Fluid Responsive Engine.</p>
+                </div>
+                <div class="service-item">
+                  <h4 class="text-vivid-navy font-extrabold uppercase tracking-widest text-sm mb-1">Cloudflare Edge</h4>
+                  <p class="text-vivid-navy/60 text-[11px] leading-relaxed">Sub-millisecond dynamic routing.</p>
+                </div>
+                <div class="service-item">
+                  <h4 class="text-vivid-navy font-extrabold uppercase tracking-widest text-sm mb-1">Shielded Core</h4>
+                  <p class="text-vivid-navy/60 text-[11px] leading-relaxed">Advanced DDoS & Threat Shield.</p>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+          <div class="dashboard-glow"></div>
+        </div>
+      </div>
+
+
     </section>
 
     <!-- Contact Footer Section -->
@@ -1283,21 +1082,239 @@ const portfolioProjects = [
       });
     }
 
-    // Portfolio Staggered Rise Animation
-    const portfolioItems = gsap.utils.toArray(".portfolio-item");
-    if (portfolioItems.length > 0) {
-      gsap.to(portfolioItems, {
-        y: 0,
-        opacity: 1,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".portfolio-grid",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      });
-    }
   </script>
+
+<style>
+  /* ============================================
+     MASTER DASHBOARD — Simplified Unified Layout
+     ============================================ */
+
+  .dashboard-container {
+    position: relative;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(13, 27, 42, 0.1);
+    border-radius: 2rem;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    width: 100%;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.05);
+  }
+
+  .dashboard-split {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: stretch;
+  }
+
+  .dashboard-left {
+    position: relative;
+    background: #05192d;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .dashboard-image {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+
+
+
+  .dashboard-container:hover .dashboard-image {
+    transform: scale(1.05);
+  }
+
+  .dashboard-right {
+    padding: 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+
+
+  .dashboard-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.2), transparent);
+    width: 100%;
+    margin: 0;
+  }
+
+  .service-stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 2rem;
+  }
+
+  .dashboard-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 0% 0%, rgba(0, 255, 153, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .dashboard-right {
+      padding: 3rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .dashboard-split {
+      grid-template-columns: 1fr;
+    }
+    .dashboard-left {
+      min-height: 300px;
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .dashboard-right {
+      padding: 2.5rem;
+    }
+    .service-stack {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  .image-crop-wrapper {
+    mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+  }
+
+  /* Crop top built-in browser bars from specific images if they have them */
+  .image-crop-wrapper img {
+    object-position: center bottom;
+  }
+
+  /* ============================================
+     PROCESS SECTION — Split-Action Layout
+     ============================================ */
+
+  .process-split-container {
+    padding: 2rem 0;
+  }
+
+  .process-vertical-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(37, 54, 68, 0.1) 10%, rgba(37, 54, 68, 0.1) 90%, transparent);
+    transform: translateX(-50%);
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .process-vertical-line {
+      display: block;
+    }
+  }
+
+  .process-icon-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .process-icon-wrapper {
+      display: flex;
+    }
+  }
+
+  .process-icon-glow {
+    width: 3rem;
+    height: 3rem;
+    background: white;
+    border: 1px solid rgba(13, 27, 42, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 0 20px rgba(93, 255, 236, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .process-row:hover .process-icon-glow {
+    transform: scale(1.2);
+    box-shadow: 0 0 30px rgba(93, 255, 236, 0.4);
+    border-color: #00ffcc;
+  }
+
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(13, 27, 42, 0.1);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+  }
+
+  .agency-card:hover {
+    border-color: #00ffcc;
+    box-shadow: 0 20px 40px rgba(0, 255, 204, 0.05);
+    transform: translateY(-5px);
+  }
+
+  .process-label {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .process-label.client {
+    background: #f3f3f4;
+    color: #253644;
+  }
+
+  .process-label.agency {
+    background: #253644;
+    color: #5DFFEC;
+  }
+
+  .process-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #253644;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .process-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: rgba(37, 54, 68, 0.7);
+    line-height: 1.6;
+  }
+</style>
 </Layout>
