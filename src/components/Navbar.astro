@@ -8,7 +8,19 @@ import logo from "../assets/logo.png";
   <!-- Logo - Centered -->
   <a href="/" class="group flex items-center logo-center">
     <div class="logo-wrapper">
-      <Image id="nav-icon" src={logo} alt="VividStack" width={200} height={200} class="logo-img" />
+      <Image
+        id="nav-icon"
+        src={logo}
+        alt="VividStack"
+        width={200}
+        height={200}
+        class="logo-img"
+        widths={[112, 160, 240, 320]}
+        sizes="(max-width: 768px) 112px, 160px"
+        loading="eager"
+        fetchpriority="high"
+        quality={100}
+      />
     </div>
   </a>
 

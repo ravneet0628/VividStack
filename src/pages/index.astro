@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
-import ScatteredDesk from "../components/ScatteredDesk.astro";
 import { Image } from "astro:assets";
 
 import heroCode from "../assets/hero_code.png";
@@ -10,7 +9,6 @@ import hmglobalImg from "../assets/hmglobal.png";
 import securechoiceImg from "../assets/securechoice.png";
 import photolpImg from "../assets/photolp.png";
 import lighthouseImg from "../assets/lighthouse-100.png";
-
 
 const portfolioProjects = [
   {
@@ -65,7 +63,7 @@ const portfolioProjects = [
 
 ---
 
-<Layout title="Sophisticated Web Architecture">
+<Layout title="Premium Web Design & Development — Fast, Responsive Websites">
   <Navbar />
 
   <main
@@ -119,15 +117,18 @@ const portfolioProjects = [
         src={heroCode}
         alt="Code Architecture"
         class="w-full h-auto grayscale opacity-40 md:opacity-100"
-        widths={[400, 800, 1200, 1600]}
-        sizes="(max-width: 768px) 200vw, 85vw"
+        widths={[640, 1280, 1920, 2560]}
+        sizes="(max-width: 768px) 100vw, 85vw"
         loading="eager"
+        fetchpriority="high"
+        decoding="sync"
+        quality={100}
       />
     </div>
 
     <!-- Ultra-lightweight Digital Structure Nodes -->
     <div
-      class="absolute inset-0 pointer-events-none overflow-hidden mix-blend-multiply"
+      class="absolute inset-0 pointer-events-none overflow-hidden mix-blend-multiply hidden md:block"
     >
       <!-- Mint Orb -->
       <div
@@ -245,7 +246,7 @@ const portfolioProjects = [
 
       <p
         id="hero-subtitle"
-        class="mt-8 md:mt-10 text-xl md:text-2xl lg:text-3xl text-vivid-navy/70 font-medium tracking-wide opacity-0 translate-y-8 max-w-3xl"
+        class="mt-8 md:mt-10 text-base sm:text-xl md:text-2xl lg:text-3xl text-vivid-navy/70 font-medium tracking-wide opacity-0 translate-y-8 max-w-3xl px-2"
       >
         High-performance web systems for ambitious businesses.
       </p>
@@ -452,8 +453,11 @@ const portfolioProjects = [
                     src={project.image}
                     alt={project.title}
                     class="project-screenshot-img"
-                    widths={[400, 800, 1200]}
-                    sizes="(max-width: 1024px) 85vw, 55vw"
+                    widths={[600, 1200, 1800, 2400]}
+                    sizes="(max-width: 1024px) 90vw, 60vw"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
                   />
                   <div class="screenshot-overlay">
                     <span class="screenshot-cta">Visit Website ↗</span>
@@ -541,7 +545,7 @@ const portfolioProjects = [
           <div class="process-vertical-line"></div>
 
           <!-- Stage 01 -->
-          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 relative mb-24 last:mb-0">
+          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 relative mb-24 last:mb-0">
             <div class="process-stage-label">PHASE 01</div>
             <!-- Left: YOU (Client) -->
             <div class="process-column-you">
@@ -572,7 +576,7 @@ const portfolioProjects = [
           </div>
 
           <!-- Stage 02 -->
-          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 relative mb-24 last:mb-0">
+          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 relative mb-24 last:mb-0">
             <div class="process-stage-label">PHASE 02</div>
             <!-- Left: YOU (Client) -->
             <div class="process-column-you">
@@ -603,7 +607,7 @@ const portfolioProjects = [
           </div>
 
           <!-- Stage 03 -->
-          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 relative mb-24 last:mb-0">
+          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 relative mb-24 last:mb-0">
             <div class="process-stage-label">PHASE 03</div>
             <!-- Left: YOU (Client) -->
             <div class="process-column-you">
@@ -635,7 +639,7 @@ const portfolioProjects = [
           </div>
 
           <!-- Stage 04 -->
-          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 relative mb-24 last:mb-0">
+          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 relative mb-24 last:mb-0">
             <div class="process-stage-label">PHASE 04</div>
             <!-- Left: YOU (Client) -->
             <div class="process-column-you">
@@ -712,8 +716,11 @@ const portfolioProjects = [
                 src={lighthouseImg} 
                 alt="Lighthouse 100/100 Score" 
                 class="dashboard-image"
-                widths={[400, 800]}
-                sizes="(max-width: 768px) 100vw, 450px"
+                widths={[400, 800, 1200]}
+                sizes="(max-width: 768px) 100vw, 600px"
+                loading="lazy"
+                decoding="async"
+                quality={100}
               />
             </div>
 
@@ -771,7 +778,7 @@ const portfolioProjects = [
     <!-- Contact Footer Section -->
     <section
       id="contact"
-      class="section-tracer-target relative py-40 bg-vivid-navy overflow-hidden"
+      class="section-tracer-target relative py-20 md:py-40 bg-vivid-navy overflow-hidden"
     >
       <div
         class="section-tracer absolute top-0 left-0 w-full h-px bg-vivid-mint origin-left scale-x-0 z-20"
@@ -793,42 +800,46 @@ const portfolioProjects = [
           >Ready to scale?</span
         >
         <h2
-          class="text-5xl md:text-8xl font-black tracking-tighter uppercase text-vivid-cream mb-16 leading-tight"
+          class="text-4xl sm:text-5xl md:text-8xl font-black tracking-tighter uppercase text-vivid-cream mb-16 leading-tight"
           style="font-family: 'Space Grotesk', sans-serif;"
         >
           Let's Build the <span class="text-vivid-mint">Future</span> Today
         </h2>
 
-        <div
-          class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16"
-        >
-          <a
-            href="mailto:hello@vividstack.io"
-            class="group relative px-12 py-6 bg-vivid-mint text-vivid-navy rounded-none font-bold uppercase tracking-[0.4em] text-sm overflow-hidden transition-all duration-500 hover:scale-110 shadow-[8px_8px_0_0_#ffffff]"
-          >
-            hello@vividstack.io
-          </a>
-          <div class="flex gap-8">
-            <a
-              href="#"
-              class="text-vivid-cream/40 hover:text-vivid-mint transition-colors duration-300 font-bold uppercase tracking-widest text-[10px]"
-              >LinkedIn</a
-            >
-            <a
-              href="#"
-              class="text-vivid-cream/40 hover:text-vivid-mint transition-colors duration-300 font-bold uppercase tracking-widest text-[10px]"
-              >GitHub</a
-            >
-            <a
-              href="#"
-              class="text-vivid-cream/40 hover:text-vivid-mint transition-colors duration-300 font-bold uppercase tracking-widest text-[10px]"
-              >Twitter</a
-            >
+        <!-- Brutalist Contact Form -->
+        <form class="w-full max-w-3xl mx-auto flex flex-col gap-6 text-left mb-12 relative z-20" onsubmit="event.preventDefault();">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex flex-col">
+              <label class="text-xs font-bold uppercase tracking-[0.2em] text-vivid-mint mb-2">Name</label>
+              <input type="text" required placeholder="Your Name" class="bg-vivid-cream text-vivid-navy placeholder:text-vivid-navy/40 px-5 py-4 focus:outline-none focus:ring-2 focus:ring-vivid-mint transition-all font-medium text-base rounded-none border border-transparent" />
+            </div>
+            
+            <div class="flex flex-col">
+              <label class="text-xs font-bold uppercase tracking-[0.2em] text-vivid-mint mb-2">Email</label>
+              <input type="email" required placeholder="your.email@example.com" class="bg-vivid-cream text-vivid-navy placeholder:text-vivid-navy/40 px-5 py-4 focus:outline-none focus:ring-2 focus:ring-vivid-mint transition-all font-medium text-base rounded-none border border-transparent" />
+            </div>
           </div>
-        </div>
+          
+          <div class="flex flex-col mt-2">
+            <label class="text-xs font-bold uppercase tracking-[0.2em] text-vivid-mint mb-2">Message</label>
+            <textarea required rows="5" placeholder="How can we help you?" class="bg-vivid-cream text-vivid-navy placeholder:text-vivid-navy/40 px-5 py-4 focus:outline-none focus:ring-2 focus:ring-vivid-mint transition-all font-medium text-base resize-none rounded-none border border-transparent"></textarea>
+          </div>
+          
+          <div class="mt-6 flex flex-col md:flex-row items-center justify-between gap-8">
+            <button type="submit" class="w-full md:w-auto px-8 md:px-12 py-4 md:py-5 bg-vivid-mint text-vivid-navy rounded-none font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm hover:bg-white transition-colors duration-300 cursor-pointer shadow-[6px_6px_0_0_#ffffff]">
+              Send Message
+            </button>
+            
+            <div class="flex gap-8">
+              <a href="#" class="text-vivid-cream/60 hover:text-white transition-colors duration-300 font-bold uppercase tracking-widest text-xs">LinkedIn</a>
+              <a href="#" class="text-vivid-cream/60 hover:text-white transition-colors duration-300 font-bold uppercase tracking-widest text-xs">GitHub</a>
+              <a href="#" class="text-vivid-cream/60 hover:text-white transition-colors duration-300 font-bold uppercase tracking-widest text-xs">Twitter</a>
+            </div>
+          </div>
+        </form>
 
         <div
-          class="mt-40 pt-12 border-t border-vivid-cream/10 flex flex-col md:flex-row justify-between items-center gap-6"
+          class="mt-32 pt-12 border-t border-vivid-cream/10 flex flex-col md:flex-row justify-between items-center gap-6"
         >
           <div
             class="text-[10px] text-vivid-cream/30 uppercase tracking-[0.3em]"
@@ -861,22 +872,27 @@ const portfolioProjects = [
     // Register the precise architectural cubic-bezier
     CustomEase.create("architectural", "0.4, 0, 0.2, 1");
 
-    // Initialize Lenis with tuned cinematic smoothing
-    const lenis = new Lenis({
-      lerp: 0.1,
-      wheelMultiplier: 1,
-      smoothWheel: true,
-    });
+    // Initialize Lenis — desktop only; native scroll is faster on iOS
+    const IS_MOBILE = window.innerWidth < 1024;
 
-    // Sync GSAP ScrollTrigger with Lenis
-    lenis.on("scroll", ScrollTrigger.update);
+    let lenis;
+    if (!IS_MOBILE) {
+      lenis = new Lenis({
+        lerp: 0.1,
+        wheelMultiplier: 1,
+        smoothWheel: true,
+      });
 
-    // Use requestAnimationFrame for Lenis to ensure instant input response
-    function raf(time) {
-      lenis.raf(time);
+      // Sync GSAP ScrollTrigger with Lenis
+      lenis.on("scroll", ScrollTrigger.update);
+
+      // Use requestAnimationFrame for Lenis to ensure instant input response
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
       requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
 
     gsap.ticker.lagSmoothing(0);
 
@@ -920,32 +936,34 @@ const portfolioProjects = [
       .to("#hero-cta", { opacity: 1, y: 0 }, "-=1.1")
       .to(".tech-node", { opacity: 1, y: 0, stagger: 0.1 }, "-=1.0");
 
-    // Floating animation for ambient tech elements
-    gsap.utils.toArray("#ambient-elements > div").forEach((element) => {
-      gsap.to(element, {
-        x: "random(-20, 20)",
-        y: "random(-20, 20)",
-        duration: "random(6, 10)",
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        force3D: true,
+    // Floating animation for ambient tech elements — skip on mobile to save CPU
+    if (!IS_MOBILE) {
+      gsap.utils.toArray("#ambient-elements > div").forEach((element) => {
+        gsap.to(element, {
+          x: "random(-20, 20)",
+          y: "random(-20, 20)",
+          duration: "random(6, 10)",
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          force3D: true,
+        });
       });
-    });
 
-    // Floating orbit animation loop for tech nodes
-    gsap.utils.toArray(".tech-node").forEach((node, i) => {
-      gsap.to(node, {
-        y: i % 2 === 0 ? 15 : -15, // Alternate direction
-        rotation: i % 2 === 0 ? 1 : -1,
-        duration: 2.5 + i * 0.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        force3D: true,
-        delay: i * 0.2,
+      // Floating orbit animation loop for tech nodes
+      gsap.utils.toArray(".tech-node").forEach((node, i) => {
+        gsap.to(node, {
+          y: i % 2 === 0 ? 15 : -15,
+          rotation: i % 2 === 0 ? 1 : -1,
+          duration: 2.5 + i * 0.5,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          force3D: true,
+          delay: i * 0.2,
+        });
       });
-    });
+    }
 
     // Services Slide Animations
     gsap.to(".service-card", {
@@ -961,10 +979,10 @@ const portfolioProjects = [
     // ─── Selected Works: GSAP Pin on Desktop, Native Snap Scroll on Mobile ───
     const worksSection = document.querySelector("#selected-works");
     const pinWrap     = document.querySelector(".pin-wrap");
-    const IS_MOBILE   = window.innerWidth < 1024;
+    const IS_MOBILE_WORKS = window.innerWidth < 1024;
 
     if (worksSection && pinWrap) {
-      if (!IS_MOBILE) {
+      if (!IS_MOBILE_WORKS) {
         // DESKTOP: GSAP horizontal pin + scrub
         const worksTl = gsap.timeline({
           scrollTrigger: {
@@ -996,83 +1014,86 @@ const portfolioProjects = [
         });
 
       } else {
-        // MOBILE: Native snap scroll — no GSAP involvement
-        // The CSS already handles scroll-snap-type: x mandatory
-        // Just disable Lenis for this element so native iOS momentum works
+        // MOBILE: Native snap scroll
         pinWrap.setAttribute("data-lenis-prevent", "");
       }
     }
 
-    // Smooth Scroll Trigger for Hash Links using Lenis
+    // Smooth Scroll Trigger for Hash Links using Lenis (desktop only)
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener("click", (e) => {
         e.preventDefault();
         const targetId = anchor.getAttribute("href");
         if (targetId) {
-          lenis.scrollTo(targetId, {
-            offset: 0,
-            duration: 1.5,
-            easing: (t) =>
-              Math.min(
-                1,
-                1.001 *
-                  Math.pow(2, -10 * t) *
-                  Math.sin((t * 10 - 0.75) * ((2 * Math.PI) / 3)) +
+          if (lenis) {
+            lenis.scrollTo(targetId, {
+              offset: 0,
+              duration: 1.5,
+              easing: (t) =>
+                Math.min(
                   1,
-              ),
-          });
+                  1.001 *
+                    Math.pow(2, -10 * t) *
+                    Math.sin((t * 10 - 0.75) * ((2 * Math.PI) / 3)) +
+                    1,
+                ),
+            });
+          } else {
+            // Mobile: native smooth scroll
+            document.querySelector(targetId)?.scrollIntoView({ behavior: "smooth" });
+          }
         }
       });
     });
 
-    // Magnetic Hero Headline Letters
+    // Magnetic Hero Headline Letters — desktop only, throttled with rAF
     const heroChars = gsap.utils.toArray(".hero-char");
 
-    if (heroChars.length > 0) {
+    if (heroChars.length > 0 && !IS_MOBILE) {
+      let rafPending = false;
+      let lastMouseX = 0, lastMouseY = 0;
+
       window.addEventListener("mousemove", (e) => {
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+        if (rafPending) return;
+        rafPending = true;
+        requestAnimationFrame(() => {
+          rafPending = false;
+          heroChars.forEach((char) => {
+            const rect = char.getBoundingClientRect();
+            const charX = rect.left + rect.width / 2;
+            const charY = rect.top + rect.height / 2;
+            const distX = lastMouseX - charX;
+            const distY = lastMouseY - charY;
+            const distance = Math.sqrt(distX * distX + distY * distY);
+            const magnetRadius = 100;
 
-        heroChars.forEach((char) => {
-          const rect = char.getBoundingClientRect();
-          const charX = rect.left + rect.width / 2;
-          const charY = rect.top + rect.height / 2;
-
-          const distX = mouseX - charX;
-          const distY = mouseY - charY;
-          const distance = Math.sqrt(distX * distX + distY * distY);
-
-          const magnetRadius = 100; // Activation distance in pixels
-
-          if (distance < magnetRadius) {
-            // Calculate pull fraction (closer = stronger pull)
-            const pull = 1 - distance / magnetRadius;
-
-            // Max displacement is 10px
-            const moveX = (distX / distance) * pull * 10;
-            const moveY = (distY / distance) * pull * 10;
-
-            gsap.to(char, {
-              x: moveX,
-              y: moveY,
-              rotationY: moveX * 0.5, // Subtle 3D leaning
-              rotationX: -moveY * 0.5,
-              duration: 0.3,
-              ease: "power2.out",
-              overwrite: "auto",
-            });
-          } else {
-            // Reset when out of range
-            gsap.to(char, {
-              x: 0,
-              y: 0,
-              rotationY: 0,
-              rotationX: 0,
-              duration: 0.6,
-              ease: "power3.out",
-              overwrite: "auto",
-            });
-          }
+            if (distance < magnetRadius) {
+              const pull = 1 - distance / magnetRadius;
+              const moveX = (distX / distance) * pull * 10;
+              const moveY = (distY / distance) * pull * 10;
+              gsap.to(char, {
+                x: moveX,
+                y: moveY,
+                rotationY: moveX * 0.5,
+                rotationX: -moveY * 0.5,
+                duration: 0.3,
+                ease: "power2.out",
+                overwrite: "auto",
+              });
+            } else {
+              gsap.to(char, {
+                x: 0,
+                y: 0,
+                rotationY: 0,
+                rotationX: 0,
+                duration: 0.6,
+                ease: "power3.out",
+                overwrite: "auto",
+              });
+            }
+          });
         });
       });
     }
@@ -1588,7 +1609,7 @@ const portfolioProjects = [
 
   @media (max-width: 1024px) {
     .dashboard-right {
-      padding: 3rem;
+      padding: 2.5rem;
     }
     .dashboard-left {
       aspect-ratio: auto;
@@ -1601,16 +1622,17 @@ const portfolioProjects = [
       grid-template-columns: 1fr;
     }
     .dashboard-left {
-      min-height: 260px;
+      min-height: 220px;
       border-right: none;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 2rem;
     }
     .dashboard-right {
-      padding: 2.5rem;
+      padding: 1.75rem;
     }
     .service-stack {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
     }
   }
 
