@@ -381,6 +381,18 @@ const portfolioProjects = [
     id="platform"
     class="relative bg-white border-t border-black bg-grid-tech"
   >
+    <!-- Centered Header -->
+    <div class="mobile-section-header w-full text-center py-20 bg-white">
+      <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block">Case Studies</span>
+      <h2
+        class="text-6xl md:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85] select-none"
+        style="font-family: 'Space Grotesk', sans-serif;"
+      >
+        SELECTED WORK
+      </h2>
+      <div class="mt-8 w-24 h-1 bg-black mx-auto"></div>
+    </div>
+
     <div id="selected-works" class="relative">
 
       <!-- Section-Level Sticky Browser Chrome -->
@@ -397,7 +409,7 @@ const portfolioProjects = [
       <!-- Desktop: GSAP Pin Wrap | Mobile: Snap Scroll -->
       <div class="pin-wrap" id="pin-wrap">
 
-        <!-- Section Title Card -->
+        <!-- Section Title Card (Desktop Only) -->
         <div class="title-card will-change-transform">
           <div class="relative">
             <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block">Case Studies</span>
@@ -458,8 +470,8 @@ const portfolioProjects = [
                 <span class="meta-id">{project.systemId}</span>
               </div>
 
-              <!-- Blueprint Terminal: Brutalist Architecture Sidebar -->
-              <div class="blueprint-terminal will-change-transform">
+              <!-- Blueprint Terminal: Brutalist Architecture Sidebar (Desktop Only) -->
+              <div class="blueprint-terminal will-change-transform hidden md:block">
                 <!-- Power-Up Glow (Behind) -->
                 <div class="terminal-glow" style={`background: ${project.accent};`}></div>
                 
@@ -493,6 +505,7 @@ const portfolioProjects = [
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         ))}
@@ -1097,6 +1110,15 @@ const portfolioProjects = [
   </script>
 
 <style>
+  .mobile-section-header {
+    display: none;
+  }
+  @media (max-width: 1023px) {
+    .mobile-section-header {
+      display: block;
+    }
+  }
+
   /* ============================================
      SELECTED WORKS — Section Chrome Bar
      ============================================ */
@@ -1201,14 +1223,9 @@ const portfolioProjects = [
       display: none;
     }
 
-    /* Anchoring the Section Title Card for mobile */
+    /* Hide the original Section Title Card on mobile */
     .title-card {
-      display: flex;
-      flex-shrink: 0;
-      width: 85vw;
-      padding: 0 2rem;
-      justify-content: center;
-      text-align: center;
+      display: none !important;
     }
     
     .title-card h2 {
@@ -1405,15 +1422,7 @@ const portfolioProjects = [
 
   @media (max-width: 1023px) {
     .blueprint-terminal {
-       display: flex;
-       flex-direction: column;
-       position: relative; /* Remove from absolute flow to prevent overlap */
-       width: 100%;
-       margin-top: 2rem;
-       box-shadow: 8px 8px 0 0 #000;
-       padding: 1.25rem;
-       bottom: 0;
-       right: 0;
+       display: none !important;
     }
   }
 
