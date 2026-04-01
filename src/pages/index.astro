@@ -1102,15 +1102,23 @@ const portfolioProjects = [
      ============================================ */
 
   .selected-works-chrome {
+    height: 3rem;
+    background: #ffffff;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.6rem 1.5rem;
-    background: #f3f3f4;
-    border-bottom: 1px solid #000;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    border-bottom: 2px solid #000;
     position: sticky;
     top: 0;
     z-index: 100;
+  }
+  
+  @media (max-width: 1023px) {
+    .selected-works-chrome {
+      height: 4rem;
+      border-bottom-width: 3px;
+    }
   }
 
   .chrome-dots {
@@ -1181,9 +1189,9 @@ const portfolioProjects = [
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       height: auto;
-      padding: 2rem 1.5rem;
-      gap: 1.25rem;
-      padding-right: 1.5rem;
+      padding: 4rem 1.5rem;
+      gap: 3rem; /* Increase breathing room between columns */
+      padding-right: 5vw;
       /* Hide scrollbar visually */
       scrollbar-width: none;
       -ms-overflow-style: none;
@@ -1193,9 +1201,20 @@ const portfolioProjects = [
       display: none;
     }
 
-    /* Hide the title card on mobile — section chrome label covers it */
+    /* Anchoring the Section Title Card for mobile */
     .title-card {
-      display: none;
+      display: flex;
+      flex-shrink: 0;
+      width: 85vw;
+      padding: 0 2rem;
+      justify-content: center;
+      text-align: center;
+    }
+    
+    .title-card h2 {
+      font-size: 11vw !important; /* Scaled down to prevent "K" displacement */
+      line-height: 1;
+      white-space: nowrap; /* Forces SELECTED and WORK to stay on their lines */
     }
   }
 
@@ -1326,6 +1345,17 @@ const portfolioProjects = [
     justify-content: space-between;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     padding-bottom: 1rem;
+    position: relative;
+  }
+
+  @media (max-width: 1023px) {
+    .project-meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
   }
 
   .meta-stack { display: flex; gap: 1rem; }
@@ -1361,20 +1391,30 @@ const portfolioProjects = [
 
   .blueprint-terminal {
     position: absolute;
-    bottom: -3rem;
-    right: -2rem;
-    width: 260px;
+    bottom: -1rem; /* Better anchor on mobile */
+    right: -0.5rem; /* Better anchor on mobile */
+    width: 240px;
     z-index: 50;
     background: #ffffff;
     border: 2px solid #000;
-    box-shadow: 12px 12px 0 0 #000;
-    padding: 1.5rem;
+    box-shadow: 8px 8px 0 0 #000;
+    padding: 1.25rem;
     transform: translateZ(0);
     overflow: hidden;
   }
 
   @media (max-width: 1023px) {
-    .blueprint-terminal { display: none; }
+    .blueprint-terminal {
+       display: flex;
+       flex-direction: column;
+       position: relative; /* Remove from absolute flow to prevent overlap */
+       width: 100%;
+       margin-top: 2rem;
+       box-shadow: 8px 8px 0 0 #000;
+       padding: 1.25rem;
+       bottom: 0;
+       right: 0;
+    }
   }
 
   .terminal-glow {
@@ -1584,27 +1624,6 @@ const portfolioProjects = [
     display: none;
   }
 
-  /* Desktop Completion Mark Tail */
-  @media (min-width: 768px) {
-    .process-vertical-line::after {
-      content: '';
-      position: absolute;
-      bottom: -1rem;
-      left: 50%;
-      width: 2.5rem;
-      height: 2.5rem;
-      background-color: #00ffcc;
-      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-      -webkit-mask-size: contain;
-      mask-size: contain;
-      -webkit-mask-repeat: no-repeat;
-      mask-repeat: no-repeat;
-      transform: translateX(-50%);
-      box-shadow: 0 0 25px rgba(0, 255, 204, 0.6);
-      z-index: 100;
-    }
-  }
 
   @media (min-width: 768px) {
     .process-vertical-line {
@@ -1656,13 +1675,13 @@ const portfolioProjects = [
       gap: 1.5rem;
       position: relative;
       padding-bottom: 2.5rem;
-      padding-left: 2.5rem; /* Container-level offset for the timeline */
+      padding-left: 1.75rem; /* Tightened container offset */
     }
 
     .process-row::before {
       content: '';
       position: absolute;
-      left: 0.75rem;
+      left: 0.4rem; /* Brought line closer to the edge */
       top: 0;
       bottom: 0;
       width: 2px;
@@ -1694,17 +1713,6 @@ const portfolioProjects = [
       50% { transform: translateX(-50%) translateY(5px); opacity: 1; }
     }
 
-    .process-row:last-child::after {
-      content: '';
-      background-color: #00ffcc;
-      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-      width: 1.25rem;
-      height: 1.25rem;
-      animation: none;
-      opacity: 1;
-      bottom: 0.75rem;
-    }
 
     .process-column-you,
     .process-column-we {
@@ -1716,10 +1724,10 @@ const portfolioProjects = [
     .process-column-we::before {
       content: '';
       position: absolute;
-      left: -2.3rem; /* Aligns with the vertical line at 0.75rem left */
+      left: -1.75rem; /* Re-aligned with the new line position */
       top: 2rem;
-      width: 1.25rem;
-      height: 1.25rem;
+      width: 1.15rem;
+      height: 1.15rem;
       border-radius: 50%;
       background: #00ffcc;
       border: 3px solid #f3f3f4;
