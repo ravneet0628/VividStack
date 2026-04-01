@@ -410,20 +410,17 @@ const portfolioProjects = [
       <!-- Desktop: GSAP Pin Wrap | Mobile: Snap Scroll -->
       <div class="pin-wrap" id="pin-wrap">
 
-        <!-- Section Title Card (Desktop Only) -->
+        <!-- Title card: first slide in the horizontal scroll -->
         <div class="title-card will-change-transform">
-          <div class="relative">
-            <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block">Case Studies</span>
-            <h2
-              class="text-6xl md:text-8xl md:text-9xl font-black uppercase tracking-tighter text-black leading-[0.85] select-none"
-              style="font-family: 'Space Grotesk', sans-serif;"
-            >
-              SELECTED<br />WORK
-            </h2>
-            <div class="mt-8 w-24 h-1 bg-black"></div>
-          </div>
+          <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-3 block">Case Studies</span>
+          <h2
+            class="text-6xl xl:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85] select-none"
+            style="font-family: 'Space Grotesk', sans-serif;"
+          >
+            SELECTED<br />WORK
+          </h2>
+          <div class="mt-6 w-20 h-1 bg-black"></div>
         </div>
-
         {portfolioProjects.map((project) => (
           <div class="project-card will-change-transform">
             <!-- Ambient Glow -->
@@ -1137,6 +1134,13 @@ const portfolioProjects = [
     }
   }
 
+  /* ==============================================
+     SELECTED WORKS — Static Anchored Title (Desktop)
+     ============================================== */
+
+  /* Removed — header is now inside pin-wrap as first slide */
+  /* .works-static-header { } */
+
   /* ============================================
      SELECTED WORKS — Section Chrome Bar
      ============================================ */
@@ -1206,12 +1210,23 @@ const portfolioProjects = [
 
   .pin-wrap {
     display: flex;
-    gap: 8rem;
-    padding-left: 15vw;
-    padding-right: 50vw;
+    gap: 6rem;
+    /* Tight left start — title is the first card, flush to the edge */
+    padding-left: 5vw;
+    padding-right: 40vw;
     align-items: center;
     height: 100vh;
     will-change: transform;
+  }
+
+  /* Title card: the first "slide" in the horizontal scroll area */
+  .title-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 36vw;
+    flex-shrink: 0;
+    padding-right: 4vw;
   }
 
   /* Mobile: native snap scroll */
