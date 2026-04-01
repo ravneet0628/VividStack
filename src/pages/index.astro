@@ -113,14 +113,14 @@ const portfolioProjects = [
     <!-- Hero Code Structure Watermark -->
     <div
       id="hero-background"
-      class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[85vw] max-w-[1200px] opacity-[0.03] pointer-events-none z-[-1] transition-opacity duration-1000"
+      class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[200vw] md:w-[85vw] max-w-[1200px] opacity-10 md:opacity-[0.03] pointer-events-none z-[-1] transition-opacity duration-1000"
     >
       <Image
         src={heroCode}
         alt="Code Architecture"
-        class="w-full h-auto grayscale"
+        class="w-full h-auto grayscale opacity-40 md:opacity-100"
         widths={[400, 800, 1200, 1600]}
-        sizes="85vw"
+        sizes="(max-width: 768px) 200vw, 85vw"
         loading="eager"
       />
     </div>
@@ -381,18 +381,6 @@ const portfolioProjects = [
     id="platform"
     class="relative bg-white border-t border-black bg-grid-tech"
   >
-    <!-- Centered Header -->
-    <div class="mobile-section-header w-full text-center py-20 bg-white">
-      <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block">Case Studies</span>
-      <h2
-        class="text-6xl md:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85] select-none"
-        style="font-family: 'Space Grotesk', sans-serif;"
-      >
-        SELECTED WORK
-      </h2>
-      <div class="mt-8 w-24 h-1 bg-black mx-auto"></div>
-    </div>
-
     <div id="selected-works" class="relative">
 
       <!-- Section-Level Sticky Browser Chrome -->
@@ -404,6 +392,18 @@ const portfolioProjects = [
         </div>
         <div class="chrome-label">vividstack.io // selected_works</div>
         <span class="chrome-badge">CASE STUDIES</span>
+      </div>
+
+      <!-- Centered Header for Mobile -->
+      <div class="mobile-section-header w-full text-center pt-16 pb-4">
+        <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block">Case Studies</span>
+        <h2
+          class="text-6xl md:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85] select-none"
+          style="font-family: 'Space Grotesk', sans-serif;"
+        >
+          SELECTED WORK
+        </h2>
+        <div class="mt-8 w-16 h-1 bg-black mx-auto"></div>
       </div>
 
       <!-- Desktop: GSAP Pin Wrap | Mobile: Snap Scroll -->

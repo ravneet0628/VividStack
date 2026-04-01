@@ -46,7 +46,7 @@ import logo from "../assets/logo.png";
     }
 
     // Check if we're in a dark section
-    const sections = document.querySelectorAll('section');
+    const sections = document.querySelectorAll('section, .dashboard-container');
     let inDarkSection = false;
     
     sections.forEach(section => {
@@ -54,7 +54,12 @@ import logo from "../assets/logo.png";
       if (rect.top <= 100 && rect.bottom >= 100) {
         // Check if section has dark background
         const bgColor = window.getComputedStyle(section).backgroundColor;
-        if (bgColor.includes('rgb(5, 25, 45)') || bgColor.includes('rgb(0, 0, 0)') || bgColor.includes('#000')) {
+        if (
+          bgColor.includes('rgb(5, 25, 45)') || 
+          bgColor.includes('rgb(0, 0, 0)') || 
+          bgColor.includes('#000') || 
+          bgColor.includes('rgb(37, 54, 68)')
+        ) {
           inDarkSection = true;
         }
       }
