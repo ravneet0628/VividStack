@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import { Image } from "astro:assets";
@@ -10,11 +10,6 @@ import securechoiceImg from "../assets/securechoice.png";
 import photolpImg from "../assets/photolp.png";
 import lighthouseImg from "../assets/lighthouse-100.png";
 
-import resetat30Mobile from "../assets/resetat30_mobile.png";
-import hmglobalMobile from "../assets/hmglobal_mobile.png";
-import securechoiceMobile from "../assets/securechoice_mobile.png";
-import photolpMobile from "../assets/photolp_mobile.png";
-
 const portfolioProjects = [
   {
     title: "Reset at 30",
@@ -22,7 +17,6 @@ const portfolioProjects = [
     stack: "Astro v4.0",
     stack2: "Cloudflare Edge",
     image: resetat30Img,
-    mobileImage: resetat30Mobile,
     accent: "#00ffcc",
     url: "https://resetat30.pages.dev/",
     displayUrl: "resetat30.com // active",
@@ -35,7 +29,6 @@ const portfolioProjects = [
     stack: "Industrial Solutions",
     stack2: "Enterprise Architecture",
     image: hmglobalImg,
-    mobileImage: hmglobalMobile,
     accent: "#0066ff",
     url: "https://hmglobalinc.com/",
     displayUrl: "hmglobalinc.com // industrial_node",
@@ -48,7 +41,6 @@ const portfolioProjects = [
     stack: "Risk Architecture",
     stack2: "Security Protocol",
     image: securechoiceImg,
-    mobileImage: securechoiceMobile,
     accent: "#9900ff",
     url: "https://top-insurance.pages.dev/",
     displayUrl: "top-insurance.pages.dev // encrypted",
@@ -61,7 +53,6 @@ const portfolioProjects = [
     stack: "Creative Delivery",
     stack2: "React + Vite",
     image: photolpImg,
-    mobileImage: photolpMobile,
     accent: "#ff9900",
     url: "https://shivstudio.onrender.com/",
     displayUrl: "shivstudio.onrender.com // asset_node",
@@ -72,7 +63,7 @@ const portfolioProjects = [
 
 ---
 
-<Layout title="Premium Web Design & Development — Fast, Responsive Websites">
+<Layout title="Premium Web Design & Development ΓÇö Fast, Responsive Websites">
   <Navbar />
 
   <main
@@ -272,72 +263,16 @@ const portfolioProjects = [
           <div
             class="absolute right-5 translate-x-10 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 font-bold text-lg text-vivid-mint"
           >
-            →
+            ΓåÆ
           </div>
         </a>
       </div>
     </div>
   </main>
 
-  <section id="advantage" class="relative py-24 bg-white overflow-hidden border-b border-black/5 bg-grid-tech">
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-      <div class="mb-16 text-center">
-        <span
-          class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block"
-          >Why Choose Us</span
-        >
-        <h2
-          class="text-6xl md:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85] select-none"
-          style="font-family: 'Space Grotesk', sans-serif;"
-        >
-          THE VIVID ADVANTAGE_
-        </h2>
-        <p class="text-vivid-navy/60 font-medium text-lg md:text-xl tracking-tight max-w-2xl mx-auto mt-8">
-          Enterprise-grade technology, built for your business growth.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-16">
-        <!-- Card 1: Blazing Speed -->
-        <div class="advantage-card group bg-[#f8f9fa] border border-black p-8 md:p-10 shadow-[8px_8px_0_0_#000] hover:shadow-[12px_12px_0_0_#000] transform hover:-translate-y-1">
-          <div class="w-12 h-12 bg-vivid-navy text-vivid-mint flex items-center justify-center mb-6 shadow-[4px_4px_0_0_#00ffcc]">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-black uppercase tracking-tighter mb-4 leading-tight" style="font-family: 'Space Grotesk', sans-serif;">BLAZING FAST<br/>PERFORMANCE</h3>
-          <p class="text-vivid-navy/70 font-medium leading-relaxed" style="font-family: 'Inter', sans-serif;">Most users leave a slow site. Yours will load in under a second, keeping every customer on the page.</p>
-        </div>
-
-        <!-- Card 2: Visibility -->
-        <div class="advantage-card group bg-[#f8f9fa] border border-black p-8 md:p-10 shadow-[8px_8px_0_0_#000] hover:shadow-[12px_12px_0_0_#000] transform hover:-translate-y-1">
-          <div class="w-12 h-12 bg-white text-black flex items-center justify-center mb-6 border border-black shadow-[4px_4px_0_0_#000]">
-            <svg viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor">
-              <path d="M12.48 10.92v3.28h7.84c-.24 1.84-2.21 5.39-7.84 5.39-4.84 0-8.77-4.01-8.77-8.96s3.93-8.96 8.77-8.96c2.75 0 4.6 1.17 5.65 2.18l2.59-2.5c-1.66-1.55-3.82-2.48-6.24-2.48-5.32 0-9.67 4.35-9.67 9.67s4.35 9.67 9.67 9.67c5.56 0 9.25-3.91 9.25-9.41 0-.63-.07-1.12-.15-1.59h-9.1z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-black uppercase tracking-tighter mb-4 leading-tight" style="font-family: 'Space Grotesk', sans-serif;">FOUND ON<br/>GOOGLE</h3>
-          <p class="text-vivid-navy/70 font-medium leading-relaxed" style="font-family: 'Inter', sans-serif;">We handle the technical SEO setup so your business shows up where it matters.</p>
-        </div>
-
-        <!-- Card 3: Free Hosting -->
-        <div class="advantage-card group bg-vivid-navy border border-vivid-mint p-8 md:p-10 shadow-[8px_8px_0_0_#00ffcc] hover:shadow-[12px_12px_0_0_#00ffcc] transform hover:-translate-y-1 relative">
-          <div class="absolute -top-4 -right-4 bg-white text-vivid-navy font-black text-[10px] px-3 py-1.5 border-2 border-vivid-mint shadow-[4px_4px_0_0_#00ffcc] z-20 animate-pulse tracking-widest uppercase">FREE FOREVER</div>
-          <div class="w-12 h-12 bg-vivid-mint text-vivid-navy flex items-center justify-center mb-6 shadow-[4px_4px_0_0_#ffffff]">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-black uppercase tracking-tighter mb-4 leading-tight text-white" style="font-family: 'Space Grotesk', sans-serif;">$0 HOSTING.<br/><span class="text-vivid-mint">FREE FOREVER</span></h3>
-          <p class="text-white/70 font-medium leading-relaxed" style="font-family: 'Inter', sans-serif;">Save thousands in monthly fees with our enterprise-grade infrastructure.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section
     id="services"
-    class="section-tracer-target relative py-24 lg:py-32 bg-[#f3f3f4] overflow-hidden"
+    class="section-tracer-target relative pt-6 md:pt-16 pb-32 lg:pt-24 bg-white overflow-hidden"
   >
     <div
       class="section-tracer absolute top-0 left-0 w-full h-px bg-[#000000] origin-left scale-x-0 z-20 will-change-transform"
@@ -345,7 +280,7 @@ const portfolioProjects = [
     </div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-6">
-      <div class="mb-16">
+      <div class="mb-20 text-center">
         <span
           class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block"
           >Our Expertise</span
@@ -358,58 +293,87 @@ const portfolioProjects = [
         </h2>
       </div>
 
-      <!-- BENTO GRID -->
-      <div class="bento-grid">
-
-        <!-- Large hero tile: Web Engineering -->
-        <a href="#platform" class="bento-tile bento-hero service-card group" id="bento-engineering">
-          <div class="bento-number">01</div>
-          <div class="bento-content">
-            <div class="bento-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
-              </svg>
+      <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+        <a
+          href="#portfolio"
+          class="service-card flex flex-col justify-between group bg-[#f3f3f4] border border-[#000000] p-10 md:p-14 rounded-none transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-[#006a63] shadow-[0_10px_30px_rgba(0,0,0,0.04)] opacity-0 translate-y-[100px] cursor-pointer block"
+        >
+          <div>
+            <div
+              class="text-[#000000]/20 text-5xl font-extrabold mb-6 group-hover:text-[#006a63]/30 transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
+              style="font-family: 'Space Grotesk', sans-serif;"
+            >
+              01
             </div>
-            <h3 class="bento-title">Web Engineering</h3>
-            <p class="bento-desc">High-performance systems built on modern frameworks. Sub-second load times, edge-deployed, built to scale.</p>
-            <span class="bento-cta">View Case Studies →</span>
+            <h3
+              class="text-xl lg:text-2xl font-bold mb-4 uppercase tracking-tight text-[#000000] group-hover:text-[#006a63] transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
+              style="font-family: 'Space Grotesk', sans-serif;"
+            >
+              Scalable Architecture
+            </h3>
+            <p
+              class="text-[#000000]/70 leading-relaxed font-medium"
+              style="font-family: 'Inter', sans-serif;"
+            >
+              High-performance engineering using modern frameworks to build
+              robust systems designed for speed.
+            </p>
           </div>
-          <div class="bento-bg-glow" style="background: #00ffcc;"></div>
         </a>
 
-        <!-- Secondary tile: Technical SEO -->
-        <div class="bento-tile bento-secondary service-card group" id="bento-seo">
-          <div class="bento-number">02</div>
-          <div class="bento-content">
-            <div class="bento-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-              </svg>
+        <a
+          href="#platform"
+          class="service-card flex flex-col justify-between group bg-[#f3f3f4] border border-[#000000] p-10 md:p-14 rounded-none transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-[#006a63] shadow-[0_10px_30px_rgba(0,0,0,0.04)] opacity-0 translate-y-[100px] cursor-pointer block"
+        >
+          <div>
+            <div
+              class="text-[#000000]/20 text-5xl font-extrabold mb-6 group-hover:text-[#006a63]/30 transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
+              style="font-family: 'Space Grotesk', sans-serif;"
+            >
+              02
             </div>
-            <h3 class="bento-title">Technical SEO</h3>
-            <p class="bento-desc">Schema markup, Core Web Vitals, and semantic HTML that gets you found on Google.</p>
+            <h3
+              class="text-xl lg:text-2xl font-bold mb-4 uppercase tracking-tight text-[#000000] group-hover:text-[#006a63] transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
+              style="font-family: 'Space Grotesk', sans-serif;"
+            >
+              Custom Business Logic
+            </h3>
+            <p
+              class="text-[#000000]/70 leading-relaxed font-medium"
+              style="font-family: 'Inter', sans-serif;"
+            >
+              Tailored digital workflows and backend systems perfectly aligned
+              with your enterprise operational needs.
+            </p>
           </div>
-          <div class="bento-bg-glow" style="background: #0066ff;"></div>
-        </div>
+        </a>
 
-        <!-- Accent tile: UI / UX Design -->
-        <div class="bento-tile bento-accent service-card group" id="bento-design">
-          <div class="bento-number">03</div>
-          <div class="bento-content">
-            <div class="bento-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8">
-                <path d="M12 20h9"/>
-                <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
-              </svg>
+        <a
+          href="#selected-works"
+          class="service-card flex flex-col justify-between group bg-[#f3f3f4] border border-[#000000] p-10 md:p-14 rounded-none transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-[#006a63] shadow-[0_10px_30px_rgba(0,0,0,0.04)] opacity-0 translate-y-[100px] cursor-pointer block"
+        >
+          <div>
+            <div
+              class="text-[#000000]/20 text-5xl font-extrabold mb-6 group-hover:text-[#006a63]/30 transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
+              style="font-family: 'Space Grotesk', sans-serif;"
+            >
+              03
             </div>
-            <h3 class="bento-title">UI / UX Design</h3>
-            <p class="bento-desc">Pixel-perfect interfaces that convert visitors into customers. Designed with purpose.</p>
+            <h3
+              class="text-xl lg:text-2xl font-bold mb-4 uppercase tracking-tight text-[#000000] group-hover:text-[#006a63] transition-colors duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
+              style="font-family: 'Space Grotesk', sans-serif;"
+            >
+              Brand Performance
+            </h3>
+            <p
+              class="text-[#000000]/70 leading-relaxed font-medium"
+              style="font-family: 'Inter', sans-serif;"
+            >
+              Optimized digital experiences that maximize conversion rates while
+              maintaining rigorous aesthetic standards.
+            </p>
           </div>
-          <div class="bento-bg-glow" style="background: #9900ff;"></div>
-        </div>
-
+        </a>
       </div>
     </div>
   </section>
@@ -446,81 +410,62 @@ const portfolioProjects = [
       <!-- Desktop: GSAP Pin Wrap | Mobile: Snap Scroll -->
       <div class="pin-wrap" id="pin-wrap">
 
-        <!-- Title card: first slide in the horizontal scroll -->
+        <!-- Section Title Card (Desktop Only) -->
         <div class="title-card will-change-transform">
-          <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-3 block">Case Studies</span>
-          <h2
-            class="text-6xl xl:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85] select-none"
-            style="font-family: 'Space Grotesk', sans-serif;"
-          >
-            SELECTED<br />WORK
-          </h2>
-          <div class="mt-6 w-20 h-1 bg-black"></div>
+          <div class="relative">
+            <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block">Case Studies</span>
+            <h2
+              class="text-6xl md:text-8xl md:text-9xl font-black uppercase tracking-tighter text-black leading-[0.85] select-none"
+              style="font-family: 'Space Grotesk', sans-serif;"
+            >
+              SELECTED<br />WORK
+            </h2>
+            <div class="mt-8 w-24 h-1 bg-black"></div>
+          </div>
         </div>
+
         {portfolioProjects.map((project) => (
           <div class="project-card will-change-transform">
+            <!-- Ambient Glow -->
+            <div class="absolute inset-0 flex items-center justify-center -z-10">
+              <div
+                class="w-[60%] h-[60%] blur-[100px] rounded-full"
+                style={`background: ${project.accent}20;`}
+              ></div>
+            </div>
 
             <div class="project-card-inner">
-              <!-- Dual-Device Container: strictly 16/9 -->
-              <div class="dual-device-container">
-
-                <!-- Layer 1 (back): Desktop Browser -->
-                <div class="desktop-browser">
-                  <!-- URL bar with traffic-light dots -->
-                  <div class="desktop-url-bar">
-                    <div class="chrome-dot-sm dot-red"></div>
-                    <div class="chrome-dot-sm dot-yellow"></div>
-                    <div class="chrome-dot-sm dot-green"></div>
-                    <div class="desktop-url-text">{project.displayUrl}</div>
-                  </div>
-                  <!-- Screenshot -->
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="desktop-screenshot-link group"
-                  >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      class="desktop-screenshot-img"
-                      widths={[600, 1200, 1800]}
-                      sizes="(max-width: 1024px) 90vw, 60vw"
-                      loading="lazy"
-                      decoding="async"
-                      quality={95}
-                    />
-                    <div class="screenshot-overlay">
-                      <span class="screenshot-cta">Visit Website ↗</span>
-                    </div>
-                  </a>
+              <!-- Browser Window (no dots ΓÇö they are in the section chrome above) -->
+              <div class="browser-window">
+                <!-- URL bar only (no traffic lights) -->
+                <div class="browser-url-bar">
+                  <div class="url-text">{project.displayUrl}</div>
                 </div>
 
-                <!-- Layer 2 (front): Mobile Phone Frame -->
-                <div class="phone-frame">
-                  <div class="phone-notch"></div>
-                  <div class="phone-screen">
-                    <a href={project.url} target="_blank" rel="noopener noreferrer" class="block w-full h-full overflow-hidden">
-                      <Image
-                        src={project.mobileImage}
-                        alt={`${project.title} mobile`}
-                        class="phone-screenshot-img"
-                        widths={[390, 780]}
-                        sizes="(max-width: 1024px) 30vw, 15vw"
-                        loading="lazy"
-                        decoding="async"
-                        quality={90}
-                      />
-                    </a>
+                <!-- Project Screenshot -->
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="project-screenshot-link group"
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    class="project-screenshot-img"
+                    widths={[600, 1200, 1800, 2400]}
+                    sizes="(max-width: 1024px) 90vw, 60vw"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                  <div class="screenshot-overlay">
+                    <span class="screenshot-cta">Visit Website Γåù</span>
                   </div>
-                  <div class="phone-home-bar"></div>
-                </div>
-
-                <!-- Accent glow behind the container -->
-                <div class="device-glow" style={`background: ${project.accent};`}></div>
+                </a>
               </div>
 
-              <!-- Project Metadata — below the 16/9 box -->
+              <!-- Technical Metadata -->
               <div class="project-meta">
                 <div class="meta-stack">
                   <span class="meta-primary">{project.stack}</span>
@@ -528,8 +473,44 @@ const portfolioProjects = [
                 </div>
                 <span class="meta-id">{project.systemId}</span>
               </div>
-            </div>
 
+              <!-- Blueprint Terminal: Brutalist Architecture Sidebar (Desktop Only) -->
+              <div class="blueprint-terminal will-change-transform hidden md:block">
+                <!-- Power-Up Glow (Behind) -->
+                <div class="terminal-glow" style={`background: ${project.accent};`}></div>
+                
+                <div class="terminal-header">
+                  <span class="status-dot animate-pulse" style={`background: ${project.accent};`}></span>
+                  <span class="status-code">{project.systemId}_ACTIVE</span>
+                </div>
+
+                <div class="terminal-logs">
+                  <div class="log-line">
+                    <span class="log-label">LHR_STATE</span>
+                    <span class="log-value" style={`color: ${project.accent};`}>99</span>
+                  </div>
+                  <div class="log-line">
+                    <span class="log-label">NODE_SYNC</span>
+                    <span class="log-value">TRUE</span>
+                  </div>
+                  <div class="log-line">
+                    <span class="log-label">PROTOCOL</span>
+                    <span class="log-value">{project.stack.split(" ")[0].toUpperCase()}</span>
+                  </div>
+                  <div class="log-line">
+                    <span class="log-label">CORE_P76</span>
+                    <span class="log-value">NOMINAL</span>
+                  </div>
+                </div>
+
+                <div class="terminal-footer" style={`border-top-color: ${project.accent}40;`}>
+                  <div class="tech-badge" style={`color: ${project.accent};`}>
+                    // AUTHENTIC_STACK
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         ))}
 
@@ -705,7 +686,7 @@ const portfolioProjects = [
       >
       </div>
 
-      <!-- Section heading — constrained -->
+      <!-- Section heading ΓÇö constrained -->
       <div class="max-w-7xl mx-auto px-6 relative z-10">
         <div class="mb-24 text-center">
           <span
@@ -721,63 +702,70 @@ const portfolioProjects = [
         </div>
       </div>
 
-      <!-- Light Bento Performance Grid -->
-      <div class="max-w-7xl mx-auto px-6 relative z-10">
-        <div class="bento-grid">
-          <!-- Main Performance Card -->
-          <div class="bento-card bento-perf-main md:col-span-2 md:row-span-2">
-            <div class="flex flex-col md:flex-row items-center gap-8 h-full">
-              <div class="w-full md:w-1/2 flex justify-center">
-                <Image 
-                  src={lighthouseImg} 
-                  alt="Lighthouse 100/100 Score" 
-                  class="bento-image"
-                  widths={[400, 800]}
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  loading="lazy"
-                  decoding="async"
-                  quality={100}
-                />
-              </div>
-              <div class="w-full md:w-1/2">
-                <span class="card-tag">Technical Core</span>
-                <h3 class="card-title">Performance: <br/><span class="text-vivid-mint">Sub-second</span> load times</h3>
-                <p class="card-text text-vivid-navy/70">
+      <!-- Unified Master Dashboard (Expanded 1400px) -->
+      <div class="max-w-[1400px] mx-auto px-6 relative z-10">
+
+        <div class="dashboard-container">
+          <div class="dashboard-split">
+            <!-- Left: Lighthouse Identity -->
+            <div class="dashboard-left">
+              <Image 
+                src={lighthouseImg} 
+                alt="Lighthouse 100/100 Score" 
+                class="dashboard-image"
+                widths={[400, 800, 1200]}
+                sizes="(max-width: 768px) 100vw, 600px"
+                loading="lazy"
+                decoding="async"
+                quality={100}
+              />
+            </div>
+
+            <!-- Right: Performance Logic -->
+            <div class="dashboard-right">
+              <div class="performance-main">
+                <span class="text-vivid-mint font-bold uppercase tracking-[0.3em] text-[10px] mb-3 block">Technical Core</span>
+                <h3 class="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-none mb-6">
+                  Performance: <br/><span class="text-vivid-mint">Sub-second</span> load times
+                </h3>
+
+                <p class="text-white/70 text-lg md:text-xl font-medium leading-relaxed max-w-lg">
                   Every Vivid Stack project is engineered for maximum velocity, ensuring zero latency at the edge.
                 </p>
+
+
               </div>
+
+              <hr class="dashboard-divider" />
+
+              <div class="service-stack">
+                <div class="service-item">
+                  <h4 class="text-white font-extrabold uppercase tracking-widest text-[10px] mb-1">SEO Mastery</h4>
+                  <p class="text-white/40 text-[10px] leading-relaxed">Built-in JSON-LD & Semantic HTML.</p>
+                </div>
+                <div class="service-item">
+                  <h4 class="text-white font-extrabold uppercase tracking-widest text-[10px] mb-1">The 2026 Stack</h4>
+                  <p class="text-white/40 text-[10px] leading-relaxed">Astro + Cloudflare Global CDN.</p>
+                </div>
+                <div class="service-item">
+                  <h4 class="text-white font-extrabold uppercase tracking-widest text-[10px] mb-1">Mobile-First</h4>
+                  <p class="text-white/40 text-[10px] leading-relaxed">Pixel-perfect Fluid Responsive Engine.</p>
+                </div>
+                <div class="service-item">
+                  <h4 class="text-white font-extrabold uppercase tracking-widest text-[10px] mb-1">Cloudflare Edge</h4>
+                  <p class="text-white/40 text-[10px] leading-relaxed">Sub-millisecond dynamic routing.</p>
+                </div>
+                <div class="service-item">
+                  <h4 class="text-white font-extrabold uppercase tracking-widest text-[10px] mb-1">Shielded Core</h4>
+                  <p class="text-white/40 text-[10px] leading-relaxed">Advanced DDoS & Threat Shield.</p>
+                </div>
+              </div>
+
+
+
             </div>
           </div>
-
-          <!-- SEO Mastery -->
-          <div class="bento-card">
-            <h4 class="card-small-title">SEO Mastery</h4>
-            <p class="card-small-text text-vivid-navy/60">Built-in JSON-LD & Semantic HTML for maximum search visibility.</p>
-          </div>
-
-          <!-- The 2026 Stack -->
-          <div class="bento-card">
-            <h4 class="card-small-title">The 2026 Stack</h4>
-            <p class="card-small-text text-vivid-navy/60">Astro v4 + Cloudflare Global CDN for high-velocity delivery.</p>
-          </div>
-
-          <!-- Mobile-First -->
-          <div class="bento-card">
-            <h4 class="card-small-title">Mobile-First</h4>
-            <p class="card-small-text text-vivid-navy/60">Pixel-perfect Fluid Responsive Engine for all device types.</p>
-          </div>
-
-          <!-- Cloudflare Edge -->
-          <div class="bento-card">
-            <h4 class="card-small-title">Cloudflare Edge</h4>
-            <p class="card-small-text text-vivid-navy/60">Sub-millisecond dynamic routing via advanced edge network.</p>
-          </div>
-
-          <!-- Shielded Core -->
-          <div class="bento-card">
-            <h4 class="card-small-title">Shielded Core</h4>
-            <p class="card-small-text text-vivid-navy/60">Advanced DDoS & Threat Shield for enterprise-grade security.</p>
-          </div>
+          <div class="dashboard-glow"></div>
         </div>
       </div>
 
@@ -853,7 +841,7 @@ const portfolioProjects = [
           <div
             class="text-[10px] text-vivid-cream/30 uppercase tracking-[0.3em]"
           >
-            © 2024 VIVIDSTACK ARCHITECTS. ALL SYSTEM_RIGHTS_RESERVED.
+            ┬⌐ 2024 VIVIDSTACK ARCHITECTS. ALL SYSTEM_RIGHTS_RESERVED.
           </div>
           <div
             class="flex gap-6 text-[10px] text-vivid-cream/30 uppercase tracking-[0.2em]"
@@ -881,7 +869,7 @@ const portfolioProjects = [
     // Register the precise architectural cubic-bezier
     CustomEase.create("architectural", "0.4, 0, 0.2, 1");
 
-    // Initialize Lenis — desktop only; native scroll is faster on iOS/Android
+    // Initialize Lenis ΓÇö desktop only; native scroll is faster on iOS
     const IS_MOBILE = window.innerWidth < 1024;
 
     let lenis;
@@ -922,7 +910,6 @@ const portfolioProjects = [
         ".project-screenshot",
         ".tech-node",
         "#ambient-elements > div",
-        ".advantage-card",
       ],
       { willChange: "transform, opacity" },
     );
@@ -946,29 +933,7 @@ const portfolioProjects = [
       .to("#hero-cta", { opacity: 1, y: 0 }, "-=1.1")
       .to(".tech-node", { opacity: 1, y: 0, stagger: 0.1 }, "-=1.0");
 
-    // Advantage cards entrance
-    gsap.to(".advantage-card", {
-      scrollTrigger: { trigger: "#advantage", start: "top 85%" },
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      stagger: 0.15,
-      ease: "power2.out",
-      force3D: true,
-    });
-
-    // Bento tiles entrance
-    gsap.to(".bento-tile", {
-      scrollTrigger: { trigger: "#services", start: "top 80%" },
-      opacity: 1,
-      translate: "0px 0px",
-      duration: 0.9,
-      stagger: 0.12,
-      ease: "power2.out",
-      force3D: true,
-    });
-
-    // Floating animation for ambient tech elements — skip on mobile to save CPU
+    // Floating animation for ambient tech elements ΓÇö skip on mobile to save CPU
     if (!IS_MOBILE) {
       gsap.utils.toArray("#ambient-elements > div").forEach((element) => {
         gsap.to(element, {
@@ -1008,12 +973,13 @@ const portfolioProjects = [
       force3D: true,
     });
 
-    // ─── Selected Works: GSAP Pin on Desktop, Native Snap Scroll on Mobile ───
+    // ΓöÇΓöÇΓöÇ Selected Works: GSAP Pin on Desktop, Native Snap Scroll on Mobile ΓöÇΓöÇΓöÇ
     const worksSection = document.querySelector("#selected-works");
     const pinWrap     = document.querySelector(".pin-wrap");
+    const IS_MOBILE_WORKS = window.innerWidth < 1024;
 
     if (worksSection && pinWrap) {
-      if (!IS_MOBILE) {
+      if (!IS_MOBILE_WORKS) {
         // DESKTOP: GSAP horizontal pin + scrub
         const worksTl = gsap.timeline({
           scrollTrigger: {
@@ -1032,11 +998,6 @@ const portfolioProjects = [
           ease: "none",
         });
 
-        // 1.2x parallax glide on futuristic blueprint terminals (desktop only)
-        gsap.utils.toArray(".blueprint-terminal").forEach((terminal) => {
-          worksTl.to(terminal, { x: -120, ease: "none" }, 0);
-        });
-
         // Recalculate after layout settle
         window.addEventListener("load", () => {
           setTimeout(() => ScrollTrigger.refresh(), 800);
@@ -1044,16 +1005,18 @@ const portfolioProjects = [
 
         window.addEventListener("resize", () => ScrollTrigger.refresh());
 
+        // 1.2x parallax glide on futuristic blueprint terminals (desktop only)
+        gsap.utils.toArray(".blueprint-terminal").forEach((terminal) => {
+          worksTl.to(terminal, { x: -120, ease: "none" }, 0);
+        });
+
       } else {
-        // MOBILE: Native snap scroll logic
+        // MOBILE: Native snap scroll
         pinWrap.setAttribute("data-lenis-prevent", "");
-        
-        // Remove GSAP pinning transforms if window was resized from desktop
-        gsap.set(pinWrap, { clearProps: "all" });
       }
     }
 
-    // Smooth Scroll Trigger for Hash Links using Lenis/Native
+    // Smooth Scroll Trigger for Hash Links using Lenis (desktop only)
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener("click", (e) => {
         e.preventDefault();
@@ -1074,17 +1037,15 @@ const portfolioProjects = [
             });
           } else {
             // Mobile: native smooth scroll
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              targetElement.scrollIntoView({ behavior: "smooth" });
-            }
+            document.querySelector(targetId)?.scrollIntoView({ behavior: "smooth" });
           }
         }
       });
     });
 
-    // Magnetic Hero Headline Letters — desktop only
+    // Magnetic Hero Headline Letters ΓÇö desktop only, throttled with rAF
     const heroChars = gsap.utils.toArray(".hero-char");
+
     if (heroChars.length > 0 && !IS_MOBILE) {
       let rafPending = false;
       let lastMouseX = 0, lastMouseY = 0;
@@ -1097,7 +1058,7 @@ const portfolioProjects = [
         requestAnimationFrame(() => {
           rafPending = false;
           heroChars.forEach((char) => {
-            const rect = (char as HTMLElement).getBoundingClientRect();
+            const rect = char.getBoundingClientRect();
             const charX = rect.left + rect.width / 2;
             const charY = rect.top + rect.height / 2;
             const distX = lastMouseX - charX;
@@ -1136,7 +1097,7 @@ const portfolioProjects = [
 
     // Section Tracer Border Animation
     gsap.utils.toArray(".section-tracer-target").forEach((section) => {
-      const tracer = (section as HTMLElement).querySelector(".section-tracer");
+      const tracer = section.querySelector(".section-tracer");
       if (tracer) {
         gsap.to(tracer, {
           scaleX: 1,
@@ -1144,8 +1105,8 @@ const portfolioProjects = [
           ease: "power3.inOut",
           force3D: true,
           scrollTrigger: {
-            trigger: section as HTMLElement,
-            start: "top 85%",
+            trigger: section,
+            start: "top 85%", // Triggers precisely as the section enters the bottom viewport mask
             toggleActions: "play none none reverse",
           },
         });
@@ -1153,9 +1114,9 @@ const portfolioProjects = [
     });
 
     // Hero Background Subtle Entrance
-    const heroBg = document.querySelector("#hero-background");
-    if (heroBg) {
-      gsap.from(heroBg, {
+    const heroCode = document.querySelector("#hero-background");
+    if (heroCode) {
+      gsap.from(heroCode, {
         opacity: 0,
         scale: 0.95,
         duration: 3,
@@ -1163,180 +1124,23 @@ const portfolioProjects = [
         ease: "power2.out",
       });
     }
+
   </script>
 
 <style>
-  /* ============================================
-     NAV
-     ============================================ */
-  #main-nav {
-    z-index: 9999 !important;
+  .mobile-section-header {
+    display: none;
   }
-
-  /* ============================================
-     SECTION TRACER
-     ============================================ */
-  .section-tracer {
-    will-change: transform;
-  }
-
-  /* ============================================
-     ADVANTAGE SECTION
-     ============================================ */
-  .advantage-card {
-    opacity: 0;
-    transform: translateY(30px) translateZ(0);
-    will-change: transform, opacity;
-    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s ease;
-  }
-
-  /* ============================================
-     SERVICES BENTO GRID
-     ============================================ */
-  .bento-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 1.25rem;
-  }
-
-  @media (max-width: 767px) {
-    .bento-grid {
-      grid-template-columns: 1fr;
+  @media (max-width: 1023px) {
+    .mobile-section-header {
+      display: block;
     }
   }
 
-  .bento-tile {
-    position: relative;
-    overflow: hidden;
-    border: 2px solid #000;
-    padding: 2.5rem;
-    cursor: pointer;
-    transform: translateZ(0);
-    will-change: transform;
-    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-    opacity: 0;
-    translate: 0 40px;
-  }
-
-  .bento-tile:hover {
-    transform: translateY(-4px) translateZ(0);
-    box-shadow: 8px 8px 0 0 #000;
-  }
-
-  /* Hero tile spans both rows on left */
-  .bento-hero {
-    grid-column: 1;
-    grid-row: 1 / 3;
-    background: #253644;
-    color: white;
-    min-height: 420px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .bento-hero .bento-title { color: #fff; }
-  .bento-hero .bento-desc  { color: rgba(255,255,255,0.65); }
-  .bento-hero .bento-number { color: rgba(255,255,255,0.08); }
-  .bento-hero .bento-icon  { color: #00ffcc; }
-
-  .bento-secondary {
-    grid-column: 2;
-    grid-row: 1;
-    background: #f3f3f4;
-  }
-
-  .bento-accent {
-    grid-column: 2;
-    grid-row: 2;
-    background: #f8f9fa;
-    border-color: #000;
-  }
-
-  @media (max-width: 767px) {
-    .bento-hero, .bento-secondary, .bento-accent {
-      grid-column: 1;
-      grid-row: auto;
-      min-height: 280px;
-    }
-  }
-
-  .bento-number {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 5rem;
-    font-weight: 900;
-    color: rgba(0,0,0,0.06);
-    line-height: 1;
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    user-select: none;
-  }
-
-  .bento-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    gap: 1rem;
-  }
-
-  .bento-icon {
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #253644;
-  }
-
-  .bento-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    color: #000;
-    line-height: 1.1;
-  }
-
-  .bento-desc {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9375rem;
-    color: rgba(0,0,0,0.6);
-    line-height: 1.6;
-    flex: 1;
-  }
-
-  .bento-cta {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8125rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #00ffcc;
-    margin-top: auto;
-  }
-
-  .bento-bg-glow {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-    filter: blur(80px);
-    z-index: 0;
-  }
-
-  .bento-tile:hover .bento-bg-glow {
-    opacity: 0.08;
-  }
-
   /* ============================================
-     SELECTED WORKS — Section Chrome Bar
+     SELECTED WORKS ΓÇö Section Chrome Bar
      ============================================ */
+
   .selected-works-chrome {
     height: 3rem;
     background: #ffffff;
@@ -1349,7 +1153,7 @@ const portfolioProjects = [
     top: 0;
     z-index: 100;
   }
-
+  
   @media (max-width: 1023px) {
     .selected-works-chrome {
       height: 4rem;
@@ -1371,7 +1175,7 @@ const portfolioProjects = [
     border: 1px solid rgba(0,0,0,0.1);
   }
 
-  .dot-red    { background: #ff5f57; }
+  .dot-red   { background: #ff5f57; }
   .dot-yellow { background: #ffbd2e; }
   .dot-green  { background: #27c93f; }
 
@@ -1397,32 +1201,20 @@ const portfolioProjects = [
   }
 
   /* ============================================
-     SELECTED WORKS — Pin Wrap / Snap Scroll
+     SELECTED WORKS ΓÇö Pin Wrap (Desktop) / Snap Scroll (Mobile)
      ============================================ */
+
   .pin-wrap {
     display: flex;
-    gap: 6rem;
-    padding-left: 5vw;
-    padding-right: 40vw;
+    gap: 8rem;
+    padding-left: 15vw;
+    padding-right: 50vw;
     align-items: center;
     height: 100vh;
     will-change: transform;
-    transform: translateZ(0);
   }
 
-  .title-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: 36vw;
-    flex-shrink: 0;
-    padding-right: 4vw;
-  }
-
-  .mobile-section-header {
-    display: none;
-  }
-
+  /* Mobile: native snap scroll */
   @media (max-width: 1023px) {
     #selected-works {
       height: auto !important;
@@ -1437,39 +1229,58 @@ const portfolioProjects = [
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       height: auto;
-      padding: 2rem 1.25rem 2rem;
-      gap: 1.5rem;
+      padding: 4rem 1.5rem;
+      gap: 3rem; /* Increase breathing room between columns */
       padding-right: 5vw;
+      /* Hide scrollbar visually */
       scrollbar-width: none;
       -ms-overflow-style: none;
-      transform: none !important;
-      align-items: flex-start;
     }
 
-    .pin-wrap::-webkit-scrollbar { display: none; }
+    .pin-wrap::-webkit-scrollbar {
+      display: none;
+    }
 
-    .title-card { display: none !important; }
+    /* Hide the original Section Title Card on mobile */
+    .title-card {
+      display: none !important;
+    }
+    
+    .title-card h2 {
+      font-size: 11vw !important; /* Scaled down to prevent "K" displacement */
+      line-height: 1;
+      white-space: nowrap; /* Forces SELECTED and WORK to stay on their lines */
+    }
+  }
 
-    .mobile-section-header { display: block; }
+  /* Desktop title card */
+  .title-card {
+    flex-shrink: 0;
+    width: 40vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   /* ============================================
-     PROJECT CARD SHELL
+     PROJECT CARDS
      ============================================ */
+
   .project-card {
     flex-shrink: 0;
     width: 55vw;
+    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    transform: translateZ(0);
-    will-change: transform;
+    transform: translateZ(0); /* GPU layer promotion */
   }
 
   @media (max-width: 1023px) {
     .project-card {
-      width: 82vw;
+      width: 85vw;
+      height: auto;
       scroll-snap-align: start;
       scroll-snap-stop: always;
     }
@@ -1478,223 +1289,130 @@ const portfolioProjects = [
   .project-card-inner {
     position: relative;
     width: 100%;
-    transform: translateZ(0);
+    max-width: 900px;
   }
 
-  /* ============================================
-     DUAL-DEVICE CONTAINER  (strictly 16/9)
-     ============================================ */
-  .dual-device-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;          /* nothing bleeds outside */
-    background: #0a0a0a;
-    border: 2px solid #000;
-    box-shadow: 16px 16px 0 0 #000;
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  /* Subtle ambient glow behind everything */
-  .device-glow {
-    position: absolute;
-    bottom: -30%;
-    right: -10%;
-    width: 60%;
-    height: 80%;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.18;
-    pointer-events: none;
-    z-index: 0;
-    transform: translateZ(0);
-  }
-
-  /* ---- Desktop Browser (back layer) ---- */
-  .desktop-browser {
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* covers ~80% width, leaving right pocket for phone */
-    width: 95%;
-    height: 100%;
+  .browser-window {
+    border: 1px solid #000;
     background: #f8f9fa;
-    border-right: 1.5px solid rgba(0,0,0,0.15);
-    display: flex;
-    flex-direction: column;
-    z-index: 2;
+    position: relative;
+    z-index: 10;
+    box-shadow: 20px 20px 0 0 #000000;
     overflow: hidden;
     transform: translateZ(0);
   }
 
-  .desktop-url-bar {
+  .browser-url-bar {
     height: 2rem;
-    background: #f0f0f0;
-    border-bottom: 1.5px solid rgba(0,0,0,0.12);
+    background: #f3f3f4;
+    border-bottom: 1px solid #000;
     display: flex;
     align-items: center;
-    gap: 0.35rem;
-    padding: 0 0.75rem;
-    flex-shrink: 0;
+    padding: 0 1rem;
   }
 
-  .chrome-dot-sm {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .desktop-url-text {
-    font-size: 8px;
+  .url-text {
+    width: 100%;
+    font-size: 9px;
     font-family: 'Inter', monospace;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: rgba(37,54,68,0.35);
+    letter-spacing: 0.2em;
+    color: rgba(37,54,68,0.4);
+    text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    flex: 1;
-    text-align: center;
   }
 
-  .desktop-screenshot-link {
+  .project-screenshot-link {
     display: block;
-    flex: 1;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: #ffffff;
   }
 
-  .desktop-screenshot-img {
+  .project-screenshot-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: top center;
+    transition: transform 0.7s ease;
     display: block;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateZ(0);
   }
 
-  .desktop-screenshot-link:hover .desktop-screenshot-img {
-    transform: scale(1.04) translateZ(0);
+  .project-screenshot-link:hover .project-screenshot-img {
+    transform: scale(1.04);
   }
 
-  /* ---- Phone Frame (front layer) ---- */
-  .phone-frame {
-    position: absolute;
-    bottom: 6%;
-    right: 3%;
-    width: 22%;
-    /* phone aspect ~19.5/9 = tall */
-    aspect-ratio: 9 / 19.5;
-    background: #1a1a1a;
-    border: 3px solid #2a2a2a;
-    border-radius: 1.25rem;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.4rem 0.3rem;
-    gap: 0.25rem;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
-    overflow: hidden;
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  .phone-notch {
-    width: 35%;
-    height: 4px;
-    background: #333;
-    border-radius: 99px;
-    flex-shrink: 0;
-  }
-
-  .phone-screen {
-    flex: 1;
-    width: 100%;
-    background: #fff;
-    border-radius: 0.5rem;
-    overflow: hidden;
-  }
-
-  .phone-screenshot-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transform: translateZ(0);
-  }
-
-  .phone-home-bar {
-    width: 40%;
-    height: 3px;
-    background: #444;
-    border-radius: 99px;
-    flex-shrink: 0;
-  }
-
-  /* Screenshot overlay (desktop only) */
   .screenshot-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.1);
+    background: rgba(0,0,0,0.08);
     opacity: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: opacity 0.3s ease;
-    z-index: 5;
+    z-index: 20;
   }
 
-  .desktop-screenshot-link:hover .screenshot-overlay {
+  .project-screenshot-link:hover .screenshot-overlay {
     opacity: 1;
   }
 
   .screenshot-cta {
     background: white;
     color: black;
-    padding: 0.4rem 0.875rem;
-    font-size: 9px;
+    padding: 0.5rem 1rem;
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transform: translateZ(0);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   }
 
-  /* ============================================
-     PROJECT METADATA (below the 16/9 box)
-     ============================================ */
   .project-meta {
-    margin-top: 1.25rem;
+    margin-top: 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid rgba(0,0,0,0.1);
-    padding-bottom: 0.875rem;
+    padding-bottom: 1rem;
+    position: relative;
   }
 
   @media (max-width: 1023px) {
     .project-meta {
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.5rem;
-      margin-top: 1rem;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding-bottom: 1.5rem;
     }
   }
 
   .meta-stack { display: flex; gap: 1rem; }
-  .meta-primary, .meta-secondary {
+
+  .meta-primary {
     font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     font-family: 'Inter', sans-serif;
+    color: #000;
   }
-  .meta-primary  { color: #000; }
-  .meta-secondary { color: rgba(0,0,0,0.4); }
+
+  .meta-secondary {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-family: 'Inter', sans-serif;
+    color: rgba(0,0,0,0.4);
+  }
+
   .meta-id {
     font-size: 10px;
     font-family: monospace;
@@ -1703,90 +1421,220 @@ const portfolioProjects = [
   }
 
   /* ============================================
-     BENTO PERFORMANCE GRID
+     ARCHITECTURAL BLUEPRINT TERMINAL
      ============================================ */
-  .bento-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
 
-  @media (min-width: 768px) {
-    .bento-grid {
-      grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: minmax(160px, auto);
-    }
-  }
-
-  .bento-card {
-    background: white;
-    border: 2px solid #05192d;
-    padding: 2.5rem;
-    box-shadow: 8px 8px 0 0 #05192d;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
+  .blueprint-terminal {
+    position: absolute;
+    bottom: -1rem; /* Better anchor on mobile */
+    right: -0.5rem; /* Better anchor on mobile */
+    width: 240px;
+    z-index: 50;
+    background: #ffffff;
+    border: 2px solid #000;
+    box-shadow: 8px 8px 0 0 #000;
+    padding: 1.25rem;
+    transform: translateZ(0);
     overflow: hidden;
   }
 
-  .bento-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 12px 12px 0 0 #05192d;
+  @media (max-width: 1023px) {
+    .blueprint-terminal {
+       display: none !important;
+    }
   }
 
-  .bento-image {
-    width: 100%;
-    height: auto;
-    max-width: 320px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 20px rgba(0, 255, 204, 0.1));
+  .terminal-glow {
+    position: absolute;
+    inset: -20px;
+    opacity: 0.1;
+    filter: blur(40px);
+    z-index: -1;
+    border-radius: 50%;
   }
 
-  .card-tag {
-    color: #00ffcc;
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    display: block;
-    margin-bottom: 0.75rem;
-  }
-
-  .card-title {
-    color: #05192d;
-    font-size: 2.25rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: 1;
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     margin-bottom: 1.25rem;
-    letter-spacing: -0.02em;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
   }
 
-  .card-text {
-    font-size: 1.125rem;
-    font-weight: 500;
-    line-height: 1.5;
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
   }
 
-  .card-small-title {
-    color: #05192d;
-    font-size: 0.8rem;
+  .status-code {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
     font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 0.75rem;
+    letter-spacing: 0.1em;
+    color: #000;
   }
 
-  .card-small-text {
-    font-size: 0.85rem;
-    font-weight: 500;
-    line-height: 1.5;
+  .terminal-logs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .log-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .log-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 8px;
+    font-weight: 800;
+    color: rgba(0,0,0,0.4);
+    letter-spacing: 0.1em;
+  }
+
+  .log-value {
+    font-family: monospace;
+    font-size: 10px;
+    font-weight: 900;
+    color: #000;
+  }
+
+  .terminal-footer {
+    padding-top: 0.75rem;
+    border-top: 1px dashed rgba(0,0,0,0.1);
+  }
+
+  .tech-badge {
+    font-family: monospace;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    opacity: 0.8;
   }
 
   /* ============================================
-     PROCESS SECTION — Split-Action Layout
+     MASTER DASHBOARD ΓÇö #capabilities
+     ============================================ */
+
+  .dashboard-container {
+    position: relative;
+    background: #05192d;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2rem;
+    overflow: hidden;
+    /* Specific properties only ΓÇö no transition: all */
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
+    width: 100%;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+    transform: translateZ(0); /* GPU promote */
+  }
+
+  .dashboard-split {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: stretch;
+  }
+
+  .dashboard-left {
+    position: relative;
+    background: #020c15;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  /* Cap the height on desktop to keep the text side balanced */
+  @media (min-width: 1024px) {
+    .dashboard-left {
+      min-height: 450px;
+      max-height: 550px;
+    }
+  }
+
+  .dashboard-image {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.8s ease;
+    transform: translateZ(0);
+  }
+
+  .dashboard-container:hover .dashboard-image {
+    transform: translateZ(0) scale(1.05);
+  }
+
+  .dashboard-right {
+    padding: 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .dashboard-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.1), transparent);
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  .service-stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 2rem;
+  }
+
+  .dashboard-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 10% 10%, rgba(93, 255, 236, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .dashboard-right {
+      padding: 2.5rem;
+    }
+    .dashboard-left {
+      aspect-ratio: auto;
+      min-height: 280px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .dashboard-split {
+      grid-template-columns: 1fr;
+    }
+    .dashboard-left {
+      min-height: 220px;
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+    }
+    .dashboard-right {
+      padding: 1.75rem;
+    }
+    .service-stack {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  /* ============================================
+     PROCESS SECTION ΓÇö Split-Action Layout
      ============================================ */
 
   .process-split-container {
@@ -1800,9 +1648,10 @@ const portfolioProjects = [
     bottom: 0;
     width: 2px;
     background: linear-gradient(to bottom, transparent, rgba(37, 54, 68, 0.1) 10%, rgba(37, 54, 68, 0.1) 90%, transparent);
-    transform: translateX(-50%) translateZ(0);
+    transform: translateX(-50%);
     display: none;
   }
+
 
   @media (min-width: 768px) {
     .process-vertical-line {
@@ -1924,6 +1773,10 @@ const portfolioProjects = [
 
     .glass-panel {
       padding: 1.5rem;
+      /* Kill GPU-heavy blur on mobile ΓÇö zero visual difference on flat bg */
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
       height: auto;
     }
 
@@ -1951,7 +1804,7 @@ const portfolioProjects = [
   }
 
   .process-row:hover .process-icon-glow {
-    transform: scale(1.2) translateZ(0);
+    transform: scale(1.2);
     box-shadow: 0 0 30px rgba(93, 255, 236, 0.4);
     border-color: #00ffcc;
   }
@@ -1963,20 +1816,11 @@ const portfolioProjects = [
     border: 1px solid rgba(13, 27, 42, 0.1);
     border-radius: 1.5rem;
     padding: 2.5rem;
-    /* Specific properties — no transition: all */
+    /* Specific properties ΓÇö no transition: all */
     transition: border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     height: 100%;
-    transform: translateZ(0); /* GPU promote — avoid recomposite on sibling hover */
-  }
-
-  /* Mobile: kill blur for performance */
-  @media (max-width: 1023px) {
-    .glass-panel, .agency-card {
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      background: rgba(255,255,255,0.97) !important;
-    }
+    transform: translateZ(0); /* GPU promote ΓÇö avoid recomposite on sibling hover */
   }
 
   /* Agency card hover: only move the inner wrapper, not the blur layer */
@@ -1991,7 +1835,7 @@ const portfolioProjects = [
   .agency-card:hover {
     border-color: #00ffcc;
     box-shadow: 0 20px 40px rgba(0, 255, 204, 0.05);
-    /* Do NOT move the glass panel itself — that forces blur rasterize per frame */
+    /* Do NOT move the glass panel itself ΓÇö that forces blur rasterize per frame */
   }
 
   .process-label {
