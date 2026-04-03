@@ -64,6 +64,63 @@ import Contact from "../components/Contact.astro";
 
   gsap.ticker.lagSmoothing(0);
 
+  let heroMagneticBound = false;
+  function initHeroCharMagnetic() {
+    if (heroMagneticBound) return;
+    heroMagneticBound = true;
+
+    const heroChars = gsap.utils.toArray(".hero-char");
+    if (heroChars.length === 0 || IS_MOBILE) return;
+
+    let rafPending = false;
+    let lastMouseX = 0;
+    let lastMouseY = 0;
+
+    window.addEventListener("mousemove", (e) => {
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+      if (rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(() => {
+        rafPending = false;
+        heroChars.forEach((char) => {
+          const rect = char.getBoundingClientRect();
+          const charX = rect.left + rect.width / 2;
+          const charY = rect.top + rect.height / 2;
+          const distX = lastMouseX - charX;
+          const distY = lastMouseY - charY;
+          const distance = Math.sqrt(distX * distX + distY * distY);
+          const magnetRadius = 100;
+
+          if (distance < magnetRadius) {
+            const pull = 1 - distance / magnetRadius;
+            const moveX = (distX / distance) * pull * 10;
+            const moveY = (distY / distance) * pull * 10;
+            gsap.to(char, {
+              x: moveX,
+              y: moveY,
+              rotationY: moveX * 0.5,
+              rotationX: -moveY * 0.5,
+              duration: 0.3,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          } else {
+            gsap.to(char, {
+              x: 0,
+              y: 0,
+              rotationY: 0,
+              rotationX: 0,
+              duration: 0.6,
+              ease: "power3.out",
+              overwrite: "auto",
+            });
+          }
+        });
+      });
+    });
+  }
+
   const tl = gsap.timeline({
     defaults: { ease: "power4.out", duration: 1.4, force3D: true },
   });
@@ -97,6 +154,8 @@ import Contact from "../components/Contact.astro";
         duration: 1.0,
         ease: "power3.out",
         transformOrigin: "center bottom",
+        // Same transform props as magnetic hover — only enable after this tween ends.
+        onComplete: initHeroCharMagnetic,
       },
       "-=1.1",
     )
@@ -244,57 +303,6 @@ import Contact from "../components/Contact.astro";
       }
     });
   });
-
-  // Magnetic Hero Headline Letters — desktop only
-  const heroChars = gsap.utils.toArray(".hero-char");
-  if (heroChars.length > 0 && !IS_MOBILE) {
-    let rafPending = false;
-    let lastMouseX = 0, lastMouseY = 0;
-
-    window.addEventListener("mousemove", (e) => {
-      lastMouseX = e.clientX;
-      lastMouseY = e.clientY;
-      if (rafPending) return;
-      rafPending = true;
-      requestAnimationFrame(() => {
-        rafPending = false;
-        heroChars.forEach((char) => {
-          const rect = char.getBoundingClientRect();
-          const charX = rect.left + rect.width / 2;
-          const charY = rect.top + rect.height / 2;
-          const distX = lastMouseX - charX;
-          const distY = lastMouseY - charY;
-          const distance = Math.sqrt(distX * distX + distY * distY);
-          const magnetRadius = 100;
-
-            if (distance < magnetRadius) {
-            const pull = 1 - distance / magnetRadius;
-            const moveX = (distX / distance) * pull * 10;
-            const moveY = (distY / distance) * pull * 10;
-            gsap.to(char, {
-              x: moveX,
-              y: moveY,
-              rotationY: moveX * 0.5,
-              rotationX: -moveY * 0.5,
-              duration: 0.3,
-              ease: "power2.out",
-              overwrite: "auto",
-            });
-          } else {
-            gsap.to(char, {
-              x: 0,
-              y: 0,
-              rotationY: 0,
-              rotationX: 0,
-              duration: 0.6,
-              ease: "power3.out",
-              overwrite: "auto",
-            });
-          }
-        });
-      });
-    });
-  }
 
   // Section Tracer Border Animation
   gsap.utils.toArray(".section-tracer-target").forEach((section) => {
