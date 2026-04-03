@@ -1,15 +1,12 @@
 ---
-/* Navbar Component — used on every page via Layout */
 import { Image } from "astro:assets";
 import logo from "../assets/logo.png";
 ---
 
 <nav id="main-nav" class="nav-container">
-  <!-- Logo - Centered -->
-  <a href="/" class="group flex items-center logo-center">
+  <a href="/" class="logo-link">
     <div class="logo-wrapper">
       <Image
-        id="nav-icon"
         src={logo}
         alt="VividStack"
         width={200}
@@ -24,77 +21,48 @@ import logo from "../assets/logo.png";
     </div>
   </a>
 
-  <!-- Mobile Menu Button -->
-  <button id="mobile-menu-btn" class="mobile-menu-btn">
+  <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open menu">
     <span class="hamburger-line"></span>
     <span class="hamburger-line"></span>
     <span class="hamburger-line"></span>
   </button>
 
-  <!-- Navigation Links -->
   <div class="nav-links" id="nav-links">
     <a href="/" class="nav-link">Home</a>
     <a href="#advantage" class="nav-link">Advantage</a>
     <a href="#services" class="nav-link">Services</a>
     <a href="#platform" class="nav-link">Work</a>
-    <a href="#contact" class="contact-btn">
-      Contact Us
-    </a>
+    <a href="#contact" class="contact-btn">Contact Us</a>
   </div>
 </nav>
 
+<!-- Mobile menu: only JS left in the whole component -->
 <script>
-  // @ts-ignore
-  const nav = document.getElementById('main-nav');
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const navLinks = document.getElementById('nav-links');
-  
-  const handleScroll = () => {
-    if (window.scrollY > 50) {
-      nav?.classList.add('scrolled');
-    } else {
-      nav?.classList.remove('scrolled');
-    }
-
-    // Check if we're in a dark section
-    const sections = document.querySelectorAll('section, .dashboard-container');
-    let inDarkSection = false;
-    
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= 100 && rect.bottom >= 100) {
-        // Check if section has dark background
-        const bgColor = window.getComputedStyle(section).backgroundColor;
-        if (
-          bgColor.includes('rgb(5, 25, 45)') || 
-          bgColor.includes('rgb(0, 0, 0)') || 
-          bgColor.includes('#000') || 
-          bgColor.includes('rgb(37, 54, 68)')
-        ) {
-          inDarkSection = true;
-        }
-      }
-    });
-
-    if (inDarkSection) {
-      nav?.classList.add('dark-section');
-    } else {
-      nav?.classList.remove('dark-section');
-    }
-  };
-
-  const toggleMobileMenu = () => {
-    mobileMenuBtn?.classList.toggle('active');
-    navLinks?.classList.toggle('active');
-  };
-
-  // Check on load in case page is already scrolled
-  handleScroll();
-  window.addEventListener('scroll', handleScroll);
-  mobileMenuBtn?.addEventListener('click', toggleMobileMenu);
+  const btn = document.getElementById('mobile-menu-btn');
+  const links = document.getElementById('nav-links');
+  btn?.addEventListener('click', () => {
+    btn.classList.toggle('active');
+    links?.classList.toggle('active');
+  });
 </script>
 
 <style>
+  /* ── Scroll-driven background fade ────────────────────────────────────────
+     Uses the native CSS Scroll Timeline API (Chrome 115+, Firefox 110+).
+     No JS, no class toggling, no rAF — the browser drives this on the
+     compositor thread, which is why it never flickers.
+  ── */
+  @keyframes nav-fill {
+    from {
+      background: rgba(248, 249, 250, 0);
+      box-shadow: none;
+    }
+    to {
+      background: rgba(248, 249, 250, 0.85);
+      box-shadow: 0 1px 24px rgba(37, 54, 68, 0.08);
+    }
+  }
+
   .nav-container {
     position: fixed;
     top: 0;
@@ -105,69 +73,47 @@ import logo from "../assets/logo.png";
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    background: transparent;
-    border-bottom: 1px solid transparent;
+
+    /* Single, always-on compositor layer */
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    /* Scroll-driven animation — triggers over the first 80px of page scroll */
+    animation: nav-fill linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0px 80px;
   }
 
-  /* Scrolled State */
-  .nav-container.scrolled {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(37, 54, 68, 0.05);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+  @media (min-width: 768px) {
+    .nav-container {
+      padding: 1rem 3rem;
+    }
   }
 
-  /* Dark section state */
-  .nav-container.dark-section {
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .nav-container.dark-section .hamburger-line,
-  .nav-container.dark-section .nav-link {
-    color: #ffffff;
-  }
-
-  .nav-container.dark-section .logo-wrapper {
-    background: rgba(255, 255, 255, 0.9);
-  }
-
-  .nav-container.dark-section .nav-links {
-    background: rgba(0, 0, 0, 0.8);
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .logo-center {
+  /* ── Logo ───────────────────────────────────────────────────────────────── */
+  .logo-link {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    text-decoration: none;
+  }
+
+  @media (min-width: 768px) {
+    .logo-link {
+      position: static;
+      transform: none;
+    }
   }
 
   .logo-wrapper {
-    position: relative;
     padding: 0.125rem;
     border-radius: 9999px;
     border: 1px solid rgba(37, 54, 68, 0.1);
     background: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .nav-container.scrolled .logo-wrapper {
-    transform: scale(0.9);
-    background: rgba(255, 255, 255, 0.8);
   }
 
   .logo-img {
@@ -176,6 +122,7 @@ import logo from "../assets/logo.png";
     border-radius: 9999px;
     object-fit: cover;
     mix-blend-mode: multiply;
+    display: block;
   }
 
   @media (min-width: 768px) {
@@ -185,6 +132,7 @@ import logo from "../assets/logo.png";
     }
   }
 
+  /* ── Mobile hamburger ───────────────────────────────────────────────────── */
   .mobile-menu-btn {
     display: flex;
     flex-direction: column;
@@ -197,46 +145,43 @@ import logo from "../assets/logo.png";
     cursor: pointer;
     padding: 0.5rem;
     border-radius: 0.5rem;
-    transition: background-color 0.3s ease;
-    z-index: 60;
-  }
-
-  .mobile-menu-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    gap: 4px;
   }
 
   .hamburger-line {
     width: 1.5rem;
     height: 2px;
     background: #253644;
-    margin: 2px 0;
-    transition: all 0.3s ease;
     border-radius: 1px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
   }
 
   .mobile-menu-btn.active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(4px, 4px);
   }
 
   .mobile-menu-btn.active .hamburger-line:nth-child(2) {
     opacity: 0;
   }
 
-  .nav-container.scrolled .hamburger-line {
-    background: #253644;
+  .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
   }
 
-  .nav-container.dark-section .hamburger-line {
-    background: #ffffff;
+  @media (min-width: 768px) {
+    .mobile-menu-btn {
+      display: none;
+    }
   }
 
+  /* ── Nav links ──────────────────────────────────────────────────────────── */
   .nav-links {
     position: fixed;
     top: 0;
     right: 0;
     width: 280px;
     height: 100vh;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     display: flex;
@@ -248,7 +193,7 @@ import logo from "../assets/logo.png";
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 55;
     padding: 2rem;
-    border-left: 1px solid rgba(37, 54, 68, 0.1);
+    border-left: 1px solid rgba(37, 54, 68, 0.08);
   }
 
   .nav-links.active {
@@ -256,34 +201,6 @@ import logo from "../assets/logo.png";
   }
 
   @media (min-width: 768px) {
-    .nav-container {
-      padding-left: 3rem;
-      padding-right: 3rem;
-    }
-
-    .nav-container.scrolled {
-      padding-top: 0.75rem;
-      padding-bottom: 0.75rem;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(37, 54, 68, 0.05);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-    }
-
-    .nav-container.dark-section {
-      background: rgba(0, 0, 0, 0.4);
-    }
-
-    .logo-center {
-      position: static;
-      transform: none;
-    }
-
-    .mobile-menu-btn {
-      display: none;
-    }
-
     .nav-links {
       position: static;
       width: auto;
@@ -299,16 +216,17 @@ import logo from "../assets/logo.png";
     }
   }
 
+  /* ── Nav link typography ────────────────────────────────────────────────── */
   .nav-link {
     font-family: "Montserrat", sans-serif;
-    font-size: 0.6rem; /* Smaller on mobile */
+    font-size: 0.6rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: #253644; /* Standard Navy for visibility */
+    color: #253644;
     opacity: 0.6;
-    transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
     text-decoration: none;
+    transition: opacity 0.2s ease;
   }
 
   @media (min-width: 768px) {
@@ -319,31 +237,22 @@ import logo from "../assets/logo.png";
 
   .nav-link:hover {
     opacity: 1;
-    transform: translateY(-1px);
   }
 
-  .nav-container.scrolled .nav-link {
-    color: #253644;
-    opacity: 0.8;
-  }
-
-  .nav-container.dark-section .nav-link {
-    color: #ffffff;
-    opacity: 0.9;
-  }
-
+  /* ── Contact button ─────────────────────────────────────────────────────── */
   .contact-btn {
-    padding: 0.5rem 1.5rem; /* Smaller on mobile */
+    padding: 0.5rem 1.5rem;
     background: #253644;
     color: #f3f3f4;
     border-radius: 9999px;
-    font-size: 0.6rem; /* Smaller on mobile */
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.6rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.25em;
-    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     text-decoration: none;
     box-shadow: 0 8px 24px rgba(37, 54, 68, 0.15);
+    transition: background 0.2s ease, box-shadow 0.2s ease;
   }
 
   @media (min-width: 768px) {
@@ -355,12 +264,6 @@ import logo from "../assets/logo.png";
 
   .contact-btn:hover {
     background: #1a2834;
-    transform: scale(1.05);
-    box-shadow: 0 12px 32px rgba(37, 54, 68, 0.2);
-  }
-
-  .nav-container.scrolled .contact-btn {
-    padding: 0.7rem 1.75rem;
-    box-shadow: 0 4px 12px rgba(37, 54, 68, 0.1);
+    box-shadow: 0 12px 32px rgba(37, 54, 68, 0.22);
   }
 </style>

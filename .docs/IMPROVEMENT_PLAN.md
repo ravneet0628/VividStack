@@ -6,7 +6,7 @@
 
 ## Priority 1 — Bugs & Broken Functionality
 
-### TASK-01: Delete stale temp file
+### TASK-01: Delete stale temp file [COMPLETED]
 **What:** `src/pages/temp_index_utf8.astro` is a leftover file that creates a live `/temp_index_utf8` route with broken characters (UTF-8 encoding artifacts like `ΓÇö`, `Γåù`).  
 **Action:** Delete `src/pages/temp_index_utf8.astro`.  
 **Risk:** None — it is not referenced anywhere.
