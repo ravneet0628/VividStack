@@ -62,6 +62,11 @@ const canonicalURL = new URL(Astro.url.pathname, "https://vividstack.io");
   </head>
 
   <body class="antialiased bg-vivid-cream text-vivid-navy selection:bg-vivid-teal selection:text-vivid-navy">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:px-6 focus:py-3 focus:bg-vivid-navy focus:text-[#5DFFEC] focus:font-bold focus:shadow-[4px_4px_0_0_#253644] focus:outline-none">
+      Skip to content
+    </a>
     <slot />
+    <!-- Web3Forms hCaptcha script -->
+    <script src="https://web3forms.com/client/script.js" async defer></script>
   </body>
 </html>
