@@ -1,0 +1,218 @@
+---
+import { processPhases } from "../data/home";
+---
+
+<section id="process" class="section-tracer-target relative py-32 bg-[#f3f3f4] overflow-hidden">
+  <div class="section-tracer absolute top-0 left-0 w-full h-px bg-[#000000] origin-left scale-x-0 z-20 will-change-transform"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="mb-24 md:mb-32">
+      <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block">How We Work</span>
+      <h2
+        class="text-6xl md:text-8xl font-black tracking-tighter uppercase text-black leading-[0.85] select-none"
+        style="font-family: 'Space Grotesk', sans-serif;"
+      >
+        The Process
+      </h2>
+    </div>
+
+    <div class="process-split-container relative">
+      <!-- Central Vertical Line -->
+      <div class="process-vertical-line"></div>
+
+      {processPhases.map((item) => (
+        <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 relative mb-24 last:mb-0">
+          <div class="process-stage-label">PHASE {item.phase}</div>
+          
+          <!-- Left: YOU (Client) -->
+          <div class="process-column-you">
+            <div class="process-card glass-panel text-left">
+              <span class="process-label client">YOU</span>
+              <h3 class="process-title">{item.clientTitle}</h3>
+              <p class="process-description">{item.clientDesc}</p>
+            </div>
+          </div>
+
+          <!-- Central Icon -->
+          <div class="process-icon-wrapper">
+            <div class="process-icon-glow">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="0" set:html={item.iconSVG}></svg>
+            </div>
+          </div>
+
+          <!-- Right: WE (Vivid Stack) -->
+          <div class="process-column-we">
+            <div class="process-card glass-panel agency-card text-left">
+              <span class="process-label agency">WE</span>
+              <h3 class="process-title">{item.agencyTitle}</h3>
+              <p class="process-description">{item.agencyDesc}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ============================================
+     PROCESS SECTION
+     ============================================ */
+  .process-split-container {
+    padding: 2rem 0;
+  }
+
+  .process-vertical-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.1) 90%, transparent);
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  @media (max-width: 767px) {
+    .process-vertical-line {
+      left: 1.5rem;
+      background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1) 5%, rgba(0,0,0,0.1) 95%, transparent);
+    }
+  }
+
+  .process-stage-label {
+    position: absolute;
+    top: -3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Inter', monospace;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    color: rgba(0,0,0,0.2);
+  }
+
+  @media (max-width: 767px) {
+    .process-stage-label {
+      left: 3rem;
+      transform: none;
+      top: -2rem;
+    }
+  }
+
+  .process-icon-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background: #f3f3f4;
+    padding: 1rem;
+  }
+
+  @media (max-width: 767px) {
+    .process-icon-wrapper {
+      top: -1rem;
+      left: 1.5rem;
+      transform: translateX(-50%);
+      padding: 0.5rem;
+    }
+  }
+
+  .process-icon-glow {
+    width: 4rem;
+    height: 4rem;
+    background: #00ffcc;
+    border: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #253644;
+    box-shadow: 4px 4px 0 0 #000;
+  }
+
+  @media (max-width: 767px) {
+    .process-icon-glow {
+      width: 3rem;
+      height: 3rem;
+      box-shadow: 2px 2px 0 0 #000;
+    }
+    .process-icon-glow svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  .process-card {
+    padding: 2.5rem;
+    border: 2px solid #000;
+    background: #fff;
+    position: relative;
+    box-shadow: 8px 8px 0 0 rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .process-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 12px 12px 0 0 rgba(0,0,0,0.1);
+  }
+
+  .agency-card {
+    background: #253644;
+    color: #fff;
+  }
+
+  .process-label {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 0.4rem 0.8rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid currentColor;
+  }
+
+  .process-label.client {
+    color: #253644;
+    border-color: rgba(37,54,68,0.2);
+  }
+
+  .process-label.agency {
+    color: #00ffcc;
+    border-color: rgba(0,255,204,0.3);
+  }
+
+  .process-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .process-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.7;
+  }
+
+  .process-column-you {
+    text-align: right;
+  }
+
+  @media (max-width: 767px) {
+    .process-column-you {
+      text-align: left;
+      padding-left: 3rem;
+    }
+    .process-column-we {
+      padding-left: 3rem;
+    }
+    .process-card {
+      padding: 1.5rem;
+    }
+  }
+</style>

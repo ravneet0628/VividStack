@@ -1,1304 +1,333 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
-import { Image } from "astro:assets";
 
-import heroCode from "../assets/hero_code.png";
-import resetat30Img from "../assets/resetat30.png";
-import hmglobalImg from "../assets/hmglobal.png";
-import securechoiceImg from "../assets/securechoice.png";
-import photolpImg from "../assets/photolp.png";
-import lighthouseImg from "../assets/lighthouse-100.png";
-
-import resetat30Mobile from "../assets/resetat30_mobile.png";
-import hmglobalMobile from "../assets/hmglobal_mobile.png";
-import securechoiceMobile from "../assets/securechoice_mobile.png";
-import photolpMobile from "../assets/photolp_mobile.png";
-
-const portfolioProjects = [
-  {
-    title: "Reset at 30",
-    category: "Personal Brand",
-    stack: "Lifestyle Blog",
-    stack2: "Loads in under 1 second",
-    image: resetat30Img,
-    mobileImage: resetat30Mobile,
-    accent: "#00ffcc",
-    url: "https://resetat30.pages.dev/",
-    displayUrl: "resetat30.com",
-    systemId: "Personal Brand Website",
-    cropY: "-top-[5%]"
-  },
-  {
-    title: "HM Global",
-    category: "Corporate",
-    stack: "Industrial Services",
-    stack2: "Built to grow with the business",
-    image: hmglobalImg,
-    mobileImage: hmglobalMobile,
-    accent: "#0066ff",
-    url: "https://hmglobalinc.com/",
-    displayUrl: "hmglobalinc.com",
-    systemId: "Corporate Website",
-    cropY: "top-0"
-  },
-  {
-    title: "Secure Choice",
-    category: "Insurance",
-    stack: "Insurance Agency",
-    stack2: "Looks trustworthy, converts leads",
-    image: securechoiceImg,
-    mobileImage: securechoiceMobile,
-    accent: "#9900ff",
-    url: "https://top-insurance.pages.dev/",
-    displayUrl: "top-insurance.pages.dev",
-    systemId: "Insurance Website",
-    cropY: "-top-[11%]"
-  },
-  {
-    title: "PhotoLP",
-    category: "Photography",
-    stack: "Photography Portfolio",
-    stack2: "Showcases work beautifully",
-    image: photolpImg,
-    mobileImage: photolpMobile,
-    accent: "#ff9900",
-    url: "https://shivstudio.onrender.com/",
-    displayUrl: "shivstudio.onrender.com",
-    systemId: "Photography Portfolio",
-    cropY: "-top-[11%]"
-  },
-];
-
+import Hero from "../components/Hero.astro";
+import Advantage from "../components/Advantage.astro";
+import Services from "../components/Services.astro";
+import SelectedWorks from "../components/SelectedWorks.astro";
+import Process from "../components/Process.astro";
+import Capabilities from "../components/Capabilities.astro";
+import Contact from "../components/Contact.astro";
 ---
 
 <Layout title="Premium Web Design & Development — Fast, Responsive Websites">
   <Navbar />
 
-  <main id="main-content">
-    <section
-      class="relative z-0 min-h-screen flex items-center justify-center bg-vivid-cream overflow-hidden text-center px-6"
-    >
-    <div
-      id="ambient-elements"
-      class="absolute inset-0 pointer-events-none z-[-1] opacity-5"
-    >
-      <div
-        class="absolute top-[8%] left-[5%] w-48 h-48 md:w-64 md:h-64 text-[#253644] -rotate-12"
-      >
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="0.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="w-full h-full"
-        >
-          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-          <line x1="2" y1="20" x2="22" y2="20"></line>
-        </svg>
-      </div>
-      <div
-        class="absolute top-[35%] right-[2%] text-[24rem] font-mono leading-none text-[#253644] rotate-[-15deg] select-none opacity-5"
-      >
-        &#123;
-      </div>
-      <div
-        class="absolute bottom-[20%] right-[15%] text-[24rem] font-mono leading-none text-[#253644] rotate-[15deg] select-none opacity-5"
-      >
-        &#125;
-      </div>
-      <div
-        class="absolute bottom-[10%] left-[15%] w-72 h-72 border border-[#253644] rotate-45 flex items-center justify-center"
-      >
-        <div class="w-full h-[1px] bg-[#253644]"></div>
-        <div class="absolute h-full w-[1px] bg-[#253644]"></div>
-        <div class="absolute w-2/3 h-2/3 border border-[#253644]"></div>
-      </div>
-    </div>
-
-    <!-- Hero Code Structure Watermark -->
-    <div
-      id="hero-background"
-      class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[200vw] md:w-[85vw] max-w-[1200px] opacity-10 md:opacity-[0.03] pointer-events-none z-[-1] transition-opacity duration-1000"
-    >
-      <Image
-        src={heroCode}
-        alt="Code Architecture"
-        class="w-full h-auto grayscale opacity-40 md:opacity-100"
-        widths={[640, 1280, 1920, 2560]}
-        sizes="(max-width: 768px) 100vw, 85vw"
-        loading="eager"
-        fetchpriority="high"
-        decoding="sync"
-        quality={100}
-      />
-    </div>
-
-    <!-- Ultra-lightweight Digital Structure Nodes -->
-    <div
-      class="absolute inset-0 pointer-events-none overflow-hidden mix-blend-multiply hidden md:block"
-    >
-      <!-- Mint Orb -->
-      <div
-        class="absolute -top-[20%] -right-[10%] w-[60vw] h-[60vw] rounded-full bg-vivid-mint/[0.04] blur-[120px] animate-pulse"
-        style="animation-duration: 4s;"
-      >
-      </div>
-      <!-- Core Navy Node -->
-      <div
-        class="absolute top-[40%] -left-[15%] w-[50vw] h-[50vw] rounded-full bg-[#253644]/[0.03] blur-[140px]"
-      >
-      </div>
-      <!-- Center Anchor -->
-      <div
-        class="absolute top-[20%] left-[30%] w-[30vw] h-[30vw] rounded-full bg-[#253644]/[0.02] blur-[100px] animate-pulse"
-        style="animation-duration: 6s;"
-      >
-      </div>
-    </div>
-
-    <!-- Floating Brutalist Tech Nodes -->
-    <div
-      class="tech-node absolute top-[12%] sm:top-[30%] md:top-[40%] left-[4%] md:left-[8%] bg-white/95 backdrop-blur-sm border border-[#253644] p-2 md:p-5 rounded-none shadow-[4px_4px_0_0_#253644] md:shadow-[10px_10px_0_0_#253644] w-36 md:w-52 text-left opacity-0 translate-y-8 flex flex-col scale-90 md:scale-100"
-    >
-      <div
-        class="flex items-center gap-3 mb-2 border-b border-[#253644]/10 pb-3"
-      >
-        <div
-          class="w-3 h-3 rounded-none bg-[#95cbd0] shadow-[1px_1px_0_0_#253644]"
-        >
-        </div>
-        <span
-          class="text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#253644]"
-          >Projects Shipped</span
-        >
-      </div>
-      <div class="text-[#253644] text-2xl md:text-3xl font-black tracking-tight" style="font-family: 'Space Grotesk', sans-serif;">
-        4+
-      </div>
-    </div>
-
-    <div
-      class="tech-node absolute bottom-[8%] sm:bottom-[15%] md:bottom-[18%] right-[6%] md:right-[12%] bg-[#253644] border border-[#253644] p-3 md:p-6 rounded-none shadow-[6px_6px_0_0_#95cbd0] md:shadow-[12px_12px_0_0_#95cbd0] w-40 md:w-64 text-left opacity-0 translate-y-8 flex flex-col scale-90 md:scale-100"
-    >
-      <div class="flex justify-between items-center mb-4">
-        <div
-          class="text-[0.65rem] font-bold uppercase tracking-widest text-white/50"
-        >
-          Page Load Time
-        </div>
-        <div class="text-[#95cbd0] font-bold text-sm" style="font-family: 'Space Grotesk', sans-serif;">&lt; 1 sec</div>
-      </div>
-      <div
-        class="w-full bg-white/5 h-2 rounded-none overflow-hidden border border-white/10"
-      >
-        <div class="w-[95%] bg-[#95cbd0] h-full shadow-[1px_0_0_#000000]"></div>
-      </div>
-    </div>
-
-    <div
-      class="tech-node absolute top-[18%] right-[4%] lg:right-[5%] bg-white backdrop-blur-md border border-[#253644] p-4 rounded-none shadow-[8px_8px_0_0_#253644] hidden lg:flex items-center gap-5 opacity-0 translate-y-8"
-    >
-      <div
-        class="w-10 h-10 flex items-center justify-center bg-[#253644] text-[#95cbd0] text-base font-black shadow-[3px_3px_0_0_#95cbd0]" style="font-family: 'Space Grotesk', sans-serif;"
-      >
-        100
-      </div>
-      <div class="flex flex-col">
-        <span
-          class="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-[#253644]"
-          >Lighthouse</span
-        >
-        <span
-          class="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[#253644]/40"
-          >Perfect Score</span
-        >
-      </div>
-    </div>
-
-    <div class="z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
-      <div id="hero-brand" class="mb-4" style="perspective: 1000px;">
-        <h1
-          class="text-6xl sm:text-8xl md:text-[7rem] lg:text-[9rem] font-extrabold tracking-tighter uppercase leading-none drop-shadow-sm flex flex-wrap justify-center gap-x-[2vw]"
-        >
-          <span class="text-[#253644] flex">
-            {
-              "Vivid"
-                .split("")
-                .map((char) => (
-                  <span class="hero-char inline-block will-change-transform">
-                    {char}
-                  </span>
-                ))
-            }
-          </span>
-          <span class="text-[#95cbd0] flex">
-            {
-              "Stack"
-                .split("")
-                .map((char) => (
-                  <span class="hero-char inline-block will-change-transform">
-                    {char}
-                  </span>
-                ))
-            }
-          </span>
-        </h1>
-      </div>
-      <h2
-        id="hero-title"
-        class="text-lg sm:text-xl md:text-2xl font-bold tracking-[0.2em] text-[#253644] uppercase opacity-0 translate-y-12 mt-2"
-      >
-        WE BUILD WEBSITES THAT <span class="text-[#95cbd0]">WIN CUSTOMERS.</span>
-      </h2>
-
-      <p
-        id="hero-subtitle"
-        class="mt-8 md:mt-10 text-base sm:text-xl md:text-2xl lg:text-3xl text-vivid-navy/70 font-medium tracking-wide opacity-0 translate-y-8 max-w-3xl px-2"
-      >
-        Beautiful, fast websites for businesses that want to grow.
-      </p>
-
-      <div id="hero-cta" class="mt-12 md:mt-16 opacity-0 translate-y-8">
-        <a
-          href="#portfolio"
-          class="group relative inline-flex items-center gap-3 px-10 py-5 bg-vivid-navy text-vivid-cream overflow-hidden transition-all hover:pr-14 duration-300 border-2 border-vivid-navy shadow-[6px_6px_0_0_#000] hover:shadow-[10px_10px_0_0_#000] hover:-translate-y-1"
-        >
-          <span
-            class="relative z-10 font-bold uppercase tracking-widest text-sm md:text-base"
-            >See Our Work</span
-          >
-          <div
-            class="absolute right-5 translate-x-10 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 font-bold text-lg text-vivid-mint"
-          >
-            →
-          </div>
-        </a>
-      </div>
-    </div>
-  </main>
-
-  <section id="advantage" class="relative py-24 bg-white overflow-hidden border-b border-black/5 bg-grid-tech">
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-      <div class="mb-16 text-center">
-        <span
-          class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block"
-          >Why Choose Us</span
-        >
-        <h2
-          class="text-6xl md:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85] select-none"
-          style="font-family: 'Space Grotesk', sans-serif;"
-        >
-          THE VIVID ADVANTAGE_
-        </h2>
-        <p class="text-vivid-navy/60 font-medium text-lg md:text-xl tracking-tight max-w-2xl mx-auto mt-8">
-          Everything your website needs to look great and bring in customers.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-16">
-        <!-- Card 1: Blazing Speed -->
-        <div class="advantage-card group bg-[#f8f9fa] border border-black p-8 md:p-10 shadow-[8px_8px_0_0_#000] hover:shadow-[12px_12px_0_0_#000] transform hover:-translate-y-1">
-          <div class="w-12 h-12 bg-vivid-navy text-vivid-mint flex items-center justify-center mb-6 shadow-[4px_4px_0_0_#00ffcc]">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-black uppercase tracking-tighter mb-4 leading-tight" style="font-family: 'Space Grotesk', sans-serif;">BLAZING FAST<br/>PERFORMANCE</h3>
-          <p class="text-vivid-navy/70 font-medium leading-relaxed" style="font-family: 'Inter', sans-serif;">Most users leave a slow site. Yours will load in under a second, keeping every customer on the page.</p>
-        </div>
-
-        <!-- Card 2: Visibility -->
-        <div class="advantage-card group bg-[#f8f9fa] border border-black p-8 md:p-10 shadow-[8px_8px_0_0_#000] hover:shadow-[12px_12px_0_0_#000] transform hover:-translate-y-1">
-          <div class="w-12 h-12 bg-white text-black flex items-center justify-center mb-6 border border-black shadow-[4px_4px_0_0_#000]">
-            <svg viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor">
-              <path d="M12.48 10.92v3.28h7.84c-.24 1.84-2.21 5.39-7.84 5.39-4.84 0-8.77-4.01-8.77-8.96s3.93-8.96 8.77-8.96c2.75 0 4.6 1.17 5.65 2.18l2.59-2.5c-1.66-1.55-3.82-2.48-6.24-2.48-5.32 0-9.67 4.35-9.67 9.67s4.35 9.67 9.67 9.67c5.56 0 9.25-3.91 9.25-9.41 0-.63-.07-1.12-.15-1.59h-9.1z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-black uppercase tracking-tighter mb-4 leading-tight" style="font-family: 'Space Grotesk', sans-serif;">FOUND ON<br/>GOOGLE</h3>
-          <p class="text-vivid-navy/70 font-medium leading-relaxed" style="font-family: 'Inter', sans-serif;">We handle the technical SEO setup so your business shows up where it matters.</p>
-        </div>
-
-        <!-- Card 3: Free Hosting -->
-        <div class="advantage-card group bg-vivid-navy border border-vivid-mint p-8 md:p-10 shadow-[8px_8px_0_0_#00ffcc] hover:shadow-[12px_12px_0_0_#00ffcc] transform hover:-translate-y-1 relative">
-          <div class="absolute -top-4 -right-4 bg-white text-vivid-navy font-black text-[10px] px-3 py-1.5 border-2 border-vivid-mint shadow-[4px_4px_0_0_#00ffcc] z-20 tracking-widest uppercase free-badge">FREE FOREVER</div>
-          <div class="w-12 h-12 bg-vivid-mint text-vivid-navy flex items-center justify-center mb-6 shadow-[4px_4px_0_0_#ffffff]">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-black uppercase tracking-tighter mb-4 leading-tight text-white" style="font-family: 'Space Grotesk', sans-serif;">$0 HOSTING.<br/><span class="text-vivid-mint">FREE FOREVER</span></h3>
-          <p class="text-white/70 font-medium leading-relaxed" style="font-family: 'Inter', sans-serif;">Save thousands in monthly fees with our enterprise-grade infrastructure.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section
-    id="services"
-    class="section-tracer-target relative py-24 lg:py-32 bg-[#f3f3f4] overflow-hidden"
-  >
-    <div
-      class="section-tracer absolute top-0 left-0 w-full h-px bg-[#000000] origin-left scale-x-0 z-20 will-change-transform"
-    >
-    </div>
-
-    <div class="relative z-10 max-w-7xl mx-auto px-6">
-      <div class="mb-16">
-        <span
-          class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block"
-          >Our Expertise</span
-        >
-        <h2
-          class="text-6xl md:text-8xl font-black tracking-tighter uppercase text-black leading-[0.85] select-none"
-          style="font-family: 'Space Grotesk', sans-serif;"
-        >
-          Services
-        </h2>
-      </div>
-
-      <!-- BENTO GRID -->
-      <div class="bento-grid">
-
-        <!-- Large hero tile: Web Engineering -->
-        <a href="#platform" class="bento-tile bento-hero service-card group" id="bento-engineering">
-          <div class="bento-number">01</div>
-          <div class="bento-content">
-            <div class="bento-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
-              </svg>
-            </div>
-            <h3 class="bento-title">Web Engineering</h3>
-            <p class="bento-desc">Your website will load instantly, look stunning on every screen, and grow with your business. No compromises.</p>
-            <span class="bento-cta">View Case Studies →</span>
-          </div>
-          <div class="bento-bg-glow" style="background: #00ffcc;"></div>
-        </a>
-
-        <!-- Secondary tile: Technical SEO -->
-        <div class="bento-tile bento-secondary service-card group" id="bento-seo">
-          <div class="bento-number">02</div>
-          <div class="bento-content">
-            <div class="bento-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-              </svg>
-            </div>
-            <h3 class="bento-title">Technical SEO</h3>
-            <p class="bento-desc">We set up your site so Google can find your business — the technical stuff that actually gets you more customers.</p>
-          </div>
-          <div class="bento-bg-glow" style="background: #0066ff;"></div>
-        </div>
-
-        <!-- Accent tile: UI / UX Design -->
-        <div class="bento-tile bento-accent service-card group" id="bento-design">
-          <div class="bento-number">03</div>
-          <div class="bento-content">
-            <div class="bento-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8">
-                <path d="M12 20h9"/>
-                <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
-              </svg>
-            </div>
-            <h3 class="bento-title">UI / UX Design</h3>
-            <p class="bento-desc">Interfaces designed to turn visitors into paying customers. Every detail serves a purpose.</p>
-          </div>
-          <div class="bento-bg-glow" style="background: #9900ff;"></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
+  <Hero />
+  <Advantage />
+  <Services />
 
   <section
     id="platform"
     class="relative bg-white border-t border-black bg-grid-tech"
   >
-    <div id="selected-works" class="relative">
-
-      <!-- Section-Level Sticky Browser Chrome -->
-      <div class="selected-works-chrome">
-        <div class="chrome-dots">
-          <div class="chrome-dot dot-red"></div>
-          <div class="chrome-dot dot-yellow"></div>
-          <div class="chrome-dot dot-green"></div>
-        </div>
-        <div class="chrome-label">vividstack.io // our work</div>
-        <span class="chrome-badge">CASE STUDIES</span>
-      </div>
-
-      <!-- Centered Header for Mobile -->
-      <div class="mobile-section-header w-full text-center pt-16 pb-4">
-        <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block">Case Studies</span>
-        <h2
-          class="text-6xl md:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85] select-none"
-          style="font-family: 'Space Grotesk', sans-serif;"
-        >
-          SELECTED WORK
-        </h2>
-        <div class="mt-6 w-16 h-1 bg-black mx-auto"></div>
-        
-        <!-- Mobile Swipe Indicator -->
-        <div class="mt-6 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#253644] opacity-50">
-          <span>Swipe</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 animate-swipe">
-            <path d="M5 12h14"></path>
-            <path d="m12 5 7 7-7 7"></path>
-          </svg>
-        </div>
-      </div>
-
-      <!-- Desktop: GSAP Pin Wrap | Mobile: Snap Scroll -->
-      <div class="pin-wrap" id="pin-wrap">
-
-        <!-- Title card: first slide in the horizontal scroll -->
-        <div class="title-card will-change-transform">
-          <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-3 block">Case Studies</span>
-          <h2
-            class="text-6xl xl:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85] select-none"
-            style="font-family: 'Space Grotesk', sans-serif;"
-          >
-            SELECTED<br />WORK
-          </h2>
-          <div class="mt-6 w-20 h-1 bg-black"></div>
-        </div>
-        {portfolioProjects.map((project) => (
-          <div class="project-card will-change-transform">
-
-            <div class="project-card-inner">
-              <!-- Dual-Device Container: strictly 16/9 -->
-              <div class="dual-device-container">
-
-                <!-- Layer 1 (back): Desktop Browser -->
-                <div class="desktop-browser">
-                  <!-- URL bar with traffic-light dots -->
-                  <div class="desktop-url-bar">
-                    <div class="chrome-dot-sm dot-red"></div>
-                    <div class="chrome-dot-sm dot-yellow"></div>
-                    <div class="chrome-dot-sm dot-green"></div>
-                    <div class="desktop-url-text">{project.displayUrl}</div>
-                  </div>
-                  <!-- Screenshot -->
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="desktop-screenshot-link group"
-                  >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      class="desktop-screenshot-img"
-                      widths={[600, 1200, 1800]}
-                      sizes="(max-width: 1024px) 90vw, 60vw"
-                      loading="lazy"
-                      decoding="async"
-                      quality={95}
-                    />
-                    <div class="screenshot-overlay">
-                      <span class="screenshot-cta">Visit Website ↗</span>
-                    </div>
-                  </a>
-                </div>
-
-                <!-- Layer 2 (front): Mobile Phone Frame -->
-                <div class="phone-frame">
-                  <div class="phone-notch"></div>
-                  <div class="phone-screen">
-                    <a href={project.url} target="_blank" rel="noopener noreferrer" class="block w-full h-full overflow-hidden">
-                      <Image
-                        src={project.mobileImage}
-                        alt={`${project.title} mobile`}
-                        class="phone-screenshot-img"
-                        widths={[390, 780]}
-                        sizes="(max-width: 1024px) 30vw, 15vw"
-                        loading="lazy"
-                        decoding="async"
-                        quality={90}
-                      />
-                    </a>
-                  </div>
-                  <div class="phone-home-bar"></div>
-                </div>
-
-                <!-- Accent glow behind the container -->
-                <div class="device-glow" style={`background: ${project.accent};`}></div>
-              </div>
-
-              <!-- Project Metadata — below the 16/9 box -->
-              <div class="project-meta">
-                <div class="meta-stack">
-                  <span class="meta-primary">{project.stack}</span>
-                  <span class="meta-secondary">{project.stack2}</span>
-                </div>
-                <span class="meta-id">{project.systemId}</span>
-              </div>
-            </div>
-
-          </div>
-        ))}
-
-      </div>
-    </div>
-
-    <section
-      id="process"
-      class="section-tracer-target relative py-32 bg-[#f3f3f4] overflow-hidden"
-    >
-      <div
-        class="section-tracer absolute top-0 left-0 w-full h-px bg-[#000000] origin-left scale-x-0 z-20 will-change-transform"
-      >
-      </div>
-
-      <div class="max-w-7xl mx-auto px-6 relative z-10">
-        <div class="mb-24 md:mb-32">
-          <span
-            class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block"
-            >How We Work</span
-          >
-          <h2
-            class="text-6xl md:text-8xl font-black tracking-tighter uppercase text-black leading-[0.85] select-none"
-            style="font-family: 'Space Grotesk', sans-serif;"
-          >
-            The Process
-          </h2>
-        </div>
-
-        <div class="process-split-container relative">
-          <!-- Central Vertical Line -->
-          <div class="process-vertical-line"></div>
-
-          <!-- Stage 01 -->
-          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 relative mb-24 last:mb-0">
-            <div class="process-stage-label">PHASE 01</div>
-            <!-- Left: YOU (Client) -->
-            <div class="process-column-you">
-              <div class="process-card glass-panel text-left">
-                <span class="process-label client">YOU</span>
-                <h3 class="process-title">Tell Us Your Vision</h3>
-                <p class="process-description">Share your goals, who your customers are, and what you need your website to do.</p>
-              </div>
-            </div>
-
-            <!-- Central Icon -->
-            <div class="process-icon-wrapper">
-              <div class="process-icon-glow">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Right: WE (Vivid Stack) -->
-            <div class="process-column-we">
-              <div class="process-card glass-panel agency-card text-left">
-                <span class="process-label agency">WE</span>
-                <h3 class="process-title">Research & Plan</h3>
-                <p class="process-description">We study your industry, your competitors, and build a strategy to make you stand out.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Stage 02 -->
-          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 relative mb-24 last:mb-0">
-            <div class="process-stage-label">PHASE 02</div>
-            <!-- Left: YOU (Client) -->
-            <div class="process-column-you">
-              <div class="process-card glass-panel text-left">
-                <span class="process-label client">YOU</span>
-                <h3 class="process-title">Share Your Brand</h3>
-                <p class="process-description">Send us your logo, photos, copy, and anything that represents your business.</p>
-              </div>
-            </div>
-
-            <!-- Central Icon -->
-            <div class="process-icon-wrapper">
-              <div class="process-icon-glow">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="12,2 22,12 12,22 2,12"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Right: WE (Vivid Stack) -->
-            <div class="process-column-we">
-              <div class="process-card glass-panel agency-card text-left">
-                <span class="process-label agency">WE</span>
-                <h3 class="process-title">Set Up Hosting</h3>
-                <p class="process-description">We get your site's infrastructure ready — fast, secure, and free to host forever.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Stage 03 -->
-          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 relative mb-24 last:mb-0">
-            <div class="process-stage-label">PHASE 03</div>
-            <!-- Left: YOU (Client) -->
-            <div class="process-column-you">
-              <div class="process-card glass-panel text-left">
-                <span class="process-label client">YOU</span>
-                <h3 class="process-title">Review & Refine</h3>
-                <p class="process-description">You see progress in real time and we fine-tune until you're thrilled.</p>
-              </div>
-            </div>
-
-            <!-- Central Icon -->
-            <div class="process-icon-wrapper">
-              <div class="process-icon-glow">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="3"/>
-                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Right: WE (Vivid Stack) -->
-            <div class="process-column-we">
-              <div class="process-card glass-panel agency-card text-left">
-                <span class="process-label agency">WE</span>
-                <h3 class="process-title">Build Your Site</h3>
-                <p class="process-description">We design and develop every page with obsessive attention to quality and detail.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Stage 04 -->
-          <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 relative mb-24 last:mb-0">
-            <div class="process-stage-label">PHASE 04</div>
-            <!-- Left: YOU (Client) -->
-            <div class="process-column-you">
-              <div class="process-card glass-panel text-left">
-                <span class="process-label client">YOU</span>
-                <h3 class="process-title">Approve & Go Live</h3>
-                <p class="process-description">You give the final thumbs up, and your site goes live for the world to see.</p>
-              </div>
-            </div>
-
-            <!-- Central Icon -->
-            <div class="process-icon-wrapper">
-              <div class="process-icon-glow">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-                  <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-                  <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Right: WE (Vivid Stack) -->
-            <div class="process-column-we">
-              <div class="process-card glass-panel agency-card text-left">
-                <span class="process-label agency">WE</span>
-                <h3 class="process-title">Launch Everywhere</h3>
-                <p class="process-description">Your site goes live globally — fast for every customer, no matter where they are.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section
-      id="portfolio"
-      class="section-tracer-target relative py-32 bg-vivid-cream bg-grid-tech"
-    >
-
-
-      <div
-        class="section-tracer absolute top-0 left-0 w-full h-px bg-vivid-navy origin-left scale-x-0 z-20 will-change-transform"
-      >
-      </div>
-
-      <!-- Section heading — constrained -->
-      <div class="max-w-7xl mx-auto px-6 relative z-10">
-        <div class="mb-24 text-center">
-          <span
-            class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block"
-            >Featured Work</span
-          >
-          <h2
-            class="text-6xl md:text-8xl font-black tracking-tighter uppercase text-vivid-navy leading-[0.85] select-none"
-            style="font-family: 'Space Grotesk', sans-serif;"
-          >
-            Capabilities <span class="text-vivid-mint">&</span> Performance
-          </h2>
-        </div>
-      </div>
-
-      <!-- Light Bento Performance Grid -->
-      <div class="max-w-7xl mx-auto px-6 relative z-10">
-        <div class="bento-grid">
-          <!-- Main Performance Card -->
-          <div class="bento-card bento-perf-main md:col-span-2 md:row-span-2">
-            <div class="flex flex-col md:flex-row items-center gap-8 h-full">
-              <div class="w-full md:w-1/2 flex justify-center">
-                <Image 
-                  src={lighthouseImg} 
-                  alt="Lighthouse 100/100 Score" 
-                  class="bento-image"
-                  widths={[400, 800]}
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  loading="lazy"
-                  decoding="async"
-                  quality={100}
-                />
-              </div>
-              <div class="w-full md:w-1/2">
-                <span class="card-tag">Technical Core</span>
-                <h3 class="card-title">Performance: <br/><span class="text-vivid-mint">Sub-second</span> load times</h3>
-                <p class="card-text text-vivid-navy/70">
-                  Every VividStack project loads in under a second — so your customers stay on the page and you never lose a sale to a slow website.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- SEO Mastery -->
-          <div class="bento-card">
-            <h4 class="card-small-title">Found on Google</h4>
-            <p class="card-small-text text-vivid-navy/60">Built-in SEO setup so your business shows up when customers search for you.</p>
-          </div>
-
-          <!-- The 2026 Stack -->
-          <div class="bento-card">
-            <h4 class="card-small-title">Modern Tech</h4>
-            <p class="card-small-text text-vivid-navy/60">Built with the latest tools for blazing-fast, future-proof websites.</p>
-          </div>
-
-          <!-- Mobile-First -->
-          <div class="bento-card">
-            <h4 class="card-small-title">Mobile-First</h4>
-            <p class="card-small-text text-vivid-navy/60">Looks perfect on every phone, tablet, and desktop your customers use.</p>
-          </div>
-
-          <!-- Cloudflare Edge -->
-          <div class="bento-card">
-            <h4 class="card-small-title">Always Online</h4>
-            <p class="card-small-text text-vivid-navy/60">Your site loads fast from anywhere in the world and never goes down.</p>
-          </div>
-
-          <!-- Shielded Core -->
-          <div class="bento-card">
-            <h4 class="card-small-title">Secure & Protected</h4>
-            <p class="card-small-text text-vivid-navy/60">Your site is protected from attacks and threats — your customers' data stays safe.</p>
-          </div>
-        </div>
-      </div>
-
-
-    </section>
-
-    <!-- Contact Footer Section -->
-    <section
-      id="contact"
-      class="section-tracer-target relative py-20 md:py-40 bg-vivid-navy overflow-hidden"
-    >
-      <div
-        class="section-tracer absolute top-0 left-0 w-full h-px bg-vivid-mint origin-left scale-x-0 z-20"
-      >
-      </div>
-
-      <!-- Ambient Branding Background -->
-      <div class="absolute inset-0 opacity-10 pointer-events-none">
-        <div
-          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[40rem] font-black text-white/5 select-none leading-none"
-        >
-          VS
-        </div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
-        <span
-          class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block"
-          >Ready to scale?</span
-        >
-        <h2
-          class="text-6xl md:text-8xl font-black tracking-tighter uppercase text-vivid-cream leading-[0.85] select-none mb-16"
-          style="font-family: 'Space Grotesk', sans-serif;"
-        >
-          Let's Build <span class="text-vivid-mint">Your</span> Website
-        </h2>
-
-        <!-- Brutalist Contact Form -->
-        <form id="contact-form" class="w-full max-w-3xl mx-auto flex flex-col gap-6 text-left mb-12 relative z-20">
-          <input type="hidden" name="access_key" value="7a57804f-5978-4d98-84e4-0aec35e74482">
-          <input type="hidden" name="subject" value="New VividStack Contact Form Submission">
-          <input type="hidden" name="from_name" value="VividStack Website">
-          <!-- Honeypot spam trap — invisible to humans, bots fill it -->
-          <input type="checkbox" name="botcheck" class="hidden" style="display:none">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="flex flex-col">
-              <label for="contact-name" class="text-xs font-bold uppercase tracking-[0.2em] text-vivid-mint mb-2">Name</label>
-              <input
-                type="text"
-                id="contact-name"
-                name="name"
-                required
-                autocomplete="name"
-                placeholder="Your Name"
-                class="w-full bg-[#f8f9fa] border-2 border-vivid-navy p-4 focus:bg-white focus:outline-none focus:shadow-[4px_4px_0_0_#253644] transition-all"
-              />
-            </div>
-            
-            <div class="flex flex-col">
-              <label for="contact-email" class="text-xs font-bold uppercase tracking-[0.2em] text-vivid-mint mb-2">Email</label>
-              <input
-                type="email"
-                id="contact-email"
-                name="email"
-                required
-                autocomplete="email"
-                placeholder="your.email@example.com"
-                class="w-full bg-[#f8f9fa] border-2 border-vivid-navy p-4 focus:bg-white focus:outline-none focus:shadow-[4px_4px_0_0_#253644] transition-all"
-              />
-            </div>
-          </div>
-          
-          <div class="flex flex-col mt-6">
-            <label for="contact-message" class="text-xs font-bold uppercase tracking-[0.2em] text-vivid-mint mb-2">Message</label>
-            <textarea
-              id="contact-message"
-              name="message"
-              rows="5"
-              required
-              autocomplete="off"
-              placeholder="Tell us about your business and what you need"
-              class="w-full bg-[#f8f9fa] border-2 border-vivid-navy p-4 focus:bg-white focus:outline-none focus:shadow-[4px_4px_0_0_#253644] transition-all resize-none"
-            ></textarea>
-          </div>
-          
-          <div class="mt-6 flex flex-col md:flex-row items-center justify-between gap-8">
-            <!-- hCaptcha widget -->
-            <div class="h-captcha" data-captcha="true"></div>
-            <button id="submit-btn" type="submit" class="w-full md:w-auto px-8 md:px-12 py-4 md:py-5 bg-vivid-mint text-vivid-navy rounded-none font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm hover:bg-white transition-colors duration-300 cursor-pointer shadow-[6px_6px_0_0_#ffffff]">
-              Send Message
-            </button>
-          </div>
-
-          <!-- Success State -->
-          <div id="form-success" class="hidden mt-4 p-6 bg-vivid-mint/10 border-2 border-vivid-mint text-center">
-            <div class="text-2xl mb-2">✓</div>
-            <p class="text-vivid-cream font-bold uppercase tracking-[0.15em] text-sm">Message received!</p>
-            <p class="text-vivid-cream/70 text-sm mt-2">We'll get back to you within 24 hours.</p>
-          </div>
-
-          <!-- Error State -->
-          <div id="form-error" class="hidden mt-4 p-4 bg-red-500/10 border-2 border-red-400 text-center">
-            <p class="text-vivid-cream font-bold uppercase tracking-[0.15em] text-sm">Something went wrong</p>
-            <p class="text-vivid-cream/70 text-sm mt-1">Please try again or email us directly.</p>
-          </div>
-        </form>
-
-        <div
-          class="mt-32 pt-12 border-t border-vivid-cream/10 flex flex-col md:flex-row justify-between items-center gap-6"
-        >
-          <div
-            class="text-[10px] text-vivid-cream/30 uppercase tracking-[0.3em]"
-          >
-            © 2026 VIVIDSTACK. ALL RIGHTS RESERVED.
-          </div>
-          <div
-            class="flex gap-6 text-[10px] text-vivid-cream/30 uppercase tracking-[0.2em]"
-          >
-            <span class="hover:text-vivid-mint cursor-pointer transition-colors"
-              >Privacy Policy</span
-            >
-            <span class="hover:text-vivid-mint cursor-pointer transition-colors"
-              >Terms of Service</span
-            >
-          </div>
-        </div>
-      </div>
-    </section>
+    <SelectedWorks />
+    <Process />
+    <Capabilities />
+    <Contact />
   </section>
+</Layout>
 
-  <script>
-    import Lenis from "lenis";
-    import gsap from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-    import { CustomEase } from "gsap/CustomEase";
+<script>
+  import Lenis from "lenis";
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { CustomEase } from "gsap/CustomEase";
 
-    gsap.registerPlugin(ScrollTrigger, CustomEase);
+  gsap.registerPlugin(ScrollTrigger, CustomEase);
 
-    // Register the precise architectural cubic-bezier
-    CustomEase.create("architectural", "0.4, 0, 0.2, 1");
+  // Register the precise architectural cubic-bezier
+  CustomEase.create("architectural", "0.4, 0, 0.2, 1");
 
-    // Initialize Lenis — desktop only; native scroll is faster on iOS/Android
-    const IS_MOBILE = window.innerWidth < 1024;
+  // Initialize Lenis — desktop only; native scroll is faster on iOS/Android
+  const IS_MOBILE = window.innerWidth < 1024;
 
-    let lenis: Lenis | undefined;
-    if (!IS_MOBILE) {
-      lenis = new Lenis({
-        lerp: 0.1,
-        wheelMultiplier: 1,
-        smoothWheel: true,
-      });
+  let lenis;
+  if (!IS_MOBILE) {
+    lenis = new Lenis({
+      lerp: 0.1,
+      wheelMultiplier: 1,
+      smoothWheel: true,
+    });
 
-      // Sync GSAP ScrollTrigger with Lenis
-      lenis.on("scroll", ScrollTrigger.update);
+    // Sync GSAP ScrollTrigger with Lenis
+    lenis.on("scroll", ScrollTrigger.update);
 
-      // Use requestAnimationFrame for Lenis to ensure instant input response
-      function raf(time: number) {
-        lenis?.raf(time);
-        requestAnimationFrame(raf);
-      }
+    // Use requestAnimationFrame for Lenis to ensure instant input response
+    function raf(time) {
+      lenis?.raf(time);
       requestAnimationFrame(raf);
     }
+    requestAnimationFrame(raf);
+  }
 
-    gsap.ticker.lagSmoothing(0);
+  gsap.ticker.lagSmoothing(0);
 
-    const tl = gsap.timeline({
-      defaults: { ease: "power4.out", duration: 1.4, force3D: true },
-    });
+  const tl = gsap.timeline({
+    defaults: { ease: "power4.out", duration: 1.4, force3D: true },
+  });
 
-    // Explicitly apply will-change to elements before animation starts to hardware accelerate them
-    gsap.set(
-      [
-        "#main-nav",
-        ".hero-char",
-        "#hero-title",
-        "#hero-subtitle",
-        "#hero-cta",
-        ".service-card",
-        "#selected-works",
-        ".project-screenshot",
-        ".tech-node",
-        "#ambient-elements > div",
-        ".advantage-card",
-      ],
-      { willChange: "transform, opacity" },
-    );
+  // Explicitly apply will-change to elements before animation starts to hardware accelerate them
+  gsap.set(
+    [
+      "#main-nav",
+      ".hero-char",
+      "#hero-title",
+      "#hero-subtitle",
+      "#hero-cta",
+      ".service-card",
+      "#selected-works",
+      ".project-screenshot",
+      ".tech-node",
+      "#ambient-elements > div",
+      ".advantage-card",
+    ],
+    { willChange: "transform, opacity" },
+  );
 
-    tl.to("#main-nav", { opacity: 1, y: 0, delay: 0.2 })
-      .from(
-        ".hero-char",
-        {
-          rotationX: 90,
-          opacity: 0,
-          y: 20,
-          stagger: 0.05,
-          duration: 1.0,
-          ease: "power3.out",
-          transformOrigin: "center bottom",
-        },
-        "-=1.1",
-      )
-      .to("#hero-title", { opacity: 1, y: 0 }, "-=0.8")
-      .to("#hero-subtitle", { opacity: 1, y: 0 }, "-=1.1")
-      .to("#hero-cta", { opacity: 1, y: 0 }, "-=1.1")
-      .to(".tech-node", { opacity: 1, y: 0, stagger: 0.1 }, "-=1.0");
-
-    // Advantage cards entrance
-    gsap.to(".advantage-card", {
-      scrollTrigger: { trigger: "#advantage", start: "top 85%" },
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      stagger: 0.15,
-      ease: "power2.out",
-      force3D: true,
-    });
-
-    // Bento tiles entrance
-    gsap.to(".bento-tile", {
-      scrollTrigger: { trigger: "#services", start: "top 80%" },
-      opacity: 1,
-      translate: "0px 0px",
-      duration: 0.9,
-      stagger: 0.12,
-      ease: "power2.out",
-      force3D: true,
-    });
-
-    // Floating animation for ambient tech elements — skip on mobile to save CPU
-    if (!IS_MOBILE) {
-      gsap.utils.toArray("#ambient-elements > div").forEach((element) => {
-        gsap.to(element, {
-          x: "random(-20, 20)",
-          y: "random(-20, 20)",
-          duration: "random(6, 10)",
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-          force3D: true,
-        });
-      });
-
-      // Floating orbit animation loop for tech nodes
-      (gsap.utils.toArray(".tech-node") as HTMLElement[]).forEach((node, i) => {
-        gsap.to(node, {
-          y: i % 2 === 0 ? 15 : -15,
-          rotation: i % 2 === 0 ? 1 : -1,
-          duration: 2.5 + i * 0.5,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-          force3D: true,
-          delay: i * 0.2,
-        });
-      });
-    }
-
-    // Services Slide Animations
-    gsap.to(".service-card", {
-      scrollTrigger: { trigger: "#services", start: "top 80%" },
-      opacity: 1,
-      y: 0,
-      duration: 1.2,
-      stagger: 0.2,
-      ease: "power2.out",
-      force3D: true,
-    });
-
-    // ─── Selected Works: GSAP Pin on Desktop, Native Snap Scroll on Mobile ───
-    const worksSection = document.querySelector("#selected-works");
-    const pinWrap     = document.querySelector(".pin-wrap");
-
-    if (worksSection && pinWrap) {
-      if (!IS_MOBILE) {
-        // DESKTOP: GSAP horizontal pin + scrub
-        const worksTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: worksSection,
-            start: "top top",
-            end: "+=500%",
-            pin: true,
-            scrub: 1,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-
-        worksTl.to(pinWrap, {
-          x: () => -(pinWrap.scrollWidth - window.innerWidth),
-          ease: "none",
-        });
-
-        // 1.2x parallax glide on futuristic blueprint terminals (desktop only)
-        gsap.utils.toArray(".blueprint-terminal").forEach((terminal) => {
-          worksTl.to(terminal, { x: -120, ease: "none" }, 0);
-        });
-
-        // Recalculate after layout settle
-        window.addEventListener("load", () => {
-          setTimeout(() => ScrollTrigger.refresh(), 800);
-        });
-
-        window.addEventListener("resize", () => ScrollTrigger.refresh());
-
-      } else {
-        // MOBILE: Native snap scroll logic
-        pinWrap.setAttribute("data-lenis-prevent", "");
-        
-        // Remove GSAP pinning transforms if window was resized from desktop
-        gsap.set(pinWrap, { clearProps: "all" });
-      }
-    }
-
-    // Smooth Scroll Trigger for Hash Links using Lenis/Native
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", (e) => {
-        e.preventDefault();
-        const targetId = anchor.getAttribute("href");
-        if (targetId) {
-          if (lenis) {
-            lenis.scrollTo(targetId, {
-              offset: 0,
-              duration: 1.5,
-              easing: (t: number) =>
-                Math.min(
-                  1,
-                  1.001 *
-                    Math.pow(2, -10 * t) *
-                    Math.sin((t * 10 - 0.75) * ((2 * Math.PI) / 3)) +
-                    1,
-                ),
-            });
-          } else {
-            // Mobile: native smooth scroll
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              targetElement.scrollIntoView({ behavior: "smooth" });
-            }
-          }
-        }
-      });
-    });
-
-    // Magnetic Hero Headline Letters — desktop only
-    const heroChars = gsap.utils.toArray(".hero-char");
-    if (heroChars.length > 0 && !IS_MOBILE) {
-      let rafPending = false;
-      let lastMouseX = 0, lastMouseY = 0;
-
-      window.addEventListener("mousemove", (e) => {
-        lastMouseX = e.clientX;
-        lastMouseY = e.clientY;
-        if (rafPending) return;
-        rafPending = true;
-        requestAnimationFrame(() => {
-          rafPending = false;
-          heroChars.forEach((char) => {
-            const rect = (char as HTMLElement).getBoundingClientRect();
-            const charX = rect.left + rect.width / 2;
-            const charY = rect.top + rect.height / 2;
-            const distX = lastMouseX - charX;
-            const distY = lastMouseY - charY;
-            const distance = Math.sqrt(distX * distX + distY * distY);
-            const magnetRadius = 100;
-
-              if (distance < magnetRadius) {
-              const pull = 1 - distance / magnetRadius;
-              const moveX = (distX / distance) * pull * 10;
-              const moveY = (distY / distance) * pull * 10;
-              gsap.to(char as HTMLElement, {
-                x: moveX,
-                y: moveY,
-                rotationY: moveX * 0.5,
-                rotationX: -moveY * 0.5,
-                duration: 0.3,
-                ease: "power2.out",
-                overwrite: "auto",
-              });
-            } else {
-              gsap.to(char as HTMLElement, {
-                x: 0,
-                y: 0,
-                rotationY: 0,
-                rotationX: 0,
-                duration: 0.6,
-                ease: "power3.out",
-                overwrite: "auto",
-              });
-            }
-          });
-        });
-      });
-    }
-
-    // Section Tracer Border Animation
-    gsap.utils.toArray(".section-tracer-target").forEach((section) => {
-      const tracer = (section as HTMLElement).querySelector(".section-tracer");
-      if (tracer) {
-        gsap.to(tracer, {
-          scaleX: 1,
-          duration: 1.2,
-          ease: "power3.inOut",
-          force3D: true,
-          scrollTrigger: {
-            trigger: section as HTMLElement,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        });
-      }
-    });
-
-    // Hero Background Subtle Entrance
-    const heroBg = document.querySelector("#hero-background");
-    if (heroBg) {
-      gsap.from(heroBg, {
+  tl.to("#main-nav", { opacity: 1, y: 0, delay: 0.2 })
+    .from(
+      ".hero-char",
+      {
+        rotationX: 90,
         opacity: 0,
-        scale: 0.95,
-        duration: 3,
-        delay: 1,
-        ease: "power2.out",
+        y: 20,
+        stagger: 0.05,
+        duration: 1.0,
+        ease: "power3.out",
+        transformOrigin: "center bottom",
+      },
+      "-=1.1",
+    )
+    .to("#hero-title", { opacity: 1, y: 0 }, "-=0.8")
+    .to("#hero-subtitle", { opacity: 1, y: 0 }, "-=1.1")
+    .to("#hero-cta", { opacity: 1, y: 0 }, "-=1.1")
+    .to(".tech-node", { opacity: 1, y: 0, stagger: 0.1 }, "-=1.0");
+
+  // Advantage cards entrance
+  gsap.to(".advantage-card", {
+    scrollTrigger: { trigger: "#advantage", start: "top 85%" },
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    stagger: 0.15,
+    ease: "power2.out",
+    force3D: true,
+    onComplete: (self) => gsap.set(".advantage-card", { clearProps: "all" })
+  });
+
+  // Bento tiles entrance
+  gsap.to(".bento-tile", {
+    scrollTrigger: { trigger: "#services", start: "top 80%" },
+    opacity: 1,
+    y: 0,
+    duration: 0.9,
+    stagger: 0.12,
+    ease: "power2.out",
+    force3D: true,
+    onComplete: (self) => gsap.set(".bento-tile", { clearProps: "all" })
+  });
+
+  // Floating animation for ambient tech elements — skip on mobile to save CPU
+  if (!IS_MOBILE) {
+    gsap.utils.toArray("#ambient-elements > div").forEach((element) => {
+      gsap.to(element, {
+        x: "random(-20, 20)",
+        y: "random(-20, 20)",
+        duration: "random(6, 10)",
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        force3D: true,
       });
+    });
+
+    // Floating orbit animation loop for tech nodes
+    gsap.utils.toArray(".tech-node").forEach((node, i) => {
+      gsap.to(node, {
+        y: i % 2 === 0 ? 15 : -15,
+        rotation: i % 2 === 0 ? 1 : -1,
+        duration: 2.5 + i * 0.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        force3D: true,
+        delay: i * 0.2,
+      });
+    });
+  }
+
+  // Services Slide Animations
+  gsap.to(".service-card", {
+    scrollTrigger: { trigger: "#services", start: "top 80%" },
+    opacity: 1,
+    y: 0,
+    duration: 1.2,
+    stagger: 0.2,
+    ease: "power2.out",
+    force3D: true,
+    onComplete: (self) => gsap.set(".service-card", { clearProps: "all" })
+  });
+
+  // ─── Selected Works: GSAP Pin on Desktop, Native Snap Scroll on Mobile ───
+  const worksSection = document.querySelector("#selected-works");
+  const pinWrap     = document.querySelector(".pin-wrap");
+
+  if (worksSection && pinWrap) {
+    if (!IS_MOBILE) {
+      // DESKTOP: GSAP horizontal pin + scrub
+      const worksTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: worksSection,
+          start: "top top",
+          end: "+=500%",
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      worksTl.to(pinWrap, {
+        x: () => -(pinWrap.scrollWidth - window.innerWidth),
+        ease: "none",
+      });
+
+      // 1.2x parallax glide on futuristic blueprint terminals (desktop only)
+      gsap.utils.toArray(".blueprint-terminal").forEach((terminal) => {
+        worksTl.to(terminal, { x: -120, ease: "none" }, 0);
+      });
+
+      // Recalculate after layout settle
+      window.addEventListener("load", () => {
+        setTimeout(() => ScrollTrigger.refresh(), 800);
+      });
+
+      window.addEventListener("resize", () => ScrollTrigger.refresh());
+
+    } else {
+      // MOBILE: Native snap scroll logic
+      pinWrap.setAttribute("data-lenis-prevent", "");
+      
+      // Remove GSAP pinning transforms if window was resized from desktop
+      gsap.set(pinWrap, { clearProps: "all" });
     }
+  }
 
-    // ─── Contact Form Feedback System ─────────────────────────────────────
-    const contactForm = document.getElementById("contact-form") as HTMLFormElement;
-    const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
-    const successEl = document.getElementById("form-success");
-    const errorEl = document.getElementById("form-error");
-
-    if (contactForm && submitBtn) {
-      contactForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        
-        // Reset states
-        successEl?.classList.add("hidden");
-        errorEl?.classList.add("hidden");
-
-        // Client-side hCaptcha validation
-        const hCaptchaResponse = contactForm.querySelector('textarea[name=h-captcha-response]') as HTMLTextAreaElement | null;
-        if (hCaptchaResponse && !hCaptchaResponse.value) {
-          errorEl?.classList.remove("hidden");
-          const errorText = errorEl?.querySelector('p');
-          if (errorText) errorText.textContent = "Please complete the captcha";
-          return;
-        }
-
-        // Button loading state
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = "Sending...";
-        submitBtn.disabled = true;
-        submitBtn.style.opacity = "0.7";
-        submitBtn.style.cursor = "wait";
-
-        try {
-          const formData = new FormData(contactForm);
-          const response = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            body: formData,
+  // Smooth Scroll Trigger for Hash Links using Lenis/Native
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = anchor.getAttribute("href");
+      if (targetId) {
+        if (lenis) {
+          lenis.scrollTo(targetId, {
+            offset: 0,
+            duration: 1.5,
+            easing: (t) =>
+              Math.min(
+                1,
+                1.001 *
+                  Math.pow(2, -10 * t) *
+                  Math.sin((t * 10 - 0.75) * ((2 * Math.PI) / 3)) +
+                  1,
+              ),
           });
-          const result = await response.json();
-
-          if (result.success) {
-            // Show success state
-            successEl?.classList.remove("hidden");
-            
-            // Fade form fields
-            const formFields = contactForm.querySelectorAll("input:not([type=hidden]), textarea, .grid, .flex.flex-col.mt-2, .mt-6.flex");
-            formFields.forEach(el => {
-              (el as HTMLElement).style.transition = "opacity 0.4s ease";
-              (el as HTMLElement).style.opacity = "0.3";
-              (el as HTMLElement).style.pointerEvents = "none";
-            });
-
-            // Update button
-            submitBtn.textContent = "✓ Sent";
-            submitBtn.style.opacity = "1";
-            submitBtn.style.background = "#253644";
-            submitBtn.style.color = "#5DFFEC";
-            
-            // Reset form after delay
-            setTimeout(() => {
-              contactForm.reset();
-              formFields.forEach(el => {
-                (el as HTMLElement).style.opacity = "1";
-                (el as HTMLElement).style.pointerEvents = "auto";
-              });
-              submitBtn.textContent = originalText;
-              submitBtn.disabled = false;
-              submitBtn.style.cursor = "pointer";
-              submitBtn.style.background = "";
-              submitBtn.style.color = "";
-              successEl?.classList.add("hidden");
-            }, 5000);
-          } else {
-            throw new Error(result.message || "Submission failed");
+        } else {
+          // Mobile: native smooth scroll
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
           }
-
-        } catch (err) {
-          // Show error state
-          errorEl?.classList.remove("hidden");
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-          submitBtn.style.opacity = "1";
-          submitBtn.style.cursor = "pointer";
         }
+      }
+    });
+  });
+
+  // Magnetic Hero Headline Letters — desktop only
+  const heroChars = gsap.utils.toArray(".hero-char");
+  if (heroChars.length > 0 && !IS_MOBILE) {
+    let rafPending = false;
+    let lastMouseX = 0, lastMouseY = 0;
+
+    window.addEventListener("mousemove", (e) => {
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+      if (rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(() => {
+        rafPending = false;
+        heroChars.forEach((char) => {
+          const rect = char.getBoundingClientRect();
+          const charX = rect.left + rect.width / 2;
+          const charY = rect.top + rect.height / 2;
+          const distX = lastMouseX - charX;
+          const distY = lastMouseY - charY;
+          const distance = Math.sqrt(distX * distX + distY * distY);
+          const magnetRadius = 100;
+
+            if (distance < magnetRadius) {
+            const pull = 1 - distance / magnetRadius;
+            const moveX = (distX / distance) * pull * 10;
+            const moveY = (distY / distance) * pull * 10;
+            gsap.to(char, {
+              x: moveX,
+              y: moveY,
+              rotationY: moveX * 0.5,
+              rotationX: -moveY * 0.5,
+              duration: 0.3,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          } else {
+            gsap.to(char, {
+              x: 0,
+              y: 0,
+              rotationY: 0,
+              rotationX: 0,
+              duration: 0.6,
+              ease: "power3.out",
+              overwrite: "auto",
+            });
+          }
+        });
+      });
+    });
+  }
+
+  // Section Tracer Border Animation
+  gsap.utils.toArray(".section-tracer-target").forEach((section) => {
+    const tracer = section.querySelector(".section-tracer");
+    if (tracer) {
+      gsap.to(tracer, {
+        scaleX: 1,
+        duration: 1.2,
+        ease: "power3.inOut",
+        force3D: true,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
       });
     }
-  </script>
+  });
 
-<style>
+  // Hero Background Subtle Entrance
+  const heroBg = document.querySelector("#hero-background");
+  if (heroBg) {
+    gsap.from(heroBg, {
+      opacity: 0,
+      scale: 0.95,
+      duration: 3,
+      delay: 1,
+      ease: "power2.out",
+    });
+  }
+</script>
+
+<style is:global>
   /* ============================================
      NAV
      ============================================ */
@@ -1312,925 +341,4 @@ const portfolioProjects = [
   .section-tracer {
     will-change: transform;
   }
-
-  /* ============================================
-     ADVANTAGE SECTION
-     ============================================ */
-  .advantage-card {
-    opacity: 0;
-    transform: translateY(30px) translateZ(0);
-    will-change: transform, opacity;
-    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s ease;
-  }
-
-  /* ============================================
-     SERVICES BENTO GRID
-     ============================================ */
-  .bento-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 1.25rem;
-  }
-
-  @media (max-width: 767px) {
-    .bento-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .bento-tile {
-    position: relative;
-    overflow: hidden;
-    border: 2px solid #000;
-    padding: 2.5rem;
-    cursor: pointer;
-    transform: translateZ(0);
-    will-change: transform;
-    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-    opacity: 0;
-    translate: 0 40px;
-  }
-
-  .bento-tile:hover {
-    transform: translateY(-4px) translateZ(0);
-    box-shadow: 8px 8px 0 0 #000;
-  }
-
-  /* Hero tile spans both rows on left */
-  .bento-hero {
-    grid-column: 1;
-    grid-row: 1 / 3;
-    background: #253644;
-    color: white;
-    min-height: 420px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .bento-hero .bento-title { color: #fff; }
-  .bento-hero .bento-desc  { color: rgba(255,255,255,0.65); }
-  .bento-hero .bento-number { color: rgba(255,255,255,0.08); }
-  .bento-hero .bento-icon  { color: #00ffcc; }
-
-  .bento-secondary {
-    grid-column: 2;
-    grid-row: 1;
-    background: #f3f3f4;
-  }
-
-  .bento-accent {
-    grid-column: 2;
-    grid-row: 2;
-    background: #f8f9fa;
-    border-color: #000;
-  }
-
-  @media (max-width: 767px) {
-    .bento-hero, .bento-secondary, .bento-accent {
-      grid-column: 1;
-      grid-row: auto;
-      min-height: 280px;
-    }
-  }
-
-  .bento-number {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 5rem;
-    font-weight: 900;
-    color: rgba(0,0,0,0.06);
-    line-height: 1;
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    user-select: none;
-  }
-
-  .bento-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    gap: 1rem;
-  }
-
-  .bento-icon {
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #253644;
-  }
-
-  .bento-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    color: #000;
-    line-height: 1.1;
-  }
-
-  .bento-desc {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9375rem;
-    color: rgba(0,0,0,0.6);
-    line-height: 1.6;
-    flex: 1;
-  }
-
-  .bento-cta {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8125rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #00ffcc;
-    margin-top: auto;
-  }
-
-  .bento-bg-glow {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-    filter: blur(80px);
-    z-index: 0;
-  }
-
-  .bento-tile:hover .bento-bg-glow {
-    opacity: 0.08;
-  }
-
-  /* ============================================
-     SELECTED WORKS — Section Chrome Bar
-     ============================================ */
-  .selected-works-chrome {
-    height: 3rem;
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 1.5rem;
-    border-bottom: 2px solid #000;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  @media (max-width: 1023px) {
-    .selected-works-chrome {
-      height: 4rem;
-      border-bottom-width: 3px;
-    }
-  }
-
-  .chrome-dots {
-    display: flex;
-    gap: 0.375rem;
-    align-items: center;
-    flex-shrink: 0;
-  }
-
-  .chrome-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 1px solid rgba(0,0,0,0.1);
-  }
-
-  .dot-red    { background: #ff5f57; }
-  .dot-yellow { background: #ffbd2e; }
-  .dot-green  { background: #27c93f; }
-
-  .chrome-label {
-    flex: 1;
-    font-family: 'Inter', monospace;
-    font-size: 9px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: rgba(37,54,68,0.4);
-    text-align: center;
-  }
-
-  .chrome-badge {
-    font-family: 'Inter', sans-serif;
-    font-size: 8px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    color: #95cbd0;
-    flex-shrink: 0;
-  }
-
-  /* ============================================
-     SELECTED WORKS — Pin Wrap / Snap Scroll
-     ============================================ */
-  .pin-wrap {
-    display: flex;
-    gap: 6rem;
-    padding-left: 5vw;
-    padding-right: 40vw;
-    align-items: center;
-    height: 100vh;
-    will-change: transform;
-    transform: translateZ(0);
-  }
-
-  .title-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: 36vw;
-    flex-shrink: 0;
-    padding-right: 4vw;
-  }
-
-  .mobile-section-header {
-    display: none;
-  }
-
-  @media (max-width: 1023px) {
-    #selected-works {
-      height: auto !important;
-      overflow: visible !important;
-    }
-
-    .pin-wrap {
-      display: flex;
-      flex-direction: row;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      height: auto;
-      padding: 2rem 1.25rem 2rem;
-      gap: 1.5rem;
-      padding-right: 5vw;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      transform: none !important;
-      align-items: flex-start;
-    }
-
-    .pin-wrap::-webkit-scrollbar { display: none; }
-
-    .title-card { display: none !important; }
-
-    .mobile-section-header { display: block; }
-  }
-
-  /* ============================================
-     PROJECT CARD SHELL
-     ============================================ */
-  .project-card {
-    flex-shrink: 0;
-    width: 55vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  @media (max-width: 1023px) {
-    .project-card {
-      width: 82vw;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-    }
-  }
-
-  .project-card-inner {
-    position: relative;
-    width: 100%;
-    transform: translateZ(0);
-  }
-
-  /* ============================================
-     DUAL-DEVICE CONTAINER  (strictly 16/9)
-     ============================================ */
-  .dual-device-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;          /* nothing bleeds outside */
-    background: #0a0a0a;
-    border: 2px solid #000;
-    box-shadow: 16px 16px 0 0 #000;
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  /* Subtle ambient glow behind everything */
-  .device-glow {
-    position: absolute;
-    bottom: -30%;
-    right: -10%;
-    width: 60%;
-    height: 80%;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.18;
-    pointer-events: none;
-    z-index: 0;
-    transform: translateZ(0);
-  }
-
-  /* ---- Desktop Browser (back layer) ---- */
-  .desktop-browser {
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* covers ~80% width, leaving right pocket for phone */
-    width: 95%;
-    height: 100%;
-    background: #f8f9fa;
-    border-right: 1.5px solid rgba(0,0,0,0.15);
-    display: flex;
-    flex-direction: column;
-    z-index: 2;
-    overflow: hidden;
-    transform: translateZ(0);
-  }
-
-  .desktop-url-bar {
-    height: 2rem;
-    background: #f0f0f0;
-    border-bottom: 1.5px solid rgba(0,0,0,0.12);
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0 0.75rem;
-    flex-shrink: 0;
-  }
-
-  .chrome-dot-sm {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .desktop-url-text {
-    font-size: 8px;
-    font-family: 'Inter', monospace;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: rgba(37,54,68,0.35);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    flex: 1;
-    text-align: center;
-  }
-
-  .desktop-screenshot-link {
-    display: block;
-    flex: 1;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .desktop-screenshot-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateZ(0);
-  }
-
-  .desktop-screenshot-link:hover .desktop-screenshot-img {
-    transform: scale(1.04) translateZ(0);
-  }
-
-  /* ---- Phone Frame (front layer) ---- */
-  .phone-frame {
-    position: absolute;
-    bottom: 6%;
-    right: 3%;
-    width: 22%;
-    /* phone aspect ~19.5/9 = tall */
-    aspect-ratio: 9 / 19.5;
-    background: #1a1a1a;
-    border: 3px solid #2a2a2a;
-    border-radius: 1.25rem;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.4rem 0.3rem;
-    gap: 0.25rem;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
-    overflow: hidden;
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  .phone-notch {
-    width: 35%;
-    height: 4px;
-    background: #333;
-    border-radius: 99px;
-    flex-shrink: 0;
-  }
-
-  .phone-screen {
-    flex: 1;
-    width: 100%;
-    background: #fff;
-    border-radius: 0.5rem;
-    overflow: hidden;
-  }
-
-  .phone-screenshot-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transform: translateZ(0);
-  }
-
-  .phone-home-bar {
-    width: 40%;
-    height: 3px;
-    background: #444;
-    border-radius: 99px;
-    flex-shrink: 0;
-  }
-
-  /* Screenshot overlay (desktop only) */
-  .screenshot-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.1);
-    opacity: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.3s ease;
-    z-index: 5;
-  }
-
-  .desktop-screenshot-link:hover .screenshot-overlay {
-    opacity: 1;
-  }
-
-  .screenshot-cta {
-    background: white;
-    color: black;
-    padding: 0.4rem 0.875rem;
-    font-size: 9px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transform: translateZ(0);
-  }
-
-  /* ============================================
-     PROJECT METADATA (below the 16/9 box)
-     ============================================ */
-  .project-meta {
-    margin-top: 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    padding-bottom: 0.875rem;
-  }
-
-  @media (max-width: 1023px) {
-    .project-meta {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
-  }
-
-  .meta-stack { display: flex; gap: 1rem; }
-  .meta-primary, .meta-secondary {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-family: 'Inter', sans-serif;
-  }
-  .meta-primary  { color: #000; }
-  .meta-secondary { color: rgba(0,0,0,0.4); }
-  .meta-id {
-    font-size: 10px;
-    font-family: monospace;
-    color: rgba(0,0,0,0.2);
-    text-transform: uppercase;
-  }
-
-  /* ============================================
-     BENTO PERFORMANCE GRID
-     ============================================ */
-  .bento-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .bento-grid {
-      grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: minmax(160px, auto);
-    }
-  }
-
-  .bento-card {
-    background: white;
-    border: 2px solid #05192d;
-    padding: 2.5rem;
-    box-shadow: 8px 8px 0 0 #05192d;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .bento-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 12px 12px 0 0 #05192d;
-  }
-
-  .bento-image {
-    width: 100%;
-    height: auto;
-    max-width: 320px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 20px rgba(0, 255, 204, 0.1));
-  }
-
-  .card-tag {
-    color: #00ffcc;
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    display: block;
-    margin-bottom: 0.75rem;
-  }
-
-  .card-title {
-    color: #05192d;
-    font-size: 2.25rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: 1;
-    margin-bottom: 1.25rem;
-    letter-spacing: -0.02em;
-  }
-
-  .card-text {
-    font-size: 1.125rem;
-    font-weight: 500;
-    line-height: 1.5;
-  }
-
-  .card-small-title {
-    color: #05192d;
-    font-size: 0.8rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 0.75rem;
-  }
-
-  .card-small-text {
-    font-size: 0.85rem;
-    font-weight: 500;
-    line-height: 1.5;
-  }
-
-  /* ============================================
-     PROCESS SECTION — Split-Action Layout
-     ============================================ */
-
-  .process-split-container {
-    padding: 2rem 0;
-  }
-
-  .process-vertical-line {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, transparent, rgba(37, 54, 68, 0.1) 10%, rgba(37, 54, 68, 0.1) 90%, transparent);
-    transform: translateX(-50%) translateZ(0);
-    display: none;
-  }
-
-  @media (min-width: 768px) {
-    .process-vertical-line {
-      display: block;
-    }
-  }
-
-  .process-icon-wrapper {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    display: none;
-  }
-
-  @media (min-width: 768px) {
-    .process-icon-wrapper {
-      display: flex;
-    }
-
-    /* Intermediate Arrows on Desktop Timeline */
-    .process-row:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      bottom: -6rem; /* Positioned between stages */
-      left: 50%;
-      width: 1.5rem;
-      height: 1.5rem;
-      background-color: #00ffcc;
-      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-      -webkit-mask-size: contain;
-      mask-size: contain;
-      -webkit-mask-repeat: no-repeat;
-      mask-repeat: no-repeat;
-      transform: translateX(-50%);
-      box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
-      z-index: 20;
-      opacity: 0.8;
-    }
-  }
-
-  /* Mobile Process Layout */
-  @media (max-width: 767px) {
-    .process-row {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      position: relative;
-      padding-bottom: 2.5rem;
-      padding-left: 1.75rem; /* Tightened container offset */
-    }
-
-    .process-row::before {
-      content: '';
-      position: absolute;
-      left: 0.4rem; /* Brought line closer to the edge */
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(to bottom, #00ffcc, #253644);
-      z-index: 1;
-    }
-
-    .process-row::after {
-      content: '';
-      position: absolute;
-      bottom: 0.5rem;
-      left: 0.75rem;
-      width: 1.5rem;
-      height: 1.5rem;
-      background-color: #00ffcc;
-      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-      -webkit-mask-size: contain;
-      mask-size: contain;
-      -webkit-mask-repeat: no-repeat;
-      mask-repeat: no-repeat;
-      transform: translateX(-50%);
-      box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
-      animation: pulse-arrow 2s infinite ease-in-out;
-    }
-
-    @keyframes pulse-arrow {
-      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.7; }
-      50% { transform: translateX(-50%) translateY(5px); opacity: 1; }
-    }
-
-
-    .process-column-you,
-    .process-column-we {
-      position: relative;
-      width: 100%;
-    }
-
-    .process-column-you::before,
-    .process-column-we::before {
-      content: '';
-      position: absolute;
-      left: -1.75rem; /* Re-aligned with the new line position */
-      top: 2rem;
-      width: 1.15rem;
-      height: 1.15rem;
-      border-radius: 50%;
-      background: #00ffcc;
-      border: 3px solid #f3f3f4;
-      z-index: 5;
-    }
-
-    .process-column-we::before {
-      background: #253644;
-      border-color: #00ffcc;
-    }
-
-    .process-icon-wrapper {
-      display: none;
-    }
-
-    .glass-panel {
-      padding: 1.5rem;
-      height: auto;
-    }
-
-    .process-title {
-      font-size: 1.35rem;
-    }
-  }
-
-  .process-icon-glow {
-    width: 3rem;
-    height: 3rem;
-    background: white;
-    border: 1px solid rgba(13, 27, 42, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    /* Pre-promote layer to avoid paint on hover */
-    will-change: transform;
-    box-shadow: 0 0 20px rgba(93, 255, 236, 0.2);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .process-row:hover .process-icon-glow {
-    transform: scale(1.2) translateZ(0);
-    box-shadow: 0 0 30px rgba(93, 255, 236, 0.4);
-    border-color: #00ffcc;
-  }
-
-  .glass-panel {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(13, 27, 42, 0.1);
-    border-radius: 1.5rem;
-    padding: 2.5rem;
-    /* Specific properties — no transition: all */
-    transition: border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    height: 100%;
-    transform: translateZ(0); /* GPU promote — avoid recomposite on sibling hover */
-  }
-
-  /* Mobile: kill blur for performance */
-  @media (max-width: 1023px) {
-    .glass-panel, .agency-card {
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      background: rgba(255,255,255,0.97) !important;
-    }
-  }
-
-  /* Agency card hover: only move the inner wrapper, not the blur layer */
-  .agency-card {
-    position: relative;
-  }
-
-  .agency-card .process-card-inner-hover {
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .agency-card:hover {
-    border-color: #00ffcc;
-    box-shadow: 0 20px 40px rgba(0, 255, 204, 0.05);
-    /* Do NOT move the glass panel itself — that forces blur rasterize per frame */
-  }
-
-  .process-label {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-  }
-
-  .process-label.client {
-    background: #f3f3f4;
-    color: #253644;
-  }
-
-  .process-label.agency {
-    background: #253644;
-    color: #5DFFEC;
-  }
-
-  .process-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: #253644;
-    margin-bottom: 1rem;
-    line-height: 1.1;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-  }
-
-  .process-description {
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    color: rgba(37, 54, 68, 0.7);
-    line-height: 1.6;
-  }
-
-  .process-stage-label {
-    position: absolute;
-    top: -2rem;
-    left: 0;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 800;
-    color: #00ffcc;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    opacity: 0.8;
-  }
-
-  @media (max-width: 767px) {
-    .process-stage-label {
-      position: static;
-      margin-bottom: 1rem;
-      text-align: center;
-      font-size: 0.875rem;
-      color: #253644;
-      opacity: 1;
-    }
-  }
-
-  /* ============================================
-     FREE FOREVER BADGE — one-time entrance
-     ============================================ */
-  @keyframes badge-pop {
-    0% { opacity: 0; transform: scale(0.6) rotate(-8deg); }
-    60% { opacity: 1; transform: scale(1.1) rotate(2deg); }
-    100% { opacity: 1; transform: scale(1) rotate(0deg); }
-  }
-
-  .free-badge {
-    animation: badge-pop 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
-  }
-
-  /* ============================================
-     MOBILE SWIPE INDICATOR
-     ============================================ */
-  @keyframes swipe-bounce {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(4px); }
-  }
-
-  .animate-swipe {
-    animation: swipe-bounce 1.5s ease-in-out infinite;
-  }
-
-  /* ============================================
-     REDUCED MOTION — respect user preference
-     ============================================ */
-  @media (prefers-reduced-motion: reduce) {
-    .free-badge,
-    .section-tracer,
-    .tech-node,
-    .advantage-card,
-    .bento-tile,
-    .bento-card {
-      animation: none !important;
-      transition-duration: 0.01s !important;
-      opacity: 1 !important;
-      transform: none !important;
-      translate: none !important;
-    }
-  }
 </style>
-</Layout>
