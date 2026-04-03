@@ -177,7 +177,8 @@ import { portfolioProjects } from "../data/home";
     display: flex;
     gap: 6rem;
     padding-left: 5vw;
-    padding-right: 40vw;
+    /* Extra right padding so GSAP can scroll past “flush end” and center the last project */
+    padding-right: min(58vw, 720px);
     align-items: center;
     height: 100vh;
     will-change: transform;
@@ -446,5 +447,49 @@ import { portfolioProjects } from "../data/home";
     background: rgba(37,54,68,0.05);
     color: #253644;
     border-radius: 2px;
+  }
+
+  /* Desktop + prefers-reduced-motion: skip GSAP pin; native horizontal scroll */
+  @media (min-width: 1024px) {
+    html.reduced-motion #selected-works {
+      height: auto !important;
+      overflow: visible !important;
+    }
+
+    html.reduced-motion .pin-wrap {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      height: auto;
+      min-height: 75vh;
+      padding: 3rem 5vw 4rem;
+      gap: 4rem;
+      padding-right: 12vw;
+      transform: none !important;
+      will-change: auto;
+      align-items: flex-start;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+
+    html.reduced-motion .pin-wrap::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    html.reduced-motion .pin-wrap::-webkit-scrollbar-thumb {
+      background: rgba(37, 54, 68, 0.25);
+      border-radius: 3px;
+    }
+
+    html.reduced-motion .pin-wrap .title-card {
+      display: flex;
+    }
+
+    html.reduced-motion .project-card {
+      scroll-snap-align: center;
+    }
   }
 </style>
