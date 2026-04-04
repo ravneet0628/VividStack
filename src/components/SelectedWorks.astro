@@ -16,10 +16,10 @@ import { portfolioProjects } from "../data/home";
   </div>
 
   <!-- Centered Header for Mobile -->
-  <div class="mobile-section-header w-full text-center pt-16 pb-4">
-    <span class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm mb-4 inline-block pb-1.5 border-b-[3px] border-vivid-mint">Case Studies</span>
+  <div class="mobile-section-header w-full text-center pt-16 pb-4 px-4 sm:px-6">
+    <span class="text-vivid-navy font-bold uppercase tracking-[0.35em] sm:tracking-[0.4em] text-xs sm:text-sm mb-4 inline-block pb-1.5 border-b-[3px] border-vivid-mint">Case Studies</span>
     <h2
-      class="text-6xl md:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85] select-none"
+      class="mobile-works-title font-black uppercase tracking-tighter text-black leading-[0.88] select-none"
       style="font-family: 'Space Grotesk', sans-serif;"
     >
       SELECTED <span class="text-vivid-mint">WORK</span>
@@ -52,45 +52,61 @@ import { portfolioProjects } from "../data/home";
     {portfolioProjects.map((project) => (
       <a href={project.url} target="_blank" rel="noopener noreferrer" class="project-card group block">
         <div class="project-card-inner">
-          <!-- Dual-Device Container: strictly 16/9 -->
-          <div class="dual-device-container">
-            <!-- Layer 1 (back): Desktop Browser -->
-            <div class="desktop-browser">
-              <Image
-                src={project.image}
-                alt={project.title}
-                class="desktop-screenshot-img"
-                widths={[480, 720, 1200, 1800]}
-                sizes="(max-width: 1023px) 68vw, 44vw"
-                loading="lazy"
-                fetchpriority="low"
-                decoding="async"
-                quality={85}
-              />
-            </div>
-
-            <!-- Layer 2 (front): Mobile Phone -->
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <Image
-                  src={project.mobileImage}
-                  alt={`${project.title} mobile`}
-                  widths={[320, 390, 780]}
-                  sizes="(max-width: 1023px) 20.4vw, 13.2vw"
-                  loading="lazy"
-                  fetchpriority="low"
-                  decoding="async"
-                  quality={85}
-                />
+          <div class="project-visual-wrap">
+            <!-- Dual-Device Container: strictly 16/9 -->
+            <div class="dual-device-container">
+              <!-- Layer 1 (back): Desktop browser frame + screenshot -->
+              <div class="desktop-browser">
+                <div class="desktop-browser-frame">
+                  <div class="desktop-browser-toolbar" aria-hidden="true">
+                    <div class="desktop-browser-dots">
+                      <span class="desktop-browser-dot db-dot-red"></span>
+                      <span class="desktop-browser-dot db-dot-yellow"></span>
+                      <span class="desktop-browser-dot db-dot-green"></span>
+                    </div>
+                    <div class="desktop-browser-url-wrap">
+                      <span class="desktop-browser-url">{project.displayUrl}</span>
+                    </div>
+                  </div>
+                  <div class="desktop-browser-viewport">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      class="desktop-screenshot-img"
+                      widths={[480, 720, 1200, 1800]}
+                      sizes="(max-width: 1023px) min(92vw, 26.5rem), 44vw"
+                      loading="lazy"
+                      fetchpriority="low"
+                      decoding="async"
+                      quality={85}
+                    />
+                  </div>
+                </div>
               </div>
-              <div class="phone-home-bar"></div>
+
+              <!-- Layer 2 (front): Mobile Phone -->
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                    <Image
+                      src={project.mobileImage}
+                      alt={`${project.title} mobile`}
+                      widths={[320, 390, 520, 780]}
+                      sizes="(max-width: 1023px) min(72vw, 17.5rem), 13.2vw"
+                    loading="lazy"
+                    fetchpriority="low"
+                    decoding="async"
+                    quality={85}
+                  />
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+
+              <!-- Accent glow behind the container -->
+              <div class="device-glow" style={`background: ${project.accent};`}></div>
             </div>
 
-            <!-- Accent glow behind the container -->
-            <div class="device-glow" style={`background: ${project.accent};`}></div>
-            
-            <!-- Unified Hover CTA -->
+            <!-- Brutalist CTA — below mockup on all breakpoints (whole card is the link) -->
             <div class="hover-cta">View Case Study ↗</div>
           </div>
 
@@ -171,6 +187,31 @@ import { portfolioProjects } from "../data/home";
     flex-shrink: 0;
   }
 
+  @media (max-width: 380px) {
+    .chrome-badge {
+      display: none;
+    }
+
+    .chrome-label {
+      font-size: 7px;
+      letter-spacing: 0.12em;
+      padding: 0 0.25rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .chrome-dot {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  /* Fluid title when mobile header visible */
+  .mobile-works-title {
+    font-size: clamp(2.125rem, 10.5vw + 0.35rem, 3.75rem);
+  }
+
   /* ============================================
      SELECTED WORKS — Pin Wrap / Snap Scroll
      ============================================ */
@@ -211,15 +252,20 @@ import { portfolioProjects } from "../data/home";
       overflow-x: auto;
       overflow-y: hidden;
       scroll-snap-type: x mandatory;
+      scroll-padding-inline: max(1rem, env(safe-area-inset-left, 0px))
+        max(1rem, env(safe-area-inset-right, 0px));
       -webkit-overflow-scrolling: touch;
       height: auto;
-      padding: 2rem 1.25rem 2rem;
-      gap: 1.5rem;
-      padding-right: 5vw;
+      padding-top: max(1.5rem, env(safe-area-inset-top, 0px));
+      padding-bottom: max(2rem, env(safe-area-inset-bottom, 0px));
+      padding-left: max(1rem, env(safe-area-inset-left, 0px));
+      padding-right: max(1rem, env(safe-area-inset-right, 0px));
+      gap: clamp(1rem, 4vw, 1.5rem);
       scrollbar-width: none;
       -ms-overflow-style: none;
       transform: none !important;
       align-items: flex-start;
+      overscroll-behavior-x: contain;
     }
 
     .pin-wrap::-webkit-scrollbar { display: none; }
@@ -251,12 +297,24 @@ import { portfolioProjects } from "../data/home";
 
   @media (max-width: 1023px) {
     .project-card {
-      width: 85vw;
+      width: min(85vw, 26.5rem);
+      max-width: 100%;
       scroll-snap-align: center;
+      scroll-snap-stop: normal;
     }
+
     .project-card-inner {
-      gap: 1.5rem;
+      gap: clamp(1rem, 3vw, 1.5rem);
     }
+  }
+
+  /* Mockup stack + in-flow CTA (desktop + mobile) */
+  .project-visual-wrap {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   /* ============================================
@@ -282,8 +340,10 @@ import { portfolioProjects } from "../data/home";
     transition: opacity 0.4s ease;
   }
 
-  .project-card:hover .device-glow {
-    opacity: 0.25;
+  @media (hover: hover) and (pointer: fine) {
+    .project-card:hover .device-glow {
+      opacity: 0.25;
+    }
   }
 
   .desktop-browser {
@@ -294,12 +354,104 @@ import { portfolioProjects } from "../data/home";
     height: 90%;
     display: flex;
     flex-direction: column;
+    min-height: 0;
     z-index: 2;
     transition: transform 0.3s ease;
   }
 
-  .project-card:hover .desktop-browser {
-    transform: translate3d(0, -6px, 0) scale(1.02);
+  @media (hover: hover) and (pointer: fine) {
+    .project-card:hover .desktop-browser {
+      transform: translate3d(0, -6px, 0) scale(1.02);
+    }
+  }
+
+  .desktop-browser-frame {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--color-brutalist);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--color-white);
+    box-shadow: 6px 10px 0 rgba(0, 0, 0, 0.14);
+  }
+
+  .desktop-browser-toolbar {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.35rem 0.5rem 0.4rem;
+    border-bottom: 2px solid var(--color-brutalist);
+    background: var(--color-vivid-panel);
+  }
+
+  .desktop-browser-dots {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .desktop-browser-dot {
+    width: clamp(5px, 0.55vw, 8px);
+    height: clamp(5px, 0.55vw, 8px);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .db-dot-red {
+    background: #ff5f57;
+  }
+  .db-dot-yellow {
+    background: #ffbd2e;
+  }
+  .db-dot-green {
+    background: #27c93f;
+  }
+
+  .desktop-browser-url-wrap {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .desktop-browser-url {
+    max-width: 100%;
+    padding: 0.15rem 0.45rem;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    background: var(--color-white);
+    font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+    font-size: clamp(6px, 0.65vw, 9px);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: rgba(37, 54, 68, 0.65);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media (max-width: 1023px) {
+    .desktop-browser-url {
+      font-size: clamp(7px, 2.1vw, 10px);
+    }
+
+    .desktop-browser-toolbar {
+      padding: 0.28rem 0.4rem 0.32rem;
+    }
+  }
+
+  .desktop-browser-viewport {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-vivid-cream);
   }
 
   .desktop-screenshot-img {
@@ -309,31 +461,55 @@ import { portfolioProjects } from "../data/home";
     object-position: center;
   }
 
-  /* Unified Hover CTA */
+  /* CTA — same mint brutalist bar as phone layout; sits below mockup, above meta */
   .hover-cta {
-    position: absolute;
-    bottom: 8%;
-    left: 50%;
-    transform: translate3d(-50%, 20px, 0);
-    opacity: 0;
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    background: var(--color-vivid-navy);
-    color: var(--color-white);
-    padding: 12px 28px;
-    border-radius: 40px;
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 1rem;
+    padding: 0.65rem 1.125rem;
+    border-radius: 0;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    z-index: 20;
+    letter-spacing: 0.2em;
+    text-align: center;
+    color: var(--color-vivid-navy);
+    background: var(--color-vivid-mint);
+    border: 2px solid var(--color-brutalist);
+    box-shadow: 4px 4px 0 0 var(--color-brutalist);
     pointer-events: none;
-    box-shadow: 0 10px 25px -5px rgba(37,54,68,0.5);
+    z-index: 5;
+    transition:
+      transform 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+      box-shadow 0.2s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
-  .project-card:hover .hover-cta {
-    transform: translate3d(-50%, 0, 0);
-    opacity: 1;
+  @media (hover: hover) and (pointer: fine) {
+    .project-card:hover .hover-cta {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 0 var(--color-brutalist);
+    }
+  }
+
+  .project-card:active .hover-cta {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 0 var(--color-brutalist);
+    transition-duration: 0.1s;
+  }
+
+  @media (max-width: 1023px) {
+    .hover-cta {
+      min-height: 44px;
+      padding: 0.625rem 1rem;
+      font-size: 0.6875rem;
+      letter-spacing: 0.18em;
+    }
   }
 
   /* ============================================
@@ -356,8 +532,10 @@ import { portfolioProjects } from "../data/home";
     transition: transform 0.3s ease;
   }
 
-  .project-card:hover .phone-frame {
-    transform: translate3d(-12px, -16px, 0) scale(1.04); /* Parallax pop out */
+  @media (hover: hover) and (pointer: fine) {
+    .project-card:hover .phone-frame {
+      transform: translate3d(-12px, -16px, 0) scale(1.04);
+    }
   }
 
   .phone-notch {
@@ -396,11 +574,93 @@ import { portfolioProjects } from "../data/home";
     z-index: 4;
   }
 
+  /* —— < lg: stacked mockups (large phone first, full-width desktop strip below) —— */
   @media (max-width: 1023px) {
+    .dual-device-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.875rem;
+      aspect-ratio: auto;
+      padding: 0.35rem 0 0.15rem;
+    }
+
+    .device-glow {
+      top: 8%;
+      left: 5%;
+      right: 5%;
+      bottom: 8%;
+      opacity: 0.12;
+    }
+
+    .desktop-browser {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      max-height: none;
+      z-index: 2;
+      order: 2;
+    }
+
+    .desktop-browser-frame {
+      box-shadow: 4px 6px 0 rgba(0, 0, 0, 0.12);
+    }
+
     .phone-frame {
-      border-radius: 16px;
-      border-width: 3px;
-      width: 35%;
+      position: relative;
+      bottom: auto;
+      right: auto;
+      order: 1;
+      width: min(72vw, 17.5rem);
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 500 / 749;
+      margin: 0 auto;
+      border-radius: clamp(18px, 5.5vw, 26px);
+      border-width: clamp(4px, 1.1vw, 6px);
+      box-shadow:
+        0 20px 48px rgba(0, 0, 0, 0.38),
+        0 8px 16px rgba(0, 0, 0, 0.12),
+        inset 0 0 0 2px #000;
+      z-index: 3;
+    }
+
+    .phone-notch {
+      height: clamp(9px, 2.5vw, 14px);
+      border-bottom-left-radius: clamp(8px, 2vw, 12px);
+      border-bottom-right-radius: clamp(8px, 2vw, 12px);
+    }
+
+    .phone-screen {
+      border-radius: inherit;
+    }
+
+    .phone-home-bar {
+      bottom: clamp(6px, 1.8vw, 10px);
+      height: clamp(3px, 0.9vw, 5px);
+    }
+  }
+
+  @media (max-width: 1023px) and (max-height: 520px) {
+    .dual-device-container {
+      border-radius: 8px;
+      gap: 0.5rem;
+    }
+
+    .phone-frame {
+      width: min(58vw, 11.5rem);
+    }
+
+    .project-card-inner {
+      gap: 0.75rem;
+    }
+
+    .mobile-section-header {
+      padding-top: 3rem;
+      padding-bottom: 0.5rem;
     }
   }
 
@@ -411,6 +671,7 @@ import { portfolioProjects } from "../data/home";
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    gap: 0.75rem 1rem;
     border-top: 1px solid rgba(0,0,0,0.1);
     padding-top: 1rem;
   }
@@ -423,22 +684,28 @@ import { portfolioProjects } from "../data/home";
 
   .meta-primary {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 3.4vw, 1.25rem);
     font-weight: 800;
     text-transform: uppercase;
     color: var(--color-vivid-navy);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   .meta-secondary {
     font-family: 'Inter', sans-serif;
-    font-size: 0.875rem;
+    font-size: clamp(0.8125rem, 2.8vw, 0.875rem);
     font-weight: 500;
+    line-height: 1.35;
     color: rgba(37,54,68,0.6);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .meta-id {
     font-family: 'Inter', monospace;
-    font-size: 0.65rem;
+    font-size: clamp(0.6rem, 2vw, 0.65rem);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -446,6 +713,25 @@ import { portfolioProjects } from "../data/home";
     background: rgba(37,54,68,0.05);
     color: var(--color-vivid-navy);
     border-radius: 2px;
+    flex-shrink: 0;
+    align-self: flex-end;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  @media (max-width: 480px) {
+    .project-meta {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .meta-stack {
+      width: 100%;
+    }
+
+    .meta-id {
+      align-self: flex-start;
+    }
   }
 
   /* Desktop + prefers-reduced-motion: skip GSAP pin; native horizontal scroll */
