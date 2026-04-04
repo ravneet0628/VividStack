@@ -11,16 +11,31 @@ interface Props {
 }
 
 const {
-  title = "Premium Web Design & Development Agency",
-  description = "Fast, mobile-ready websites for shops, trades, and service businesses—look professional, get found on Google, and keep ongoing costs low.",
+  title = "Fast web design for local businesses",
+  description = "Fast, mobile-ready websites for shops, trades, and service businesses. Look professional, get found on Google, and keep ongoing costs low.",
   ogImage: ogImageProp,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, "https://vividstack.io");
+const documentTitle = `VividStack | ${title}`;
 
 const defaultOg = await getImage({
   src: defaultOgSrc,
   width: 1200,
+  format: "png",
+});
+
+const favicon32 = await getImage({
+  src: defaultOgSrc,
+  width: 32,
+  height: 32,
+  format: "png",
+});
+
+const appleTouchIcon = await getImage({
+  src: defaultOgSrc,
+  width: 180,
+  height: 180,
   format: "png",
 });
 
@@ -38,19 +53,22 @@ const ogImageUrl = ogImageProp
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
 
+    <link rel="icon" type="image/png" sizes="32x32" href={favicon32.src} />
+    <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon.src} />
+
     <!-- Canonical -->
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={`${title} | VividStack`} />
+    <meta property="og:title" content={documentTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={`${title} | VividStack`} />
+    <meta name="twitter:title" content={documentTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
@@ -77,7 +95,7 @@ const ogImageUrl = ogImageProp
     <link rel="preconnect" href="https://api.hcaptcha.com" crossorigin />
 
     <meta name="generator" content={Astro.generator} />
-    <title>{title} | VividStack</title>
+    <title>{documentTitle}</title>
   </head>
 
   <body class="antialiased bg-vivid-cream text-vivid-navy selection:bg-vivid-teal selection:text-vivid-navy">

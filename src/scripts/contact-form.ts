@@ -10,7 +10,7 @@ function initContactForm(): void {
   const defaultErrorTitle = errorTitleEl?.textContent ?? "That didn't send";
   const defaultErrorDetail =
     errorDetailEl?.textContent ??
-    "Try again in a moment, or email us — we'll still get your message.";
+    "Try again in a moment, or email us directly. We will still see it.";
 
   if (
     !(contactForm instanceof HTMLFormElement) ||
