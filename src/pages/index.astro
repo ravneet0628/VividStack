@@ -14,25 +14,38 @@ import Contact from "../components/Contact.astro";
 <Layout title="Premium Web Design & Development — Fast, Responsive Websites">
   <Navbar />
 
-  <Hero />
-  <Advantage />
-  <Services />
+  <main id="main-content">
+    <Hero />
+    <Advantage />
+    <Services />
 
-  <section
-    id="platform"
-    class="relative bg-white border-t border-black bg-grid-tech"
-  >
-    <SelectedWorks />
-    <Process />
-    <Capabilities />
-    <Contact />
-  </section>
+    <section
+      id="platform"
+      class="relative bg-white border-t border-black bg-grid-tech"
+    >
+      <SelectedWorks />
+      <Process />
+      <Capabilities />
+      <Contact />
+    </section>
+  </main>
 </Layout>
 
 <script>
-  import { initHomeMotion } from "../scripts/home-motion";
+  /** Defer GSAP + Lenis until after first paint to improve TBT / main-thread work. */
+  function queueHomeMotion() {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        void import("../scripts/home-motion").then((m) => m.initHomeMotion());
+      });
+    });
+  }
 
-  initHomeMotion();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", queueHomeMotion, { once: true });
+  } else {
+    queueHomeMotion();
+  }
 </script>
 
 <style is:global>
@@ -41,12 +54,5 @@ import Contact from "../components/Contact.astro";
      ============================================ */
   #main-nav {
     z-index: 9999 !important;
-  }
-
-  /* ============================================
-     SECTION TRACER
-     ============================================ */
-  .section-tracer {
-    will-change: transform;
   }
 </style>

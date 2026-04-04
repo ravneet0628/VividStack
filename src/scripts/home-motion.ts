@@ -5,7 +5,8 @@
  * - GSAP transform/opacity: #main-nav (intro y), .hero-char (intro + magnetic hover),
  *   #hero-title, #hero-subtitle, #hero-cta, .tech-node (intro + optional float loop),
  *   #hero-background, .advantage-card (reveal; then clearProps for CSS hover:-translate-y-1),
- *   .bento-tile, .service-card (same nodes — dual tweens), .pin-wrap + .blueprint-terminal (desktop pin),
+ *   #services .bento-tile (scroll reveal only; not in intro willChange batch — avoids idle layers vs Process),
+ *   .pin-wrap + .blueprint-terminal (desktop pin),
  *   .section-tracer, #ambient-elements > div (float loop)
  * - CSS only: Navbar scroll-driven background (nav-fill), component hover transitions, Tailwind transitions
  *
@@ -52,7 +53,10 @@ function applyReducedMotionInstantState(): void {
     gsap.set(el, { clearProps: "all" });
   });
 
-  gsap.set(".bento-tile, .service-card", { opacity: 1, y: 0, clearProps: "all" });
+  document.querySelectorAll("#services .bento-tile").forEach((el) => {
+    el.classList.remove("opacity-0");
+    gsap.set(el, { clearProps: "all" });
+  });
   gsap.set(".section-tracer", { scaleX: 1, clearProps: "willChange" });
   gsap.set("#hero-background", { opacity: 1, scale: 1, clearProps: "all" });
 
@@ -181,9 +185,11 @@ export function initHomeMotion(): void {
     const heroChars = gsap.utils.toArray<Element>(".hero-char");
     if (heroChars.length === 0 || isMobile) return;
 
+    const brand = document.querySelector("#hero-brand");
     let rafPending = false;
     let lastMouseX = 0;
     let lastMouseY = 0;
+    let magnetActive = false;
 
     window.addEventListener("mousemove", (e) => {
       lastMouseX = e.clientX;
@@ -192,6 +198,39 @@ export function initHomeMotion(): void {
       rafPending = true;
       requestAnimationFrame(() => {
         rafPending = false;
+
+        const pad = 110;
+        let inside = false;
+        if (brand) {
+          const br = brand.getBoundingClientRect();
+          inside =
+            lastMouseX >= br.left - pad &&
+            lastMouseX <= br.right + pad &&
+            lastMouseY >= br.top - pad &&
+            lastMouseY <= br.bottom + pad;
+        }
+
+        if (!inside) {
+          if (magnetActive) {
+            magnetActive = false;
+            heroChars.forEach((char) => {
+              gsap.to(char, {
+                x: 0,
+                y: 0,
+                rotationY: 0,
+                rotationX: 0,
+                duration: 0.6,
+                ease: "power3.out",
+                overwrite: "auto",
+              });
+            });
+          }
+          return;
+        }
+
+        magnetActive = true;
+        const magnetRadius = 100;
+
         heroChars.forEach((char) => {
           const rect = char.getBoundingClientRect();
           const charX = rect.left + rect.width / 2;
@@ -199,7 +238,6 @@ export function initHomeMotion(): void {
           const distX = lastMouseX - charX;
           const distY = lastMouseY - charY;
           const distance = Math.sqrt(distX * distX + distY * distY);
-          const magnetRadius = 100;
 
           if (distance < magnetRadius && distance > 0.5) {
             const pull = 1 - distance / magnetRadius;
@@ -241,7 +279,6 @@ export function initHomeMotion(): void {
       "#hero-title",
       "#hero-subtitle",
       "#hero-cta",
-      ".service-card",
       "#selected-works",
       ".project-screenshot",
       ".tech-node",
@@ -301,19 +338,6 @@ export function initHomeMotion(): void {
     },
   });
 
-  gsap.to(".bento-tile", {
-    scrollTrigger: { trigger: "#services", start: "top 80%" },
-    opacity: 1,
-    y: 0,
-    duration: 0.9,
-    stagger: 0.12,
-    ease: "power2.out",
-    force3D: true,
-    onComplete: () => {
-      gsap.set(".bento-tile", { clearProps: "all" });
-    },
-  });
-
   const ambientTweens: gsap.core.Tween[] = [];
 
   if (!isMobile) {
@@ -347,16 +371,34 @@ export function initHomeMotion(): void {
 
   wireVisibilityPause(ambientTweens);
 
-  gsap.to(".service-card", {
-    scrollTrigger: { trigger: "#services", start: "top 80%" },
-    opacity: 1,
+  gsap.set("#services .bento-tile", { y: 52, force3D: true });
+  gsap.to("#services .bento-tile", {
+    autoAlpha: 1,
     y: 0,
-    duration: 1.2,
-    stagger: 0.2,
-    ease: "power2.out",
+    duration: 1.25,
+    stagger: 0.08,
+    ease: "power3.out",
     force3D: true,
+    overwrite: "auto",
+    scrollTrigger: {
+      trigger: "#services",
+      start: "top 88%",
+      once: true,
+      fastScrollEnd: true,
+    },
+    onStart: () => {
+      gsap.set("#services .bento-tile", { willChange: "transform" });
+    },
     onComplete: () => {
-      gsap.set(".service-card", { clearProps: "all" });
+      const tiles = document.querySelectorAll("#services .bento-tile");
+      requestAnimationFrame(() => {
+        tiles.forEach((el) => {
+          el.classList.remove("opacity-0");
+          gsap.set(el, {
+            clearProps: "transform,opacity,visibility,willChange",
+          });
+        });
+      });
     },
   });
 

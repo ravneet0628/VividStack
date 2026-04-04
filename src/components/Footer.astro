@@ -6,8 +6,52 @@
   <div class="text-[10px] text-vivid-cream/30 uppercase tracking-[0.3em]">
     © 2026 VIVIDSTACK. ALL RIGHTS RESERVED.
   </div>
-  <div class="flex gap-6 text-[10px] text-vivid-cream/30 uppercase tracking-[0.2em]">
-    <span class="hover:text-vivid-mint cursor-pointer transition-colors">Privacy Policy</span>
-    <span class="hover:text-vivid-mint cursor-pointer transition-colors">Terms of Service</span>
+  <div class="flex flex-wrap gap-4 sm:gap-6 justify-center md:justify-end text-[10px] text-vivid-cream/45 uppercase tracking-[0.2em]">
+    <button type="button" class="footer-legal-btn">Privacy Policy</button>
+    <button type="button" class="footer-legal-btn">Terms of Service</button>
   </div>
 </div>
+
+<style>
+  .footer-legal-btn {
+    padding: 0.5rem;
+    margin: -0.5rem;
+    min-height: 44px;
+    min-width: 44px;
+    border: none;
+    border-radius: 2px;
+    background: transparent;
+    font: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .footer-legal-btn:hover {
+    color: var(--color-vivid-teal);
+  }
+
+  .footer-legal-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-vivid-cream), 0 0 0 4px var(--color-vivid-teal);
+  }
+
+  @media (min-width: 640px) {
+    .footer-legal-btn {
+      min-height: 0;
+      min-width: 0;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-legal-btn {
+      transition-duration: 0.01s;
+    }
+  }
+</style>

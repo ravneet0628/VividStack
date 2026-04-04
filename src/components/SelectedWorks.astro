@@ -17,19 +17,19 @@ import { portfolioProjects } from "../data/home";
 
   <!-- Centered Header for Mobile -->
   <div class="mobile-section-header w-full text-center pt-16 pb-4">
-    <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block">Case Studies</span>
+    <span class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm mb-4 inline-block pb-1.5 border-b-[3px] border-vivid-mint">Case Studies</span>
     <h2
       class="text-6xl md:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85] select-none"
       style="font-family: 'Space Grotesk', sans-serif;"
     >
-      SELECTED WORK
+      SELECTED <span class="text-vivid-mint">WORK</span>
     </h2>
-    <div class="mt-6 w-16 h-1 bg-black mx-auto"></div>
+    <div class="mt-6 w-16 h-1.5 bg-vivid-mint mx-auto shadow-brutalist-navy-chip"></div>
     
     <!-- Mobile Swipe Indicator -->
-    <div class="mt-6 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#253644] opacity-50">
+    <div class="mt-6 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-vivid-navy opacity-50">
       <span>Swipe</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 animate-swipe">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 animate-swipe" aria-hidden="true">
         <path d="M5 12h14"></path>
         <path d="m12 5 7 7-7 7"></path>
       </svg>
@@ -39,18 +39,18 @@ import { portfolioProjects } from "../data/home";
   <!-- Desktop: GSAP Pin Wrap | Mobile: Snap Scroll -->
   <div class="pin-wrap" id="pin-wrap">
     <!-- Title card: first slide in the horizontal scroll -->
-    <div class="title-card will-change-transform">
-      <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-3 block">Case Studies</span>
+    <div class="title-card">
+      <span class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm mb-3 inline-block pb-1.5 border-b-[3px] border-vivid-mint">Case Studies</span>
       <h2
         class="text-6xl xl:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85] select-none"
         style="font-family: 'Space Grotesk', sans-serif;"
       >
-        SELECTED<br />WORK
+        SELECTED<br /><span class="text-vivid-mint">WORK</span>
       </h2>
-      <div class="mt-6 w-20 h-1 bg-black"></div>
+      <div class="mt-6 w-20 h-1.5 bg-vivid-mint shadow-brutalist-navy-chip"></div>
     </div>
     {portfolioProjects.map((project) => (
-      <a href={project.url} target="_blank" rel="noopener noreferrer" class="project-card will-change-transform group block">
+      <a href={project.url} target="_blank" rel="noopener noreferrer" class="project-card group block">
         <div class="project-card-inner">
           <!-- Dual-Device Container: strictly 16/9 -->
           <div class="dual-device-container">
@@ -113,12 +113,12 @@ import { portfolioProjects } from "../data/home";
      ============================================ */
   .selected-works-chrome {
     height: 3rem;
-    background: #ffffff;
+    background: var(--color-white);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 1.5rem;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid var(--color-brutalist);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -166,7 +166,7 @@ import { portfolioProjects } from "../data/home";
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.25em;
-    color: #95cbd0;
+    color: var(--color-vivid-mint);
     flex-shrink: 0;
   }
 
@@ -294,8 +294,7 @@ import { portfolioProjects } from "../data/home";
     display: flex;
     flex-direction: column;
     z-index: 2;
-    will-change: transform;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.3s ease;
   }
 
   .project-card:hover .desktop-browser {
@@ -317,8 +316,8 @@ import { portfolioProjects } from "../data/home";
     transform: translate3d(-50%, 20px, 0);
     opacity: 0;
     transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    background: #253644;
-    color: #fff;
+    background: var(--color-vivid-navy);
+    color: var(--color-white);
     padding: 12px 28px;
     border-radius: 40px;
     font-family: 'Space Grotesk', sans-serif;
@@ -353,8 +352,7 @@ import { portfolioProjects } from "../data/home";
     display: flex;
     justify-content: center;
     overflow: hidden;
-    will-change: transform;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.3s ease;
   }
 
   .project-card:hover .phone-frame {
@@ -377,7 +375,7 @@ import { portfolioProjects } from "../data/home";
     height: 100%;
     overflow: hidden;
     border-radius: 20px;
-    background: #f8f9fc; /* Light background to blend with transparent PNGs */
+    background: var(--color-vivid-cream);
   }
 
   .phone-screenshot-img {
@@ -427,7 +425,7 @@ import { portfolioProjects } from "../data/home";
     font-size: 1.25rem;
     font-weight: 800;
     text-transform: uppercase;
-    color: #253644;
+    color: var(--color-vivid-navy);
   }
 
   .meta-secondary {
@@ -445,7 +443,7 @@ import { portfolioProjects } from "../data/home";
     letter-spacing: 0.1em;
     padding: 0.25rem 0.5rem;
     background: rgba(37,54,68,0.05);
-    color: #253644;
+    color: var(--color-vivid-navy);
     border-radius: 2px;
   }
 

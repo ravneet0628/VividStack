@@ -2,17 +2,17 @@
 import { processPhases } from "../data/home";
 ---
 
-<section id="process" class="section-tracer-target relative py-32 bg-[#f3f3f4] overflow-hidden">
-  <div class="section-tracer absolute top-0 left-0 w-full h-px bg-[#000000] origin-left scale-x-0 z-20 will-change-transform"></div>
+<section id="process" class="section-tracer-target relative py-32 bg-vivid-panel overflow-hidden">
+  <div class="section-tracer absolute top-0 left-0 w-full h-px bg-vivid-mint origin-left scale-x-0 z-20"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="mb-24 md:mb-32">
-      <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block">How We Work</span>
+      <span class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm mb-4 inline-block pb-1.5 border-b-[3px] border-vivid-mint">How We Work</span>
       <h2
         class="text-6xl md:text-8xl font-black tracking-tighter uppercase text-black leading-[0.85] select-none"
         style="font-family: 'Space Grotesk', sans-serif;"
       >
-        The Process
+        The <span class="text-vivid-mint">Process</span>
       </h2>
     </div>
 
@@ -68,7 +68,14 @@ import { processPhases } from "../data/home";
     bottom: 0;
     left: 50%;
     width: 2px;
-    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.1) 90%, transparent);
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(149, 203, 208, 0.35) 15%,
+      rgba(37, 54, 68, 0.2) 50%,
+      rgba(149, 203, 208, 0.35) 85%,
+      transparent
+    );
     transform: translateX(-50%);
     z-index: 1;
   }
@@ -76,7 +83,14 @@ import { processPhases } from "../data/home";
   @media (max-width: 767px) {
     .process-vertical-line {
       left: 1.5rem;
-      background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1) 5%, rgba(0,0,0,0.1) 95%, transparent);
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(149, 203, 208, 0.4) 8%,
+        rgba(37, 54, 68, 0.18) 50%,
+        rgba(149, 203, 208, 0.4) 92%,
+        transparent
+      );
     }
   }
 
@@ -89,7 +103,7 @@ import { processPhases } from "../data/home";
     font-size: 0.75rem;
     font-weight: 800;
     letter-spacing: 0.3em;
-    color: rgba(0,0,0,0.2);
+    color: rgba(37, 54, 68, 0.45);
   }
 
   @media (max-width: 767px) {
@@ -106,7 +120,7 @@ import { processPhases } from "../data/home";
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
-    background: #f3f3f4;
+    background: var(--color-vivid-panel);
     padding: 1rem;
   }
 
@@ -122,20 +136,20 @@ import { processPhases } from "../data/home";
   .process-icon-glow {
     width: 4rem;
     height: 4rem;
-    background: #00ffcc;
-    border: 2px solid #000;
+    background: var(--color-neon-mint);
+    border: 2px solid var(--color-brutalist);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #253644;
-    box-shadow: 4px 4px 0 0 #000;
+    color: var(--color-vivid-navy);
+    box-shadow: 4px 4px 0 0 var(--color-brutalist);
   }
 
   @media (max-width: 767px) {
     .process-icon-glow {
       width: 3rem;
       height: 3rem;
-      box-shadow: 2px 2px 0 0 #000;
+      box-shadow: 2px 2px 0 0 var(--color-brutalist);
     }
     .process-icon-glow svg {
       width: 1.5rem;
@@ -145,8 +159,8 @@ import { processPhases } from "../data/home";
 
   .process-card {
     padding: 2.5rem;
-    border: 2px solid #000;
-    background: #fff;
+    border: 2px solid var(--color-brutalist);
+    background: var(--color-white);
     position: relative;
     box-shadow: 8px 8px 0 0 rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -158,8 +172,8 @@ import { processPhases } from "../data/home";
   }
 
   .agency-card {
-    background: #253644;
-    color: #fff;
+    background: var(--color-vivid-navy);
+    color: var(--color-white);
   }
 
   .process-label {
@@ -175,13 +189,14 @@ import { processPhases } from "../data/home";
   }
 
   .process-label.client {
-    color: #253644;
-    border-color: rgba(37,54,68,0.2);
+    color: var(--color-vivid-navy);
+    border-color: rgba(37, 54, 68, 0.28);
+    background: rgba(149, 203, 208, 0.14);
   }
 
   .process-label.agency {
-    color: #00ffcc;
-    border-color: rgba(0,255,204,0.3);
+    color: var(--color-neon-mint);
+    border-color: rgba(0, 255, 204, 0.3);
   }
 
   .process-title {

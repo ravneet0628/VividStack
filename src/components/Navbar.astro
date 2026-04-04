@@ -3,9 +3,9 @@ import { Image } from "astro:assets";
 import logo from "../assets/Vivid-stack-logo.png";
 ---
 
-<nav id="main-nav" class="nav-container">
+<nav id="main-nav" class="nav-container" aria-label="Primary">
   <!-- Brand: logo + wordmark -->
-  <a href="/" class="brand-link">
+  <a href="/" class="brand-link" id="nav-brand-link">
     <div class="logo-wrapper">
       <Image
         src={logo}
@@ -26,7 +26,14 @@ import logo from "../assets/Vivid-stack-logo.png";
   </a>
 
   <!-- Mobile hamburger — 48px touch target (WCAG minimum 44px) -->
-  <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+  <button
+    type="button"
+    id="mobile-menu-btn"
+    class="mobile-menu-btn"
+    aria-label="Open menu"
+    aria-expanded="false"
+    aria-controls="nav-links"
+  >
     <span class="hamburger-line"></span>
     <span class="hamburger-line"></span>
     <span class="hamburger-line"></span>
@@ -35,7 +42,7 @@ import logo from "../assets/Vivid-stack-logo.png";
   <!-- Dark backdrop overlay — tap to dismiss -->
   <div id="nav-backdrop" class="nav-backdrop"></div>
 
-  <!-- Nav links -->
+  <!-- Nav links (mobile: dialog role + focus trap while open) -->
   <div class="nav-links" id="nav-links">
     <a href="/" class="nav-link">Home</a>
     <a href="#advantage" class="nav-link">Advantage</a>
@@ -46,9 +53,28 @@ import logo from "../assets/Vivid-stack-logo.png";
 </nav>
 
 <script>
+  const MOBILE_MAX = 767;
+
   const btn = document.getElementById("mobile-menu-btn");
   const links = document.getElementById("nav-links");
   const backdrop = document.getElementById("nav-backdrop");
+  const brandLink = document.getElementById("nav-brand-link");
+
+  let menuTrapHandler = /** @type {null | ((e: KeyboardEvent) => void)} */ (null);
+  let menuOpenSnapshot = /** @type {HTMLElement | null} */ (null);
+
+  function isMobileNav() {
+    return window.innerWidth <= MOBILE_MAX;
+  }
+
+  /**
+   * @returns {HTMLElement[]}
+   */
+  function drawerFocusables() {
+    if (!btn || !links) return [];
+    const anchors = Array.from(links.querySelectorAll("a.nav-link, a.contact-btn"));
+    return /** @type {HTMLElement[]} */ ([btn, ...anchors]);
+  }
 
   function openMenu() {
     btn?.classList.add("active");
@@ -56,7 +82,42 @@ import logo from "../assets/Vivid-stack-logo.png";
     btn?.setAttribute("aria-label", "Close menu");
     links?.classList.add("active");
     backdrop?.classList.add("active");
-    document.body.style.overflow = "hidden"; // Lock scroll
+    document.body.style.overflow = "hidden";
+
+    if (!isMobileNav()) return;
+
+    menuOpenSnapshot =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
+    brandLink?.setAttribute("tabindex", "-1");
+    document.getElementById("main-content")?.setAttribute("inert", "");
+
+    links?.setAttribute("role", "dialog");
+    links?.setAttribute("aria-modal", "true");
+    links?.setAttribute("aria-label", "Site navigation");
+
+    const firstLink = links?.querySelector("a.nav-link, a.contact-btn");
+    if (firstLink instanceof HTMLElement) firstLink.focus();
+
+    menuTrapHandler = /** @param {KeyboardEvent} e */ (e) => {
+      if (e.key !== "Tab" || !btn?.classList.contains("active")) return;
+      const list = drawerFocusables();
+      if (list.length === 0) return;
+      const active = document.activeElement;
+      const idx = active instanceof HTMLElement ? list.indexOf(active) : -1;
+      if (idx === -1) return;
+
+      if (!e.shiftKey && idx === list.length - 1) {
+        e.preventDefault();
+        const wrap = list[0];
+        if (wrap instanceof HTMLElement) wrap.focus();
+      } else if (e.shiftKey && idx === 0) {
+        e.preventDefault();
+        const wrap = list[list.length - 1];
+        if (wrap instanceof HTMLElement) wrap.focus();
+      }
+    };
+    document.addEventListener("keydown", menuTrapHandler);
   }
 
   function closeMenu() {
@@ -65,32 +126,50 @@ import logo from "../assets/Vivid-stack-logo.png";
     btn?.setAttribute("aria-label", "Open menu");
     links?.classList.remove("active");
     backdrop?.classList.remove("active");
-    document.body.style.overflow = ""; // Unlock scroll
+    document.body.style.overflow = "";
+
+    brandLink?.removeAttribute("tabindex");
+    document.getElementById("main-content")?.removeAttribute("inert");
+
+    links?.removeAttribute("role");
+    links?.removeAttribute("aria-modal");
+    links?.removeAttribute("aria-label");
+
+    if (menuTrapHandler) {
+      document.removeEventListener("keydown", menuTrapHandler);
+      menuTrapHandler = null;
+    }
+
+    if (menuOpenSnapshot && document.contains(menuOpenSnapshot)) {
+      menuOpenSnapshot.focus();
+    } else {
+      btn?.focus();
+    }
+    menuOpenSnapshot = null;
   }
 
-  // Toggle on hamburger click
   btn?.addEventListener("click", () => {
     const isOpen = btn.classList.contains("active");
     isOpen ? closeMenu() : openMenu();
   });
 
-  // Close on backdrop tap
   backdrop?.addEventListener("click", closeMenu);
 
-  // Close on nav link click (mobile)
   links?.querySelectorAll(".nav-link, .contact-btn").forEach((link) => {
     link.addEventListener("click", () => {
-      if (window.innerWidth < 768) {
-        closeMenu();
-      }
+      if (isMobileNav()) closeMenu();
     });
   });
 
-  // Close on Escape key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && btn?.classList.contains("active")) {
       closeMenu();
-      btn?.focus(); // Return focus to toggle
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > MOBILE_MAX && btn?.classList.contains("active")) {
+      closeMenu();
     }
   });
 </script>
@@ -144,6 +223,12 @@ import logo from "../assets/Vivid-stack-logo.png";
     gap: 0.625rem;
     text-decoration: none;
     flex-shrink: 0;
+    border-radius: 2px;
+  }
+
+  .brand-link:focus-visible {
+    outline: 2px solid var(--color-vivid-navy);
+    outline-offset: 3px;
   }
 
   .logo-wrapper {
@@ -187,12 +272,12 @@ import logo from "../assets/Vivid-stack-logo.png";
 
   /* "Vivid" — navy, same as hero */
   .brand-vivid {
-    color: #253644;
+    color: var(--color-vivid-navy);
   }
 
   /* "Stack" — mint accent, same as hero */
   .brand-stack {
-    color: #95cbd0;
+    color: var(--color-vivid-mint);
   }
 
   /* ── Mobile hamburger — 48px touch target ─────────────────────────────── */
@@ -209,16 +294,22 @@ import logo from "../assets/Vivid-stack-logo.png";
     cursor: pointer;
     padding: 0.75rem;
     gap: 5px;
+    border-radius: 2px;
     -webkit-tap-highlight-color: transparent;
     /* Ensure it appears above the backdrop */
     position: relative;
     z-index: 60;
   }
 
+  .mobile-menu-btn:focus-visible {
+    outline: 2px solid var(--color-vivid-navy);
+    outline-offset: 2px;
+  }
+
   .hamburger-line {
     width: 1.4rem;
     height: 2px;
-    background: #253644;
+    background: var(--color-vivid-navy);
     border-radius: 1px;
     transition:
       transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
@@ -317,7 +408,7 @@ import logo from "../assets/Vivid-stack-logo.png";
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    color: #253644;
+    color: var(--color-vivid-navy);
     opacity: 0.6;
     text-decoration: none;
     transition: opacity 0.2s ease;
@@ -336,27 +427,40 @@ import logo from "../assets/Vivid-stack-logo.png";
     opacity: 1;
   }
 
-  /* ── Contact button ─────────────────────────────────────────────────────── */
+  .nav-link:focus-visible {
+    opacity: 1;
+    outline: 2px solid var(--color-vivid-navy);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  /* ── Contact CTA — brutalist primary (matches .impeccable.md cards, global buttons) ── */
   .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     padding: 0.55rem 1.4rem;
-    background: #253644;
-    color: #f3f3f4;
-    border-radius: 9999px;
+    background: var(--color-vivid-navy);
+    color: var(--color-vivid-cream);
+    border-radius: 0;
+    border: 2px solid var(--color-brutalist);
     font-family: "Montserrat", sans-serif;
     font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.2em;
     text-decoration: none;
-    box-shadow: 0 4px 16px rgba(37, 54, 68, 0.18);
+    box-shadow: 4px 4px 0 0 var(--color-brutalist);
     transition:
-      background 0.2s ease,
-      box-shadow 0.2s ease;
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.2s ease;
   }
 
-  /* Mobile: larger touch-friendly button */
   @media (max-width: 767px) {
     .contact-btn {
+      min-height: 48px;
       padding: 0.75rem 2rem;
       font-size: 0.75rem;
     }
@@ -369,8 +473,20 @@ import logo from "../assets/Vivid-stack-logo.png";
   }
 
   .contact-btn:hover {
-    background: #1a2834;
-    box-shadow: 0 8px 24px rgba(37, 54, 68, 0.25);
+    background: var(--color-vivid-navy-dark);
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 0 0 var(--color-brutalist);
+  }
+
+  .contact-btn:focus-visible {
+    outline: 2px solid var(--color-vivid-teal);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-btn:hover {
+      transform: none;
+    }
   }
 
   /* ── Reduced motion ─────────────────────────────────────────────────────── */

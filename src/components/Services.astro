@@ -2,17 +2,17 @@
 import { services } from "../data/home";
 ---
 
-<section id="services" class="section-tracer-target relative py-24 lg:py-32 bg-[#f3f3f4] overflow-hidden">
-  <div class="section-tracer absolute top-0 left-0 w-full h-px bg-[#000000] origin-left scale-x-0 z-20 will-change-transform"></div>
+<section id="services" class="section-tracer-target relative py-24 lg:py-32 bg-vivid-panel overflow-hidden">
+  <div class="section-tracer absolute top-0 left-0 w-full h-px bg-vivid-navy origin-left scale-x-0 z-20"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-6">
     <div class="mb-16">
-      <span class="text-vivid-mint font-bold uppercase tracking-[0.4em] text-sm mb-4 block">Our Expertise</span>
+      <span class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm mb-4 inline-block pb-1.5 border-b-[3px] border-vivid-mint">Our Expertise</span>
       <h2
         class="text-6xl md:text-8xl font-black tracking-tighter uppercase text-black leading-[0.85] select-none"
         style="font-family: 'Space Grotesk', sans-serif;"
       >
-        Services
+        Serv<span class="text-vivid-mint">ices</span>
       </h2>
     </div>
 
@@ -21,7 +21,7 @@ import { services } from "../data/home";
       {services.map((service) => {
         const Wrapper = service.href ? "a" : "div";
         return (
-          <Wrapper href={service.href} class={`bento-tile bento-${service.type} service-card group`} id={service.id}>
+          <Wrapper href={service.href} class={`bento-tile bento-${service.type} service-card group opacity-0`} id={service.id}>
             <div class="bento-number">{service.number}</div>
             <div class="bento-content">
               <div class="bento-icon">
@@ -56,51 +56,69 @@ import { services } from "../data/home";
 </style>
 
 <style>
+  /* Match .process-card: transform + shadow ease together (was shadow-only → lift felt snappy vs Process). */
   .bento-tile {
     position: relative;
     overflow: hidden;
-    border: 2px solid #000;
+    border: 2px solid var(--color-brutalist);
     padding: 2.5rem;
     cursor: pointer;
     transform: translateZ(0);
-    will-change: transform, box-shadow;
-    transition: box-shadow 0.35s ease, border-color 0.35s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     text-decoration: none;
   }
 
   .bento-tile:hover {
     transform: translateY(-4px) translateZ(0);
-    box-shadow: 8px 8px 0 0 #000;
+    box-shadow: 8px 8px 0 0 var(--color-brutalist);
   }
 
   /* Hero tile spans both rows on left */
   .bento-hero {
     grid-column: 1;
     grid-row: 1 / 3;
-    background: #253644;
-    color: white;
+    background: var(--color-vivid-navy);
+    color: var(--color-white);
     min-height: 420px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
-  .bento-hero .bento-title { color: #fff; }
+  .bento-hero .bento-title { color: var(--color-white); }
   .bento-hero .bento-desc  { color: rgba(255,255,255,0.65); }
   .bento-hero .bento-number { color: rgba(255,255,255,0.08); }
-  .bento-hero .bento-icon  { color: #00ffcc; }
+  .bento-hero .bento-icon  { color: var(--color-neon-mint); }
 
   .bento-secondary {
     grid-column: 2;
     grid-row: 1;
-    background: #f3f3f4;
+    background: var(--color-vivid-panel);
+  }
+
+  .bento-secondary .bento-icon {
+    color: var(--color-vivid-navy);
+    transition: color 0.35s ease;
+  }
+
+  .bento-secondary:hover .bento-icon {
+    color: var(--color-neon-mint);
   }
 
   .bento-accent {
     grid-column: 2;
     grid-row: 2;
-    background: #f8f9fa;
-    border-color: #000;
+    background: var(--color-vivid-cream);
+    border-color: var(--color-brutalist);
+  }
+
+  .bento-accent .bento-icon {
+    color: var(--color-vivid-navy-muted);
+    transition: color 0.35s ease;
+  }
+
+  .bento-accent:hover .bento-icon {
+    color: var(--color-vivid-mint);
   }
 
   @media (max-width: 767px) {
@@ -138,7 +156,7 @@ import { services } from "../data/home";
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #253644;
+    color: var(--color-vivid-navy);
   }
 
   .bento-title {
@@ -147,7 +165,7 @@ import { services } from "../data/home";
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: -0.02em;
-    color: #000;
+    color: var(--color-brutalist);
     line-height: 1.1;
   }
 
@@ -165,7 +183,7 @@ import { services } from "../data/home";
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #00ffcc;
+    color: var(--color-neon-mint);
     margin-top: auto;
   }
 

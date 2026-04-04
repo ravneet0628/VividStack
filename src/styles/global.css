@@ -2,11 +2,75 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* A smooth background for the whole site */
-html,
-body {
-    background-color: #F8F9FA;
-    color: #253644;
+/**
+ * Design tokens — mirror `tailwind.config.mjs` for use in plain `<style>` blocks
+ * (Tailwind classes remain the primary API).
+ */
+:root {
+  --color-vivid-navy: #253644;
+  --color-vivid-navy-dark: #1a2834;
+  --color-vivid-navy-deep: #1e2d38;
+  /** Muted navy for secondary surfaces (between navy and gray) */
+  --color-vivid-navy-muted: #3d5664;
+  --color-vivid-teal: #5dffec;
+  --color-vivid-mint: #95cbd0;
+  --color-vivid-cream: #f8f9fa;
+  --color-vivid-panel: #f3f3f4;
+  --color-neon-mint: #00ffcc;
+  --color-brutalist: #000000;
+  --color-white: #ffffff;
+}
+
+@layer base {
+  html,
+  body {
+    @apply bg-vivid-cream text-vivid-navy antialiased;
+  }
+}
+
+/**
+ * Buttons — shared brutalist patterns (.impeccable.md: navy/cream, hard shadows, Montserrat).
+ */
+@layer components {
+  .btn-brutalist-primary {
+    @apply relative inline-flex items-center gap-3 px-10 py-5 min-h-[48px] bg-vivid-navy text-vivid-cream overflow-hidden transition-[transform,box-shadow,padding-right] duration-300 border-2 border-black shadow-brutalist-hero hover:shadow-brutalist-hero-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vivid-navy focus-visible:ring-offset-2 focus-visible:ring-offset-vivid-cream;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .btn-brutalist-secondary {
+    @apply inline-flex items-center justify-center w-full md:w-auto px-8 md:px-12 py-4 md:py-5 min-h-[48px] bg-vivid-mint text-vivid-navy rounded-none font-bold uppercase text-xs md:text-sm border-2 border-black shadow-brutalist-white transition-[transform,box-shadow,background-color,color,opacity] duration-300 cursor-pointer hover:bg-white hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-vivid-navy;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.2em;
+  }
+
+  @media (min-width: 768px) {
+    .btn-brutalist-secondary {
+      letter-spacing: 0.3em;
+    }
+  }
+
+  .btn-brutalist-secondary.is-loading {
+    @apply opacity-70 cursor-wait;
+  }
+
+  .btn-brutalist-secondary.is-success {
+    @apply bg-vivid-navy text-vivid-teal border-vivid-mint shadow-brutalist-neon-sm;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-brutalist-primary,
+    .btn-brutalist-secondary {
+      @apply hover:translate-y-0;
+    }
+
+    .btn-brutalist-primary {
+      @apply hover:shadow-brutalist-hero;
+    }
+
+    .btn-brutalist-secondary {
+      @apply hover:shadow-brutalist-white;
+    }
+  }
 }
 
 .bg-grid-tech {

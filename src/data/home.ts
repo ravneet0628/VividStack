@@ -112,7 +112,7 @@ export const services = [
     title: "Technical SEO",
     description: "We set up your site so Google can find your business — the technical stuff that actually gets you more customers.",
     type: "secondary",
-    glowColor: "#0066ff",
+    glowColor: "#5DFFEC",
     iconSVG: `<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>`
   },
   {
@@ -121,7 +121,7 @@ export const services = [
     title: "UI / UX Design",
     description: "Interfaces designed to turn visitors into paying customers. Every detail serves a purpose.",
     type: "accent",
-    glowColor: "#9900ff",
+    glowColor: "#95CBD0",
     iconSVG: `<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>`
   }
 ];
