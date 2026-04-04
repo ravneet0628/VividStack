@@ -2,55 +2,47 @@
 // Footer component
 ---
 
-<div class="mt-32 pt-12 border-t border-vivid-cream/10 flex flex-col md:flex-row justify-between items-center gap-6">
-  <div class="text-[10px] text-vivid-cream/30 uppercase tracking-[0.3em]">
-    © 2026 VIVIDSTACK. ALL RIGHTS RESERVED.
+<div class="mt-32 pt-12 border-t border-vivid-cream/10 flex flex-col md:flex-row justify-between items-center gap-8">
+  <div class="text-xs text-vivid-cream/40 uppercase tracking-[0.25em] text-center md:text-left">
+    © 2026 VividStack. All rights reserved.
   </div>
-  <div class="flex flex-wrap gap-4 sm:gap-6 justify-center md:justify-end text-[10px] text-vivid-cream/45 uppercase tracking-[0.2em]">
-    <button type="button" class="footer-legal-btn">Privacy Policy</button>
-    <button type="button" class="footer-legal-btn">Terms of Service</button>
-  </div>
+  <nav class="flex flex-wrap gap-2 sm:gap-4 justify-center md:justify-end text-xs text-vivid-cream/55 uppercase tracking-[0.18em]" aria-label="Legal">
+    <a href="/privacy" class="footer-legal-link">Privacy Policy</a>
+    <a href="/terms" class="footer-legal-link">Terms of Service</a>
+  </nav>
 </div>
 
 <style>
-  .footer-legal-btn {
-    padding: 0.5rem;
-    margin: -0.5rem;
+  .footer-legal-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     min-height: 44px;
     min-width: 44px;
-    border: none;
+    padding: 0.5rem 0.75rem;
+    margin: -0.5rem -0.25rem;
     border-radius: 2px;
-    background: transparent;
+    text-decoration: none;
     font: inherit;
     font-size: inherit;
     letter-spacing: inherit;
     text-transform: inherit;
     color: inherit;
-    cursor: pointer;
     transition: color 0.2s ease;
     -webkit-tap-highlight-color: transparent;
   }
 
-  .footer-legal-btn:hover {
+  .footer-legal-link:hover {
     color: var(--color-vivid-teal);
   }
 
-  .footer-legal-btn:focus-visible {
+  .footer-legal-link:focus-visible {
     outline: none;
     box-shadow: 0 0 0 2px var(--color-vivid-cream), 0 0 0 4px var(--color-vivid-teal);
   }
 
-  @media (min-width: 640px) {
-    .footer-legal-btn {
-      min-height: 0;
-      min-width: 0;
-      padding: 0;
-      margin: 0;
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .footer-legal-btn {
+    .footer-legal-link {
       transition-duration: 0.01s;
     }
   }

@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+---
+
+<Layout
+  title="Privacy Policy"
+  description="How VividStack collects, uses, and protects information when you visit our site or get in touch."
+>
+  <Navbar />
+  <main id="main-content" class="bg-vivid-cream text-vivid-navy min-h-screen pt-24 pb-20">
+    <article class="max-w-3xl mx-auto px-6">
+      <p class="text-vivid-mint font-bold uppercase tracking-[0.35em] text-xs mb-4">Legal</p>
+      <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-tight mb-10" style="font-family: 'Space Grotesk', sans-serif;">
+        Privacy Policy
+      </h1>
+      <div class="space-y-6 text-vivid-navy/85 leading-relaxed" style="font-family: 'Inter', sans-serif;">
+        <p class="text-sm text-vivid-navy/60">Last updated: April 3, 2026</p>
+        <p>
+          This policy describes how VividStack (“we”, “us”) handles information when you use vividstack.io. We keep
+          this page short and plain; if you need specifics for a signed agreement, contact us and we will provide
+          terms that match your project.
+        </p>
+        <h2 class="text-lg font-bold uppercase tracking-wide text-vivid-navy pt-4">What we collect</h2>
+        <p>
+          If you use our contact form, we receive the details you submit (such as name, email, and message) so we can
+          reply. Our form provider may process submissions on our behalf under their own privacy terms.
+        </p>
+        <p>
+          Like most sites, our hosting and analytics tools may log technical data (for example IP address, browser
+          type, and approximate location) to keep the site secure and reliable.
+        </p>
+        <h2 class="text-lg font-bold uppercase tracking-wide text-vivid-navy pt-4">How we use it</h2>
+        <p>
+          We use contact submissions only to respond to you and to follow up on potential work. We do not sell your
+          personal information.
+        </p>
+        <h2 class="text-lg font-bold uppercase tracking-wide text-vivid-navy pt-4">Your choices</h2>
+        <p>
+          You may ask what we hold about you, or request correction or deletion of contact details we received through
+          the site, by emailing us from the address you used to write in.
+        </p>
+        <p class="pt-8">
+          <a
+            href="/"
+            class="font-bold uppercase tracking-widest text-xs text-vivid-navy border-b-2 border-vivid-mint hover:text-vivid-mint transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vivid-navy focus-visible:ring-offset-2 focus-visible:ring-offset-vivid-cream rounded-sm"
+            >← Back to home</a>
+        </p>
+      </div>
+    </article>
+  </main>
+</Layout>

@@ -22,7 +22,6 @@ export const portfolioProjects = [
     accent: "#00ffcc",
     url: "https://resetat30.pages.dev/",
     displayUrl: "resetat30.com",
-    systemId: "Personal Brand Website",
     cropY: "-top-[5%]"
   },
   {
@@ -35,7 +34,6 @@ export const portfolioProjects = [
     accent: "#0066ff",
     url: "https://hmglobalinc.com/",
     displayUrl: "hmglobalinc.com",
-    systemId: "Corporate Website",
     cropY: "top-0"
   },
   {
@@ -48,7 +46,6 @@ export const portfolioProjects = [
     accent: "#9900ff",
     url: "https://top-insurance.pages.dev/",
     displayUrl: "top-insurance.pages.dev",
-    systemId: "Insurance Website",
     cropY: "-top-[11%]"
   },
   {
@@ -61,69 +58,81 @@ export const portfolioProjects = [
     accent: "#ff9900",
     url: "https://shivstudio.onrender.com/",
     displayUrl: "shivstudio.onrender.com",
-    systemId: "Photography Portfolio",
     cropY: "-top-[11%]"
   },
 ];
 
 // ============================================
-// ADVANTAGES
+// ADVANTAGES (partnership / outcomes — not stack metrics)
+// theme: 'mint' | 'white' | 'navy' — card + icon treatment in Advantage.astro
 // ============================================
 export const advantages = [
   {
-    title: "BLAZING FAST<br/>PERFORMANCE",
-    description: "Most users leave a slow site. Yours will load in under a second, keeping every customer on the page.",
-    iconSVG: `<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>`,
-    theme: "mint" // 'mint', 'white', 'navy' mapping to specific card styles
+    title: "BUILT TO<br/>CONVERT",
+    description:
+      "Layouts, copy placement, and CTAs are planned for clarity and leads—not decoration that looks good in a mockup.",
+    iconSVG: `<circle cx="12" cy="12" r="10" fill="none"/><circle cx="12" cy="12" r="6" fill="none"/><circle cx="12" cy="12" r="2"/>`,
+    theme: "mint" as const,
   },
   {
-    title: "FOUND ON<br/>GOOGLE",
-    description: "We handle the technical SEO setup so your business shows up where it matters.",
-    iconSVG: `<path d="M12.48 10.92v3.28h7.84c-.24 1.84-2.21 5.39-7.84 5.39-4.84 0-8.77-4.01-8.77-8.96s3.93-8.96 8.77-8.96c2.75 0 4.6 1.17 5.65 2.18l2.59-2.5c-1.66-1.55-3.82-2.48-6.24-2.48-5.32 0-9.67 4.35-9.67 9.67s4.35 9.67 9.67 9.67c5.56 0 9.25-3.91 9.25-9.41 0-.63-.07-1.12-.15-1.59h-9.1z"/>`,
-    theme: "white"
+    title: "CLEAR,<br/>GUIDED PROCESS",
+    description:
+      "Milestones you can follow, reviews at the right moments, and plain language—so you always know what happens next.",
+    iconSVG: `<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>`,
+    theme: "white" as const,
   },
   {
-    title: '$0 HOSTING.<br/><span class="text-vivid-mint">FREE FOREVER</span>',
-    description: "Save thousands in monthly fees with our enterprise-grade infrastructure.",
+    title: 'HOSTING INCLUDED<br/><span class="text-vivid-mint">NO SURPRISE FEES</span>',
+    description:
+      "We deploy to fast, global edge infrastructure as part of our stack—so you are not nickel-and-dimed on hosting every month.",
     iconSVG: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
-    theme: "navy",
-    badge: "FREE FOREVER"
-  }
+    theme: "navy" as const,
+    badge: "INCLUDED",
+  },
 ];
 
 // ============================================
-// SERVICES (BENTO GRID)
+// SERVICES (engagement tiers — design, build, SEO scoped per tier; no public pricing)
 // ============================================
 export const services = [
   {
-    id: "bento-engineering",
-    number: "01",
-    title: "Web Engineering",
-    description: "Your website will load instantly, look stunning on every screen, and grow with your business. No compromises.",
-    cta: "View Case Studies →",
-    href: "#platform",
-    type: "hero",
-    glowColor: "#00ffcc",
-    iconSVG: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`
+    id: "single-page",
+    name: "Single page",
+    tagline: "One URL, maximum impact—for launches, campaigns, or a tight first presence.",
+    highlight: false,
+    features: [
+      "Hero, services, proof, and contact sections on a single high-impact page",
+      "Mobile-first layout and responsive typography",
+      "Performance-minded build with technical SEO essentials",
+      "Contact form or primary CTA integrated end to end",
+      "Launch checklist and handoff so you know how everything works",
+    ],
   },
   {
-    id: "bento-seo",
-    number: "02",
-    title: "Technical SEO",
-    description: "We set up your site so Google can find your business — the technical stuff that actually gets you more customers.",
-    type: "secondary",
-    glowColor: "#5DFFEC",
-    iconSVG: `<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>`
+    id: "multi-page",
+    name: "Multi-page site",
+    tagline: "A full small-business site with room to grow—without a CMS yet.",
+    highlight: true,
+    features: [
+      "Information architecture across multiple pages (e.g. home, services, about, contact)",
+      "Shared design system and consistent components site-wide",
+      "Page-level SEO: titles, descriptions, and sensible internal linking",
+      "Optional blog-style or resource sections as static pages",
+      "Forms and analytics hooks wired for the pages you need",
+    ],
   },
   {
-    id: "bento-design",
-    number: "03",
-    title: "UI / UX Design",
-    description: "Interfaces designed to turn visitors into paying customers. Every detail serves a purpose.",
-    type: "accent",
-    glowColor: "#95CBD0",
-    iconSVG: `<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>`
-  }
+    id: "site-cms",
+    name: "Site + CMS",
+    tagline: "For teams that update copy, pages, or posts often—without touching code.",
+    highlight: false,
+    features: [
+      "Everything in the multi-page tier, plus CMS-backed content",
+      "Editor-friendly content types for pages, posts, or structured sections",
+      "Short training session and written documentation for your team",
+      "Preview and publish workflow matched to the CMS we agree on",
+    ],
+  },
 ];
 
 // ============================================
@@ -169,23 +178,29 @@ export const processPhases = [
 // ============================================
 export const capabilities = [
   {
-    title: "Found on Google",
-    description: "Built-in SEO setup so your business shows up when customers search for you."
+    title: "Core Web Vitals",
+    description:
+      "Real-world performance budgets: LCP, CLS, and INP treated as requirements—not afterthoughts once the design is done.",
   },
   {
-    title: "Modern Tech",
-    description: "Built with the latest tools for blazing-fast, future-proof websites."
+    title: "Global edge network",
+    description:
+      "Assets served close to your visitors so the experience stays snappy whether they are across town or across an ocean.",
   },
   {
-    title: "Mobile-First",
-    description: "Looks perfect on every phone, tablet, and desktop your customers use."
+    title: "Security baseline",
+    description:
+      "HTTPS, modern security headers, and hardened hosting practices to shrink common attack surface and protect visitors.",
   },
   {
-    title: "Always Online",
-    description: "Your site loads fast from anywhere in the world and never goes down."
+    title: "Accessibility baseline",
+    description:
+      "Semantic HTML, keyboard-friendly patterns, and contrast-conscious choices so more people can use your site comfortably.",
   },
   {
-    title: "Secure & Protected",
-    description: "Your site is protected from attacks and threats — your customers' data stays safe."
-  }
+    title: "Versioned deploys",
+    description:
+      "Source-controlled releases—changes are traceable, repeatable, and straightforward to roll back when needed.",
+  },
 ];
+

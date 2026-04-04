@@ -26,8 +26,15 @@ import Footer from "./Footer.astro";
       <input type="hidden" name="access_key" value="7a57804f-5978-4d98-84e4-0aec35e74482">
       <input type="hidden" name="subject" value="New VividStack Contact Form Submission">
       <input type="hidden" name="from_name" value="VividStack Website">
-      <!-- Honeypot spam trap — invisible to humans, bots fill it -->
-      <input type="checkbox" name="botcheck" class="hidden" style="display:none">
+      <!-- Honeypot: off-screen + removed from a11y tree + no tab stop (Web3Forms botcheck) -->
+      <input
+        type="checkbox"
+        name="botcheck"
+        tabindex="-1"
+        autocomplete="off"
+        aria-hidden="true"
+        class="sr-only"
+      />
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="flex flex-col">
           <label for="contact-name" class="text-xs font-bold uppercase tracking-[0.2em] text-vivid-mint mb-2">Name</label>
@@ -89,8 +96,8 @@ import Footer from "./Footer.astro";
 
       <!-- Error State -->
       <div id="form-error" class="hidden mt-4 p-4 bg-red-500/10 border-2 border-red-400 text-center" role="alert" aria-live="assertive" aria-atomic="true">
-        <p class="text-vivid-cream font-bold uppercase tracking-[0.15em] text-sm">Something went wrong</p>
-        <p class="text-vivid-cream/70 text-sm mt-1">Please try again or email us directly.</p>
+        <p id="form-error-title" class="text-vivid-cream font-bold uppercase tracking-[0.15em] text-sm">Something went wrong</p>
+        <p id="form-error-detail" class="text-vivid-cream/70 text-sm mt-1">Please try again or email us directly.</p>
       </div>
     </form>
 
@@ -104,6 +111,11 @@ import Footer from "./Footer.astro";
   const submitBtn = document.getElementById("submit-btn");
   const successEl = document.getElementById("form-success");
   const errorEl = document.getElementById("form-error");
+  const errorTitleEl = document.getElementById("form-error-title");
+  const errorDetailEl = document.getElementById("form-error-detail");
+
+  const defaultErrorTitle = errorTitleEl?.textContent ?? "Something went wrong";
+  const defaultErrorDetail = errorDetailEl?.textContent ?? "Please try again or email us directly.";
 
   if (contactForm && submitBtn) {
     contactForm.addEventListener("submit", async (e) => {
@@ -112,13 +124,15 @@ import Footer from "./Footer.astro";
       // Reset states
       successEl?.classList.add("hidden");
       errorEl?.classList.add("hidden");
+      if (errorTitleEl) errorTitleEl.textContent = defaultErrorTitle;
+      if (errorDetailEl) errorDetailEl.textContent = defaultErrorDetail;
 
-      // Client-side hCaptcha validation
-      const hCaptchaResponse = contactForm.querySelector('textarea[name=h-captcha-response]');
-      if (hCaptchaResponse && !hCaptchaResponse.value) {
+      // Client-side hCaptcha validation (textarea appears after hCaptcha API renders)
+      const hCaptchaResponse = contactForm.querySelector('textarea[name="h-captcha-response"]');
+      if (hCaptchaResponse && !hCaptchaResponse.value.trim()) {
         errorEl?.classList.remove("hidden");
-        const errorText = errorEl?.querySelector('p');
-        if (errorText) errorText.textContent = "Please complete the captcha";
+        if (errorTitleEl) errorTitleEl.textContent = "Verification required";
+        if (errorDetailEl) errorDetailEl.textContent = "Complete the captcha below, then send again.";
         return;
       }
 
@@ -170,12 +184,34 @@ import Footer from "./Footer.astro";
         }
 
       } catch (err) {
-        // Show error state
         errorEl?.classList.remove("hidden");
+        if (errorTitleEl) errorTitleEl.textContent = defaultErrorTitle;
+        if (errorDetailEl) errorDetailEl.textContent = defaultErrorDetail;
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
         submitBtn.classList.remove("is-loading");
       }
     });
+  }
+</script>
+
+<script>
+  /** Load hCaptcha when the contact form is used or after idle (pairs with Web3Forms client script). */
+  function ensureHCaptchaScript() {
+    if (document.querySelector('script[src*="hcaptcha.com/1/api.js"]')) return;
+    const s = document.createElement("script");
+    s.src = "https://js.hcaptcha.com/1/api.js";
+    s.async = true;
+    document.head.appendChild(s);
+  }
+
+  const contactFormEl = document.getElementById("contact-form");
+  if (contactFormEl) {
+    contactFormEl.addEventListener("focusin", ensureHCaptchaScript, { once: true, passive: true });
+  }
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(ensureHCaptchaScript, { timeout: 8000 });
+  } else {
+    setTimeout(ensureHCaptchaScript, 5000);
   }
 </script>

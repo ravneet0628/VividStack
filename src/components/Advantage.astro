@@ -1,57 +1,68 @@
 ---
+import { advantages } from "../data/home";
 ---
-  <section id="advantage" class="relative py-24 bg-white overflow-x-clip border-b border-black/5 bg-grid-tech">
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-      <div class="mb-16 text-center">
-        <span
-          class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm mb-4 inline-block pb-1.5 border-b-[3px] border-vivid-mint"
-          >Why Choose Us</span
-        >
-        <h2
-          class="text-6xl md:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85]"
-          style="font-family: 'Space Grotesk', sans-serif;"
-        >
-          THE VIVID <span class="text-vivid-mint">ADVANTAGE</span>
-        </h2>
-        <p class="text-vivid-navy/60 font-medium text-lg md:text-xl tracking-tight max-w-2xl mx-auto mt-8">
-          Everything your website needs to look great and bring in customers.
-        </p>
-      </div>
 
-      <div class="grid md:grid-cols-3 gap-16 pt-6 md:pt-8">
-        <!-- Card 1: Blazing Speed -->
-        <div class="advantage-card group min-w-0 bg-vivid-cream border border-black p-8 md:p-10 shadow-brutalist hover:shadow-brutalist-lg opacity-0 transition-[transform,box-shadow] duration-300 ease-out transform hover:-translate-y-1">
-          <div class="w-12 h-12 bg-vivid-navy text-vivid-mint flex items-center justify-center mb-6 shadow-brutalist-neon-sm">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6" aria-hidden="true">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-black uppercase tracking-tighter mb-4 leading-tight" style="font-family: 'Space Grotesk', sans-serif;">BLAZING FAST<br/>PERFORMANCE</h3>
-          <p class="text-vivid-navy/70 font-medium leading-relaxed break-words" style="font-family: 'Inter', sans-serif;">Most users leave a slow site. Yours will load in under a second, keeping every customer on the page.</p>
-        </div>
-
-        <!-- Card 2: Visibility -->
-        <div class="advantage-card group min-w-0 bg-vivid-cream border border-black p-8 md:p-10 shadow-brutalist hover:shadow-brutalist-lg opacity-0 transition-[transform,box-shadow] duration-300 ease-out transform hover:-translate-y-1">
-          <div class="w-12 h-12 bg-white text-black flex items-center justify-center mb-6 border border-black shadow-brutalist-sm">
-            <svg viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor" aria-hidden="true">
-              <path d="M12.48 10.92v3.28h7.84c-.24 1.84-2.21 5.39-7.84 5.39-4.84 0-8.77-4.01-8.77-8.96s3.93-8.96 8.77-8.96c2.75 0 4.6 1.17 5.65 2.18l2.59-2.5c-1.66-1.55-3.82-2.48-6.24-2.48-5.32 0-9.67 4.35-9.67 9.67s4.35 9.67 9.67 9.67c5.56 0 9.25-3.91 9.25-9.41 0-.63-.07-1.12-.15-1.59h-9.1z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-black uppercase tracking-tighter mb-4 leading-tight" style="font-family: 'Space Grotesk', sans-serif;">FOUND ON<br/>GOOGLE</h3>
-          <p class="text-vivid-navy/70 font-medium leading-relaxed break-words" style="font-family: 'Inter', sans-serif;">We handle the technical SEO setup so your business shows up where it matters.</p>
-        </div>
-
-        <!-- Card 3: Free Hosting -->
-        <div class="advantage-card group min-w-0 bg-vivid-navy border border-vivid-mint p-8 md:p-10 shadow-brutalist-neon hover:shadow-brutalist-neon-lg opacity-0 transition-[transform,box-shadow] duration-300 ease-out transform hover:-translate-y-1 relative overflow-visible">
-          <div class="absolute -top-4 -right-4 bg-white text-vivid-navy font-black text-[10px] px-3 py-1.5 border-2 border-vivid-mint shadow-brutalist-neon-sm z-20 tracking-widest uppercase free-badge">FREE FOREVER</div>
-          <div class="w-12 h-12 bg-vivid-mint text-vivid-navy flex items-center justify-center mb-6 shadow-brutalist-white-sm">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6" aria-hidden="true">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-black uppercase tracking-tighter mb-4 leading-tight text-white" style="font-family: 'Space Grotesk', sans-serif;">$0 HOSTING.<br/><span class="text-vivid-mint">FREE FOREVER</span></h3>
-          <p class="text-white/70 font-medium leading-relaxed break-words" style="font-family: 'Inter', sans-serif;">Save thousands in monthly fees with our enterprise-grade infrastructure.</p>
-        </div>
-      </div>
+<section id="advantage" class="relative py-24 bg-white overflow-x-clip border-b border-black/5 bg-grid-tech">
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="mb-16 text-center">
+      <span
+        class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm mb-4 inline-block pb-1.5 border-b-[3px] border-vivid-mint"
+        >Why Choose Us</span
+      >
+      <h2
+        class="text-6xl md:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85]"
+        style="font-family: 'Space Grotesk', sans-serif;"
+      >
+        THE VIVID <span class="text-vivid-mint">ADVANTAGE</span>
+      </h2>
+      <p class="text-vivid-navy/60 font-medium text-lg md:text-xl tracking-tight max-w-2xl mx-auto mt-8">
+        Partnership, clarity, and outcomes—not a repeat of our tech spec sheet.
+      </p>
     </div>
-  </section>
+
+    <div class="grid md:grid-cols-3 gap-16 pt-6 md:pt-8">
+      {advantages.map((item) => {
+        const isNavy = item.theme === "navy";
+        const isMint = item.theme === "mint";
+        const iconBoxClass = isMint
+          ? "w-12 h-12 bg-vivid-navy text-vivid-mint flex items-center justify-center mb-6 shadow-brutalist-neon-sm"
+          : isNavy
+            ? "w-12 h-12 bg-vivid-mint text-vivid-navy flex items-center justify-center mb-6 shadow-brutalist-white-sm"
+            : "w-12 h-12 bg-white text-black flex items-center justify-center mb-6 border border-black shadow-brutalist-sm";
+        const cardClass = isNavy
+          ? "advantage-card group min-w-0 bg-vivid-navy border border-vivid-mint p-8 md:p-10 shadow-brutalist-neon hover:shadow-brutalist-neon-lg opacity-0 transition-[transform,box-shadow] duration-300 ease-out transform hover:-translate-y-1 relative overflow-visible"
+          : "advantage-card group min-w-0 bg-vivid-cream border border-black p-8 md:p-10 shadow-brutalist hover:shadow-brutalist-lg opacity-0 transition-[transform,box-shadow] duration-300 ease-out transform hover:-translate-y-1";
+        const titleClass = isNavy
+          ? "text-xl font-black uppercase tracking-tighter mb-4 leading-tight text-white"
+          : "text-xl font-black uppercase tracking-tighter mb-4 leading-tight";
+        const descClass = isNavy
+          ? "text-white/70 font-medium leading-relaxed break-words"
+          : "text-vivid-navy/70 font-medium leading-relaxed break-words";
+        return (
+          <div class={cardClass}>
+            {item.badge && (
+              <div class="absolute -top-4 -right-4 bg-white text-vivid-navy font-black text-[10px] px-3 py-1.5 border-2 border-vivid-mint shadow-brutalist-neon-sm z-20 tracking-widest uppercase free-badge">
+                {item.badge}
+              </div>
+            )}
+            <div class={iconBoxClass}>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-6 h-6"
+                aria-hidden="true"
+                set:html={item.iconSVG}
+              ></svg>
+            </div>
+            <h3 class={titleClass} style="font-family: 'Space Grotesk', sans-serif;" set:html={item.title} />
+            <p class={descClass} style="font-family: 'Inter', sans-serif;">{item.description}</p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

@@ -5,7 +5,7 @@
  * - GSAP transform/opacity: #main-nav (intro y), .hero-char (intro + magnetic hover),
  *   #hero-title, #hero-subtitle, #hero-cta, .tech-node (intro + optional float loop),
  *   #hero-background, .advantage-card (reveal; then clearProps for CSS hover:-translate-y-1),
- *   #services .bento-tile (scroll reveal only; not in intro willChange batch — avoids idle layers vs Process),
+ *   #services .service-tier-card (scroll reveal only; not in intro willChange batch — avoids idle layers vs Process),
  *   .pin-wrap + .blueprint-terminal (desktop pin),
  *   .section-tracer, #ambient-elements > div (float loop)
  * - CSS only: Navbar scroll-driven background (nav-fill), component hover transitions, Tailwind transitions
@@ -53,7 +53,7 @@ function applyReducedMotionInstantState(): void {
     gsap.set(el, { clearProps: "all" });
   });
 
-  document.querySelectorAll("#services .bento-tile").forEach((el) => {
+  document.querySelectorAll("#services .service-tier-card").forEach((el) => {
     el.classList.remove("opacity-0");
     gsap.set(el, { clearProps: "all" });
   });
@@ -371,8 +371,8 @@ export function initHomeMotion(): void {
 
   wireVisibilityPause(ambientTweens);
 
-  gsap.set("#services .bento-tile", { y: 52, force3D: true });
-  gsap.to("#services .bento-tile", {
+  gsap.set("#services .service-tier-card", { y: 52, force3D: true });
+  gsap.to("#services .service-tier-card", {
     autoAlpha: 1,
     y: 0,
     duration: 1.25,
@@ -387,12 +387,12 @@ export function initHomeMotion(): void {
       fastScrollEnd: true,
     },
     onStart: () => {
-      gsap.set("#services .bento-tile", { willChange: "transform" });
+      gsap.set("#services .service-tier-card", { willChange: "transform" });
     },
     onComplete: () => {
-      const tiles = document.querySelectorAll("#services .bento-tile");
+      const cards = document.querySelectorAll("#services .service-tier-card");
       requestAnimationFrame(() => {
-        tiles.forEach((el) => {
+        cards.forEach((el) => {
           el.classList.remove("opacity-0");
           gsap.set(el, {
             clearProps: "transform,opacity,visibility,willChange",
