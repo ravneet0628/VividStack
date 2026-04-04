@@ -2,7 +2,7 @@
  * Home page motion — single owner for GSAP + Lenis on `/`.
  *
  * Selector ownership (do not let Tailwind transforms fight GSAP on these):
- * - GSAP transform/opacity: #main-nav (intro y), .hero-char (intro + magnetic hover),
+ * - GSAP transform/opacity: .hero-char (intro + magnetic hover); #main-nav stays CSS-only (no intro — avoids load flicker),
  *   #hero-title, #hero-subtitle, #hero-cta, .tech-node (intro + optional float loop),
  *   #hero-background, .advantage-card (reveal; then clearProps for CSS hover:-translate-y-1),
  *   #services .service-tier-card (scroll reveal only; not in intro willChange batch — avoids idle layers vs Process),
@@ -34,7 +34,6 @@ function applyReducedMotionInstantState(): void {
 
   // Hero chars have opacity-0 in HTML; reveal them immediately.
   gsap.set(".hero-char", { opacity: 1, y: 0, clearProps: "transform" });
-  gsap.set("#main-nav", { opacity: 1, y: 0 });
   gsap.set("#hero-title, #hero-subtitle, #hero-cta", { opacity: 1, y: 0 });
   gsap.set(".tech-node", { opacity: 1, y: 0 });
 
@@ -302,7 +301,6 @@ export async function initHomeMotion(): Promise<void> {
 
   // Set initial states in GSAP only — no CSS translate classes on these elements
   // so there is no competing transform on first paint.
-  gsap.set("#main-nav", { opacity: 0, y: -20 });
   gsap.set("#hero-title", { y: 24 });
   gsap.set("#hero-subtitle", { y: 20 });
   gsap.set("#hero-cta", { y: 20 });
@@ -314,18 +312,15 @@ export async function initHomeMotion(): Promise<void> {
   });
 
   // Hero intro — opacity-0 is set in HTML; GSAP drives from→to with no CSS conflict.
-  tl.to("#main-nav", { opacity: 1, y: 0, delay: 0.15, duration: 0.7 })
-    .to(
-      ".hero-char",
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.04,
-        duration: 0.7,
-        ease: "power3.out",
-      },
-      "-=0.5",
-    )
+  // Navbar is not animated here: hiding it after first paint (post–fonts.ready) caused a visible flicker.
+  tl.to(".hero-char", {
+    opacity: 1,
+    y: 0,
+    stagger: 0.04,
+    duration: 0.7,
+    ease: "power3.out",
+    delay: 0.15,
+  })
     .to("#hero-title", { opacity: 1, y: 0, duration: 0.65 }, "-=0.4")
     .to("#hero-subtitle", { opacity: 1, y: 0, duration: 0.65 }, "-=0.55")
     .to("#hero-cta", { opacity: 1, y: 0, duration: 0.65 }, "-=0.55")
