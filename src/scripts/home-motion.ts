@@ -32,21 +32,11 @@ function isDesktopAtInit(): boolean {
 function applyReducedMotionInstantState(): void {
   document.documentElement.classList.add("reduced-motion");
 
-  gsap.set("#main-nav", { opacity: 1, y: 0, clearProps: "willChange" });
-  gsap.set(".hero-char", {
-    opacity: 1,
-    y: 0,
-    rotationX: 0,
-    rotationY: 0,
-    rotation: 0,
-    clearProps: "willChange",
-  });
-  gsap.set("#hero-title, #hero-subtitle, #hero-cta", {
-    opacity: 1,
-    y: 0,
-    clearProps: "willChange",
-  });
-  gsap.set(".tech-node", { opacity: 1, y: 0, rotation: 0, clearProps: "willChange" });
+  // Hero chars have opacity-0 in HTML; reveal them immediately.
+  gsap.set(".hero-char", { opacity: 1, y: 0, clearProps: "transform" });
+  gsap.set("#main-nav", { opacity: 1, y: 0 });
+  gsap.set("#hero-title, #hero-subtitle, #hero-cta", { opacity: 1, y: 0 });
+  gsap.set(".tech-node", { opacity: 1, y: 0 });
 
   document.querySelectorAll(".advantage-card").forEach((el) => {
     el.classList.remove("opacity-0");
@@ -57,8 +47,8 @@ function applyReducedMotionInstantState(): void {
     el.classList.remove("opacity-0");
     gsap.set(el, { clearProps: "all" });
   });
-  gsap.set(".section-tracer", { scaleX: 1, clearProps: "willChange" });
-  gsap.set("#hero-background", { opacity: 1, scale: 1, clearProps: "all" });
+  gsap.set(".section-tracer", { scaleX: 1 });
+  gsap.set("#hero-background", { opacity: 1 });
 
   const pinWrap = document.querySelector<HTMLElement>(".pin-wrap");
   if (pinWrap) gsap.set(pinWrap, { clearProps: "all" });
@@ -152,7 +142,7 @@ function wireVisibilityPause(tweens: gsap.core.Tween[]): void {
   });
 }
 
-export function initHomeMotion(): void {
+export async function initHomeMotion(): Promise<void> {
   gsap.registerPlugin(ScrollTrigger, CustomEase);
   CustomEase.create("architectural", "0.4, 0, 0.2, 1");
 
@@ -163,6 +153,19 @@ export function initHomeMotion(): void {
     applyReducedMotionInstantState();
   } else {
     gsap.ticker.lagSmoothing(0);
+    // Avoid mid-intro layout jump when Space Grotesk swaps in after fallback metrics.
+    if (document.fonts) {
+      try {
+        await document.fonts.ready;
+        await Promise.all([
+          document.fonts.load("700 4rem 'Space Grotesk'"),
+          document.fonts.load("700 8rem 'Space Grotesk'"),
+          document.fonts.load("700 12rem 'Space Grotesk'"),
+        ]);
+      } catch {
+        /* ignore */
+      }
+    }
   }
 
   const worksSection = document.querySelector("#selected-works");
@@ -252,9 +255,7 @@ export function initHomeMotion(): void {
               gsap.to(char, {
                 x: 0,
                 y: 0,
-                rotationY: 0,
-                rotationX: 0,
-                duration: 0.6,
+                duration: 0.45,
                 ease: "power3.out",
                 overwrite: "auto",
               });
@@ -276,14 +277,12 @@ export function initHomeMotion(): void {
 
           if (distance < magnetRadius && distance > 0.5) {
             const pull = 1 - distance / magnetRadius;
-            const moveX = (distX / distance) * pull * 10;
-            const moveY = (distY / distance) * pull * 10;
+            const moveX = (distX / distance) * pull * 8;
+            const moveY = (distY / distance) * pull * 8;
             gsap.to(char, {
               x: moveX,
               y: moveY,
-              rotationY: moveX * 0.5,
-              rotationX: -moveY * 0.5,
-              duration: 0.3,
+              duration: 0.25,
               ease: "power2.out",
               overwrite: "auto",
             });
@@ -291,9 +290,7 @@ export function initHomeMotion(): void {
             gsap.to(char, {
               x: 0,
               y: 0,
-              rotationY: 0,
-              rotationX: 0,
-              duration: 0.6,
+              duration: 0.45,
               ease: "power3.out",
               overwrite: "auto",
             });
@@ -303,44 +300,41 @@ export function initHomeMotion(): void {
     });
   }
 
+  // Set initial states in GSAP only — no CSS translate classes on these elements
+  // so there is no competing transform on first paint.
+  gsap.set("#main-nav", { opacity: 0, y: -20 });
+  gsap.set("#hero-title", { y: 24 });
+  gsap.set("#hero-subtitle", { y: 20 });
+  gsap.set("#hero-cta", { y: 20 });
+  gsap.set(".tech-node", { y: 20 });
+  gsap.set(".hero-char", { y: 24 });
+
   const tl = gsap.timeline({
-    defaults: { ease: "power4.out", duration: 1.4, force3D: true },
+    defaults: { ease: "power3.out", duration: 0.9, force3D: false },
   });
 
-  gsap.set(
-    [
-      "#main-nav",
-      ".hero-char",
-      "#hero-title",
-      "#hero-subtitle",
-      "#hero-cta",
-      "#selected-works",
-      ".project-screenshot",
-      ".tech-node",
-      "#ambient-elements > div",
-    ],
-    { willChange: "transform, opacity" },
-  );
-
-  tl.to("#main-nav", { opacity: 1, y: 0, delay: 0.2 })
-    .from(
+  // Hero intro — opacity-0 is set in HTML; GSAP drives from→to with no CSS conflict.
+  tl.to("#main-nav", { opacity: 1, y: 0, delay: 0.15, duration: 0.7 })
+    .to(
       ".hero-char",
       {
-        rotationX: 90,
-        opacity: 0,
-        y: 20,
-        stagger: 0.05,
-        duration: 1.0,
+        opacity: 1,
+        y: 0,
+        stagger: 0.04,
+        duration: 0.7,
         ease: "power3.out",
-        transformOrigin: "center bottom",
-        onComplete: initHeroCharMagnetic,
       },
-      "-=1.1",
+      "-=0.5",
     )
-    .to("#hero-title", { opacity: 1, y: 0 }, "-=0.8")
-    .to("#hero-subtitle", { opacity: 1, y: 0 }, "-=1.1")
-    .to("#hero-cta", { opacity: 1, y: 0 }, "-=1.1")
-    .to(".tech-node", { opacity: 1, y: 0, stagger: 0.1 }, "-=1.0");
+    .to("#hero-title", { opacity: 1, y: 0, duration: 0.65 }, "-=0.4")
+    .to("#hero-subtitle", { opacity: 1, y: 0, duration: 0.65 }, "-=0.55")
+    .to("#hero-cta", { opacity: 1, y: 0, duration: 0.65 }, "-=0.55")
+    .to(".tech-node", { opacity: 1, y: 0, stagger: 0.08, duration: 0.65 }, "-=0.5")
+    .call(() => {
+      // Remove y residue so layout is clean before magnetic activates.
+      gsap.set(".hero-char", { clearProps: "transform" });
+      window.setTimeout(initHeroCharMagnetic, 50);
+    });
 
   gsap.set(".advantage-card", { y: 52, force3D: true });
   gsap.to(".advantage-card", {
@@ -490,11 +484,11 @@ export function initHomeMotion(): void {
 
   const heroBg = document.querySelector("#hero-background");
   if (heroBg) {
+    // Opacity only — scale + separate letter motion felt like stacked "zoom" animations.
     gsap.from(heroBg, {
       opacity: 0,
-      scale: 0.95,
-      duration: 3,
-      delay: 1,
+      duration: 1.4,
+      delay: 0.15,
       ease: "power2.out",
     });
   }
