@@ -97,15 +97,17 @@ export const advantages = [
 export const services = [
   {
     id: "single-page",
-    name: "Single page",
+    name: "Single-page site",
     tagline: "One URL, full impact: launches, campaigns, or a simple first site.",
     highlight: false,
     features: [
-      "Hero, services, social proof, and contact on one strong page",
-      "Layout and type that read well on phones and desktops",
-      "Built fast, with search basics covered",
+      "One clear page with a hero, services, social proof, and contact",
+      "Responsive layout and type that read well on phones and desktops",
+      "SEO ready with a clear structure and meta tags",
       "Contact form or main call-to-action wired and tested",
-      "Launch checklist and a walkthrough so you know how it works",
+      "Business email setup and free hosting included",
+      "Launch checklist and a walkthrough so you know how to use it"
+      
     ],
   },
   {
@@ -114,11 +116,12 @@ export const services = [
     tagline: "A full small-business site with room to grow before you need an editor login.",
     highlight: true,
     features: [
-      "Multiple pages (e.g. home, services, about, contact) with a clear structure",
+      "A multi-page site with pages as per your business needs",
       "One visual system and matching components across the site",
-      "Page titles, descriptions, and internal links set up for search",
-      "Optional blog or resource pages as static content if you want them",
-      "Forms set up for the pages you need; analytics when you are ready",
+      "Page titles, descriptions, and internal links set up for SEO",
+      "Contact form or main call-to-action wired and tested",
+      "Business email setup and free hosting included",
+      "Launch checklist and a walkthrough so you know how to use it"
     ],
   },
   {
@@ -127,10 +130,10 @@ export const services = [
     tagline: "For teams that change copy, pages, or posts often without calling a developer.",
     highlight: false,
     features: [
-      "Everything in the multi-page tier, plus an editor-friendly content setup",
-      "Content types for pages, posts, or repeating sections, tuned to how you work",
-      "Short walkthrough and notes for whoever updates the site",
-      "Draft and publish flow matched to the tools we agree on",
+      "Everything from the multi-page tier, plus a setup that lets you or your team update content easily",
+      "Custom content types for pages, posts, or repeating sections, organized for your workflow",
+      "Walkthrough and update notes so you know exactly how to keep things fresh",
+      "Simple draft and publish tools fine-tuned to how you want to manage your site",
     ],
   },
 ];

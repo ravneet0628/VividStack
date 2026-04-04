@@ -28,7 +28,7 @@ import { services } from "../data/home";
           class:list={[
             "service-tier-card group flex flex-col min-h-0 opacity-0 border-2 p-8 md:p-9 transition-[transform,box-shadow,border-color] duration-300 ease-out transform hover:-translate-y-1",
             tier.highlight
-              ? "bg-vivid-navy border-vivid-mint text-white shadow-brutalist-neon hover:shadow-brutalist-neon-lg relative pt-12 md:pt-14"
+              ? "bg-vivid-navy border-vivid-mint text-white shadow-brutalist-neon hover:shadow-brutalist-neon-lg relative"
               : "bg-vivid-cream border-black shadow-brutalist hover:shadow-brutalist-lg",
           ]}
         >
@@ -50,7 +50,7 @@ import { services } from "../data/home";
           </h3>
           <p
             class:list={[
-              "text-sm md:text-base font-medium leading-relaxed mb-8 flex-1",
+              "text-sm md:text-base font-medium leading-relaxed mb-8",
               tier.highlight ? "text-white/75" : "text-vivid-navy/70",
             ]}
             style="font-family: 'Inter', sans-serif;"
