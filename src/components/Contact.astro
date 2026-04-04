@@ -88,16 +88,28 @@ import Footer from "./Footer.astro";
       </div>
 
       <!-- Success State -->
-      <div id="form-success" class="hidden mt-4 p-6 bg-vivid-mint/10 border-2 border-vivid-mint text-center" role="status" aria-live="polite" aria-atomic="true">
-        <div class="text-2xl mb-2">✓</div>
-        <p class="text-vivid-cream font-bold uppercase tracking-[0.15em] text-sm">Message received!</p>
-        <p class="text-vivid-cream/70 text-sm mt-2">We'll get back to you within 24 hours.</p>
+      <div
+        id="form-success"
+        class="form-success-panel hidden mt-4 p-6 bg-vivid-mint/10 border-2 border-vivid-mint text-center"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <div class="form-success-check text-2xl mb-2 text-vivid-teal font-black" style="font-family: 'Space Grotesk', sans-serif;" aria-hidden="true">✓</div>
+        <p class="text-vivid-cream font-bold uppercase tracking-[0.15em] text-sm">Got it — we're on it.</p>
+        <p class="text-vivid-cream/70 text-sm mt-2">We usually reply within one business day.</p>
       </div>
 
       <!-- Error State -->
-      <div id="form-error" class="hidden mt-4 p-4 bg-red-500/10 border-2 border-red-400 text-center" role="alert" aria-live="assertive" aria-atomic="true">
-        <p id="form-error-title" class="text-vivid-cream font-bold uppercase tracking-[0.15em] text-sm">Something went wrong</p>
-        <p id="form-error-detail" class="text-vivid-cream/70 text-sm mt-1">Please try again or email us directly.</p>
+      <div
+        id="form-error"
+        class="form-error-panel hidden mt-4 p-4 bg-red-500/10 border-2 border-red-400 text-center"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <p id="form-error-title" class="text-vivid-cream font-bold uppercase tracking-[0.15em] text-sm">That didn't send</p>
+        <p id="form-error-detail" class="text-vivid-cream/70 text-sm mt-1">Try again in a moment, or email us — we'll still get your message.</p>
       </div>
     </form>
 

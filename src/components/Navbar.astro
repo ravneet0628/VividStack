@@ -118,6 +118,12 @@ import logo from "../assets/Vivid-stack-logo.png";
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.28s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+  }
+
+  .brand-link:hover .logo-wrapper {
+    transform: scale(1.05);
   }
 
   @media (min-width: 768px) {
@@ -291,7 +297,19 @@ import logo from "../assets/Vivid-stack-logo.png";
     color: var(--color-vivid-navy);
     opacity: 0.6;
     text-decoration: none;
+    position: relative;
     transition: opacity 0.2s ease;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.35rem;
+    width: 0;
+    height: 2px;
+    background: var(--color-vivid-mint);
+    transition: width 0.28s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   /* Mobile: larger touch-friendly text */
@@ -305,6 +323,11 @@ import logo from "../assets/Vivid-stack-logo.png";
 
   .nav-link:hover {
     opacity: 1;
+  }
+
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after {
+    width: 100%;
   }
 
   .nav-link:focus-visible {
@@ -358,14 +381,33 @@ import logo from "../assets/Vivid-stack-logo.png";
     box-shadow: 8px 8px 0 0 var(--color-brutalist);
   }
 
+  .contact-btn:active {
+    transform: translateY(0);
+    box-shadow: 3px 3px 0 0 var(--color-brutalist);
+    transition-duration: 0.1s;
+  }
+
   .contact-btn:focus-visible {
     outline: 2px solid var(--color-vivid-teal);
     outline-offset: 3px;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .contact-btn:hover {
+    .contact-btn:hover,
+    .contact-btn:active {
       transform: none;
+    }
+
+    .contact-btn:active {
+      box-shadow: 4px 4px 0 0 var(--color-brutalist);
+    }
+
+    .brand-link:hover .logo-wrapper {
+      transform: none;
+    }
+
+    .nav-link::after {
+      transition-duration: 0.01s;
     }
   }
 

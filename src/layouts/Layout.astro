@@ -123,5 +123,20 @@ const ogImageUrl = ogImageProp
         }
       })();
     </script>
+    <script is:inline>
+      (function () {
+        try {
+          if (sessionStorage.getItem("vs-dev-hi")) return;
+          sessionStorage.setItem("vs-dev-hi", "1");
+          var navy = "#253644";
+          var mint = "#95CBD0";
+          console.log(
+            "%cVividStack%c This site is static-first and built for speed. Curious about the stack? Say hi at vividstack.io.",
+            "font-weight:700;color:" + mint + ";",
+            "color:" + navy + ";",
+          );
+        } catch (_) {}
+      })();
+    </script>
   </body>
 </html>

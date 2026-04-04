@@ -71,6 +71,91 @@
       @apply hover:shadow-brutalist-white;
     }
   }
+
+  /** Satisfying press — transform + shadow only (delight skill; no layout thrash) */
+  .btn-brutalist-primary:active {
+    transform: translateY(2px);
+    box-shadow: 4px 4px 0 0 rgb(0, 0, 0);
+    transition-duration: 0.1s;
+  }
+
+  .btn-brutalist-secondary:active {
+    transform: translateY(1px);
+    box-shadow: 3px 3px 0 0 rgb(255, 255, 255);
+    transition-duration: 0.1s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-brutalist-primary:active,
+    .btn-brutalist-secondary:active {
+      transform: none;
+    }
+
+    .btn-brutalist-primary:active {
+      box-shadow: 6px 6px 0 0 rgb(0, 0, 0);
+    }
+
+    .btn-brutalist-secondary:active {
+      box-shadow: 6px 6px 0 0 rgb(255, 255, 255);
+    }
+  }
+}
+
+/* ── Form feedback — quick reveal, respects reduced motion ─────────────── */
+@keyframes form-success-reveal {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes form-success-check-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes form-error-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(0.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-success-panel:not(.hidden) {
+  animation: form-success-reveal 0.45s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.form-success-panel:not(.hidden) .form-success-check {
+  animation: form-success-check-pop 0.38s cubic-bezier(0.25, 1, 0.5, 1) 0.06s both;
+}
+
+.form-error-panel:not(.hidden) {
+  animation: form-error-reveal 0.35s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form-success-panel:not(.hidden),
+  .form-error-panel:not(.hidden) {
+    animation: none;
+  }
+
+  .form-success-panel:not(.hidden) .form-success-check {
+    animation: none;
+  }
 }
 
 .bg-grid-tech {
