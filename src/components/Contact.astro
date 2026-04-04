@@ -194,24 +194,3 @@ import Footer from "./Footer.astro";
     });
   }
 </script>
-
-<script>
-  /** Load hCaptcha when the contact form is used or after idle (pairs with Web3Forms client script). */
-  function ensureHCaptchaScript() {
-    if (document.querySelector('script[src*="hcaptcha.com/1/api.js"]')) return;
-    const s = document.createElement("script");
-    s.src = "https://js.hcaptcha.com/1/api.js";
-    s.async = true;
-    document.head.appendChild(s);
-  }
-
-  const contactFormEl = document.getElementById("contact-form");
-  if (contactFormEl) {
-    contactFormEl.addEventListener("focusin", ensureHCaptchaScript, { once: true, passive: true });
-  }
-  if ("requestIdleCallback" in window) {
-    requestIdleCallback(ensureHCaptchaScript, { timeout: 8000 });
-  } else {
-    setTimeout(ensureHCaptchaScript, 5000);
-  }
-</script>
