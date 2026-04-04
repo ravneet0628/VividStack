@@ -1,0 +1,32 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+---
+
+<Layout
+  title="Page not found"
+  description="This page does not exist. Return to VividStack to explore services and portfolio work."
+  noindex
+>
+  <Navbar />
+  <main id="main-content" class="bg-vivid-cream text-vivid-navy min-h-screen pt-24 pb-20 px-6">
+    <div class="max-w-xl mx-auto text-center">
+      <p class="text-vivid-mint font-bold uppercase tracking-[0.35em] text-xs mb-4">404</p>
+      <h1
+        class="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-tight mb-6"
+        style="font-family: 'Space Grotesk', sans-serif;"
+      >
+        Page not found
+      </h1>
+      <p class="text-vivid-navy/80 leading-relaxed mb-10" style="font-family: 'Inter', sans-serif;">
+        The link may be broken or the page was removed. Head back home to continue.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center justify-center min-h-[48px] px-8 py-3 bg-vivid-navy text-vivid-teal font-bold uppercase tracking-[0.2em] text-xs shadow-brutalist-navy-sm hover:opacity-95 transition-opacity"
+      >
+        Back to home
+      </a>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,16 @@
+# VividStack
+
+> Fast, mobile-ready websites for local shops, trades, and service businesses. Static-first builds focused on speed, clarity, and findability.
+
+## Site
+
+- https://vividstack.ca/
+
+## Key pages
+
+- https://vividstack.ca/privacy/ — Privacy policy
+- https://vividstack.ca/terms/ — Terms of service
+
+## For humans
+
+Portfolio, services, process, and contact live on the home page. Prefer the on-site contact form for project inquiries.

@@ -56,7 +56,7 @@
 
 ### TASK-06: Add a real OG image
 **What:** `Layout.astro` references `/og-image.png` but it may not exist or may be a placeholder.  
-**Action:** Verify `public/og-image.png` exists and is 1200×630px with proper VividStack branding. If not, create one. Also verify the `og:url` is correct (`https://vividstack.io`).  
+**Action:** Verify `public/og-image.png` exists and is 1200×630px with proper VividStack branding. If not, create one. Also verify the `og:url` is correct (`https://vividstack.ca`).  
 **Files:** `public/og-image.png`, `src/layouts/Layout.astro`.
 
 ---
@@ -114,7 +114,7 @@ export interface PortfolioProject {
 **What:** There is no way to know how many people visit the site or which sections they engage with.  
 **Recommended tool:** [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/) (free, no cookies, GDPR compliant) or [Plausible](https://plausible.io).  
 **Action for Cloudflare Analytics:**
-1. Enable Web Analytics in the Cloudflare dashboard for the vividstack.io domain
+1. Enable Web Analytics in the Cloudflare dashboard for the vividstack.ca domain
 2. Add the provided `<script>` beacon tag to `Layout.astro`'s `<head>`
 3. No cookie consent banner needed
 

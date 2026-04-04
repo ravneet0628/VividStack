@@ -8,16 +8,55 @@ interface Props {
   description?: string;
   /** Site-root path (e.g. `/photo.jpg`) or absolute URL; defaults to optimized navbar logo */
   ogImage?: string;
+  /** When true, adds robots noindex (e.g. 404 page). */
+  noindex?: boolean;
 }
 
 const {
   title = "Fast web design for local businesses",
   description = "Fast, mobile-ready websites for shops, trades, and service businesses. Look professional, get found on Google, and keep ongoing costs low.",
   ogImage: ogImageProp,
+  noindex = false,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, "https://vividstack.io");
+const siteOrigin = "https://vividstack.ca";
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
 const documentTitle = `VividStack | ${title}`;
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteOrigin}/#website`,
+      url: siteOrigin,
+      name: "VividStack",
+      description:
+        "Fast, mobile-ready websites for shops, trades, and service businesses. Look professional, get found on Google, and keep ongoing costs low.",
+      publisher: { "@id": `${siteOrigin}/#organization` },
+      inLanguage: "en-US",
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${siteOrigin}/#organization`,
+      name: "VividStack",
+      url: siteOrigin,
+      description:
+        "Web design and development for local businesses: fast builds, mobile-ready layouts, and SEO-friendly structure.",
+      serviceType: ["Web design", "Web development", "Website maintenance"],
+      areaServed: { "@type": "Country", name: "United States" },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalURL.href}#webpage`,
+      url: canonicalURL.href,
+      name: documentTitle,
+      description,
+      isPartOf: { "@id": `${siteOrigin}/#website` },
+      inLanguage: "en-US",
+    },
+  ],
+});
 
 const defaultOg = await getImage({
   src: defaultOgSrc,
@@ -52,6 +91,7 @@ const ogImageUrl = ogImageProp
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <link rel="icon" type="image/png" sizes="32x32" href={favicon32.src} />
     <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon.src} />
@@ -62,6 +102,8 @@ const ogImageUrl = ogImageProp
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="VividStack" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={documentTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
@@ -96,6 +138,7 @@ const ogImageUrl = ogImageProp
 
     <meta name="generator" content={Astro.generator} />
     <title>{documentTitle}</title>
+    {!noindex && <script type="application/ld+json" is:inline set:html={structuredData} />}
   </head>
 
   <body class="antialiased bg-vivid-cream text-vivid-navy selection:bg-vivid-teal selection:text-vivid-navy">
@@ -149,7 +192,7 @@ const ogImageUrl = ogImageProp
           var navy = "#253644";
           var mint = "#95CBD0";
           console.log(
-            "%cVividStack%c This site is static-first and built for speed. Curious about the stack? Say hi at vividstack.io.",
+            "%cVividStack%c This site is static-first and built for speed. Curious about the stack? Say hi at vividstack.ca.",
             "font-weight:700;color:" + mint + ";",
             "color:" + navy + ";",
           );

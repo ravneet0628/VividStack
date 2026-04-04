@@ -1,0 +1,5 @@
+# https://vividstack.ca — redirects handled at Cloudflare
+User-agent: *
+Allow: /
+
+Sitemap: https://vividstack.ca/sitemap-index.xml
