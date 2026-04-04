@@ -1,14 +1,12 @@
 ---
-import { Image } from "astro:assets";
 import { capabilities } from "../data/home";
-import lighthouseImg from "../assets/lighthouse-100.png";
 ---
 
-<section id="capabilities" class="section-tracer-target relative py-32 bg-vivid-cream bg-grid-tech">
+<section id="capabilities" class="section-tracer-target relative py-24 lg:py-32 bg-vivid-cream bg-grid-tech">
   <div class="section-tracer absolute top-0 left-0 w-full h-px bg-vivid-navy origin-left scale-x-0 z-20"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="mb-24 text-center">
+    <header class="mb-12 md:mb-16 lg:mb-20 text-center">
       <span class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm mb-4 inline-block pb-1.5 border-b-[3px] border-vivid-mint">How we build</span>
       <h2
         class="text-6xl md:text-8xl font-black tracking-tighter uppercase text-vivid-navy leading-[0.85] select-none"
@@ -16,41 +14,53 @@ import lighthouseImg from "../assets/lighthouse-100.png";
       >
         Speed <span class="text-vivid-mint">&</span> quality
       </h2>
-    </div>
-  </div>
+    </header>
 
-  <!-- Light Bento Performance Grid -->
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="bento-grid">
-      <!-- Main Performance Card -->
-      <div class="bento-card bento-perf-main md:col-span-2 md:row-span-2">
-        <div class="flex flex-col md:flex-row items-center gap-8 h-full">
-          <div class="w-full md:w-1/2 flex justify-center">
-            <Image 
-              src={lighthouseImg} 
-              alt="Lighthouse 100/100 Score" 
-              class="bento-image"
-              widths={[400, 800]}
-              sizes="(max-width: 768px) 100vw, 400px"
-              loading="lazy"
-              fetchpriority="low"
-              decoding="async"
-              quality={85}
-            />
+    <!-- Bento: explicit grid so col/row span utilities apply -->
+    <div
+      class="bento-grid grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 md:auto-rows-[minmax(0,auto)]"
+    >
+      <div class="bento-card bento-perf-main md:col-span-2 md:row-span-2 min-h-0">
+        <div class="flex flex-col md:flex-row md:items-center gap-8 md:gap-10 lg:gap-12 h-full">
+          <div class="perf-visual-wrap w-full md:w-[44%] shrink-0 flex justify-center md:justify-start" aria-hidden="true">
+            <div class="perf-visual relative w-full max-w-[220px] aspect-square">
+              <svg class="perf-visual-svg w-full h-full" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="92" stroke="rgba(255,255,255,0.08)" stroke-width="2" />
+                <circle cx="100" cy="100" r="74" stroke="rgba(255,255,255,0.1)" stroke-width="2" />
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="56"
+                  stroke="var(--color-neon-mint)"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-dasharray="264 88"
+                  transform="rotate(-90 100 100)"
+                />
+                <path
+                  d="M100 36 L100 52 M100 148 L100 164 M36 100 L52 100 M148 100 L164 100"
+                  stroke="rgba(255,255,255,0.25)"
+                  stroke-width="2"
+                  stroke-linecap="square"
+                />
+              </svg>
+              <div class="perf-visual-label absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                <span class="perf-visual-metric font-black text-white tracking-tighter leading-none" style="font-family: 'Space Grotesk', sans-serif;">&lt;1s</span>
+              </div>
+            </div>
           </div>
-          <div class="w-full md:w-1/2">
-            <span class="card-tag">Benchmark</span>
-            <h3 class="card-title">Performance: <br/><span class="text-vivid-mint">Sub-second</span> load times</h3>
+          <div class="w-full md:flex-1 min-w-0">
+            <span class="card-tag">Core Web Vitals</span>
+            <h3 class="card-title"><span class="text-vivid-mint">Sub-second</span> load times</h3>
             <p class="card-text">
-              Fast loads mean fewer people leave before they call or book. That is what a score like this is about.
+              Quick loads mean fewer bounces before someone calls or books. We build to Core Web Vitals and keep LCP under about a second on the pages that matter.
             </p>
           </div>
         </div>
       </div>
 
-      <!-- Small Feature Cards -->
       {capabilities.map((item) => (
-        <div class="bento-card">
+        <div class="bento-card min-h-0">
           <h4 class="card-small-title">{item.title}</h4>
           <p class="card-small-text text-vivid-navy/60">{item.description}</p>
         </div>
@@ -92,16 +102,16 @@ import lighthouseImg from "../assets/lighthouse-100.png";
     box-shadow: 12px 12px 0 0 var(--color-neon-mint);
   }
 
-  .bento-image {
-    width: 100%;
-    height: auto;
-    max-width: 300px;
-    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
-    transition: transform 0.5s ease;
+  .perf-visual-metric {
+    font-size: clamp(2.75rem, 8vw, 3.5rem);
   }
 
-  .bento-perf-main:hover .bento-image {
-    transform: translate3d(0, -6px, 0) scale(1.02);
+  .bento-perf-main:hover .perf-visual {
+    transform: translate3d(0, -4px, 0);
+  }
+
+  .perf-visual {
+    transition: transform 0.45s ease;
   }
 
   .card-tag {

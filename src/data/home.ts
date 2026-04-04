@@ -142,33 +142,41 @@ export const processPhases = [
   {
     phase: "01",
     clientTitle: "Tell Us Your Vision",
-    clientDesc: "Share your goals, who your customers are, and what you need your website to do.",
+    clientDesc:
+      "Share your goals, who your customers are, and what you need the site to accomplish.",
     agencyTitle: "Research & Plan",
-    agencyDesc: "We look at your industry and competitors and agree on a direction that fits you.",
+    agencyDesc:
+      "We review your industry and competitors, then align with you on structure, tone, and priorities before we build.",
     iconSVG: `<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>`
   },
   {
     phase: "02",
-    clientTitle: "Share Your Brand",
-    clientDesc: "Send us your logo, photos, copy, and anything that represents your business.",
-    agencyTitle: "Set Up Hosting",
-    agencyDesc: "We set up hosting that is fast, secure, and free for you month to month on the setup we use.",
+    clientTitle: "Send Your Assets",
+    clientDesc:
+      "Logo, photos, and copy—or rough notes we can shape. Whatever you have, we tell you if we need more.",
+    agencyTitle: "Hosting & Staging",
+    agencyDesc:
+      "We provision hosting with SSL and a private preview link so there is a real place to drop builds as they are ready.",
     iconSVG: `<polygon points="12,2 22,12 12,22 2,12"/>`
   },
   {
     phase: "03",
-    clientTitle: "Review & Refine",
-    clientDesc: "You see progress in real time and we fine-tune until you're thrilled.",
-    agencyTitle: "Build Your Site",
-    agencyDesc: "We design and build each page with care: typography, spacing, and polish throughout.",
+    clientTitle: "Review on Staging",
+    clientDesc:
+      "You walk the preview site, request tweaks, and sign off when it matches what we agreed.",
+    agencyTitle: "Design & Build",
+    agencyDesc:
+      "We lay out each page, set type and spacing, then implement and polish until the staging site is launch-ready.",
     iconSVG: `<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>`
   },
   {
     phase: "04",
     clientTitle: "Approve & Go Live",
-    clientDesc: "You give the final thumbs up, and your site goes live for the world to see.",
-    agencyTitle: "Launch Everywhere",
-    agencyDesc: "Your site goes live worldwide so it loads quickly for customers near and far.",
+    clientDesc:
+      "You give final approval; we point your domain and put the same site you approved in front of the public.",
+    agencyTitle: "Launch & Handoff",
+    agencyDesc:
+      "DNS and SSL go live, we run final checks on key pages and forms, then walk you through the live site and how to reach us afterward.",
     iconSVG: `<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>`
   }
 ];
@@ -178,29 +186,29 @@ export const processPhases = [
 // ============================================
 export const capabilities = [
   {
-    title: "Speed that shows",
+    title: "Performance-first delivery",
     description:
-      "We treat load time as part of the design, not something we fix after the fact.",
+      "Tight images, lazy-loaded below-the-fold content, and minimal render-blocking so the hero stays fast.",
   },
   {
-    title: "Worldwide delivery",
+    title: "CDN at the edge",
     description:
-      "Your files sit close to visitors so pages stay quick whether they are next door or overseas.",
+      "CDN caching keeps copies close to visitors—less lag, wherever they are.",
   },
   {
-    title: "Security-minded hosting",
+    title: "HTTPS & hardening",
     description:
-      "Encrypted connections, sensible safeguards, and hosting practices that keep common risks down.",
+      "TLS everywhere, sensible security headers, and hosting practices that shut down common risks.",
   },
   {
-    title: "Easier for everyone",
+    title: "Accessibility-minded UI",
     description:
-      "Clear structure, keyboard-friendly patterns, and readable contrast so more people can use your site without friction.",
+      "Semantic structure, keyboard-friendly focus, and contrast that holds up for more users.",
   },
   {
-    title: "Safe updates",
+    title: "Versioned deploys",
     description:
-      "Changes are saved in order, easy to repeat, and simple to undo if something needs a second look.",
+      "Git-tracked changes: preview when you want, roll back cleanly when you need to.",
   },
 ];
 
