@@ -21,7 +21,7 @@ export const portfolioProjects = [
     mobileImage: resetat30Mobile,
     accent: "#00ffcc",
     url: "https://resetat30.pages.dev/",
-    displayUrl: "resetat30.com",
+    displayUrl: "resetat30.pages.dev",
     cropY: "-top-[5%]"
   },
   {
