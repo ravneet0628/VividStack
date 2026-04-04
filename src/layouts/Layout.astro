@@ -84,7 +84,7 @@ const ogImageUrl = ogImageProp
       Skip to content
     </a>
     <slot />
-    <!-- Web3Forms: load after idle or first focus on the form (smaller critical path) -->
+    <!-- Web3Forms + hCaptcha: load only when #contact is near/in view (avoids third-party work on first paint) -->
     <script is:inline>
       (function () {
         var loaded = false;
@@ -96,12 +96,26 @@ const ogImageUrl = ogImageProp
           s.async = true;
           document.body.appendChild(s);
         }
-        var form = document.getElementById("contact-form");
-        if (form) form.addEventListener("focusin", loadWeb3Forms, { once: true, passive: true });
-        if ("requestIdleCallback" in window) {
-          requestIdleCallback(loadWeb3Forms, { timeout: 6000 });
+        var contactSection = document.getElementById("contact");
+        if (!contactSection) return;
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              var i, entry;
+              for (i = 0; i < entries.length; i++) {
+                entry = entries[i];
+                if (entry.isIntersecting) {
+                  loadWeb3Forms();
+                  io.disconnect();
+                  return;
+                }
+              }
+            },
+            { rootMargin: "200px 0px", threshold: 0.01 }
+          );
+          io.observe(contactSection);
         } else {
-          setTimeout(loadWeb3Forms, 4000);
+          loadWeb3Forms();
         }
       })();
     </script>

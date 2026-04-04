@@ -127,9 +127,15 @@ import Footer from "./Footer.astro";
       if (errorTitleEl) errorTitleEl.textContent = defaultErrorTitle;
       if (errorDetailEl) errorDetailEl.textContent = defaultErrorDetail;
 
-      // Client-side hCaptcha validation (textarea appears after hCaptcha API renders)
+      // Client-side hCaptcha validation (textarea appears after Web3Forms/hCaptcha script loads in view)
       const hCaptchaResponse = contactForm.querySelector('textarea[name="h-captcha-response"]');
-      if (hCaptchaResponse && !hCaptchaResponse.value.trim()) {
+      if (!hCaptchaResponse) {
+        errorEl?.classList.remove("hidden");
+        if (errorTitleEl) errorTitleEl.textContent = "Verification loading";
+        if (errorDetailEl) errorDetailEl.textContent = "Please wait for the security check to finish loading, then try again.";
+        return;
+      }
+      if (!hCaptchaResponse.value.trim()) {
         errorEl?.classList.remove("hidden");
         if (errorTitleEl) errorTitleEl.textContent = "Verification required";
         if (errorDetailEl) errorDetailEl.textContent = "Complete the captcha below, then send again.";
