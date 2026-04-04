@@ -1,43 +1,72 @@
-# Astro Starter Kit: Minimal
+# VividStack
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Fast, mobile-ready websites for shops, trades, and service businesses. A static-first landing page built with Astro, Tailwind CSS, and GSAP — deployed to Cloudflare Pages at [vividstack.ca](https://vividstack.ca).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Tech Stack
 
-## 🚀 Project Structure
+- **Framework:** Astro 5 (static output)
+- **Styling:** Tailwind CSS 3 via `@astrojs/tailwind` (base styles disabled, custom design tokens in `global.css`)
+- **Animation:** GSAP 3 (ScrollTrigger, CustomEase) + Lenis 1 (smooth scroll, desktop only ≥1024px)
+- **Form backend:** Web3Forms (client-side, lazy-loaded via IntersectionObserver)
+- **Portfolio screenshots:** Playwright + Sharp (`capture-portfolio.mjs`)
+- **Typography:** Space Grotesk, Montserrat, Inter (Google Fonts, loaded with `media="print"` swap pattern)
 
-Inside of your Astro project, you'll see the following folders and files:
+## Commands
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+| Command | Action |
+| --- | --- |
+| `npm install` | Installs dependencies |
+| `npm run dev` | Starts local dev server at `localhost:4321` |
+| `npm run build` | Production build to `./dist/` |
+| `npm run preview` | Preview build locally |
+| `npm run astro` | Run Astro CLI commands |
+| `npm run capture:portfolio` | Screenshot live URLs via Playwright + Sharp |
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Architecture
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Pages
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Route | Template | Purpose |
+| --- | --- | --- |
+| `/` | `src/pages/index.astro` | Landing page — all sections |
+| `/privacy/` | `src/pages/privacy.astro` | Privacy policy |
+| `/terms/` | `src/pages/terms.astro` | Terms of service |
+| `/404` | `src/pages/404.astro` | Not found page |
 
-## 🧞 Commands
+### Components
 
-All commands are run from the root of the project, from a terminal:
+| Component | Role |
+| --- | --- |
+| `Layout.astro` | Shared layout: `<head>`, SEO/meta tags, JSON-LD structured data, font loading, skip link, Web3Forms loader |
+| `Navbar.astro` | Fixed top nav with scroll-driven background, mobile drawer with focus trap |
+| `Hero.astro` | Animated hero with floating tech nodes, magnetic text effect |
+| `Advantage.astro` | 3-column value proposition cards |
+| `Services.astro` | 3-tier service bento cards |
+| `SelectedWorks.astro` | Horizontal scroll portfolio pin with dual-device mockups |
+| `Process.astro` | 4-phase alternating client/agency glass cards |
+| `Capabilities.astro` | Bento grid with performance card + 4 smaller cards |
+| `Contact.astro` | Web3Forms contact form with hCaptcha, success/error states |
+| `Footer.astro` | Copyright, legal links (privacy, terms) |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Data
 
-## 👀 Want to learn more?
+All site copy, portfolio items, and configuration live in `src/data/home.ts`. Change content without touching components.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+This is a fully static site — zero server-side code. Form submissions go to the external Web3Forms API.
+
+### Design System
+
+Read `.impeccable.md` for the full AI-readable design context (brand palette, typography, component patterns, animation conventions, accessibility requirements).
+
+## Deployment
+
+Deployed to Cloudflare Pages. Push to `main` triggers an automatic build.
+
+## Accessibility
+
+- Skip-to-content link
+- Semantic landmarks (`main`, `nav`)
+- Focus-visible rings on all interactive elements
+- `prefers-reduced-motion: reduce` disables all animations and Lenis
+- Honeypot bot protection on contact form
+- Mobile menu implements focus trap and Escape/dismissal
