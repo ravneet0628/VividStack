@@ -38,7 +38,7 @@
   }
 
   .btn-brutalist-secondary {
-    @apply inline-flex items-center justify-center w-full md:w-auto px-8 md:px-12 py-4 md:py-5 min-h-[48px] bg-vivid-mint text-vivid-navy rounded-none font-bold uppercase text-xs md:text-sm border-2 border-black shadow-brutalist-white transition-[transform,box-shadow,background-color,color,opacity] duration-300 cursor-pointer hover:bg-white hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-vivid-navy;
+    @apply inline-flex items-center justify-center w-full md:w-auto px-8 md:px-12 py-4 md:py-5 min-h-[48px] bg-vivid-mint text-vivid-navy rounded-none font-bold uppercase text-xs md:text-sm border-2 border-black shadow-brutalist-hero transition-[transform,box-shadow,background-color,color,opacity] duration-300 cursor-pointer hover:bg-white hover:shadow-brutalist-hero-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-vivid-navy;
     font-family: "Montserrat", sans-serif;
     letter-spacing: 0.2em;
   }
@@ -68,7 +68,7 @@
     }
 
     .btn-brutalist-secondary {
-      @apply hover:shadow-brutalist-white;
+      @apply hover:shadow-brutalist-hero;
     }
   }
 
@@ -80,8 +80,8 @@
   }
 
   .btn-brutalist-secondary:active {
-    transform: translateY(1px);
-    box-shadow: 3px 3px 0 0 rgb(255, 255, 255);
+    transform: translateY(2px);
+    box-shadow: 4px 4px 0 0 rgb(0, 0, 0);
     transition-duration: 0.1s;
   }
 
@@ -96,7 +96,7 @@
     }
 
     .btn-brutalist-secondary:active {
-      box-shadow: 6px 6px 0 0 rgb(255, 255, 255);
+      box-shadow: 6px 6px 0 0 rgb(0, 0, 0);
     }
   }
 }
