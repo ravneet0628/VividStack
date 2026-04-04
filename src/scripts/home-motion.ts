@@ -130,6 +130,20 @@ function debouncedScrollTriggerRefresh(): void {
   }, 150);
 }
 
+/** Horizontal pin end position — DOM reads only from ScrollTrigger refresh, not each scrub frame. */
+function computePinEndX(pinWrap: HTMLElement): number {
+  const iw = window.innerWidth;
+  const maxNatural = pinWrap.scrollWidth - iw;
+  const buffer = Math.round(iw * 0.06);
+  const last = pinWrap.querySelector<HTMLElement>(
+    ".project-card:last-of-type",
+  );
+  if (!last) return -(maxNatural + buffer);
+  const lastCenter = last.offsetLeft + last.offsetWidth / 2;
+  const scrollToRestLast = lastCenter - iw / 2 + buffer;
+  return -Math.max(maxNatural + buffer, scrollToRestLast);
+}
+
 function wireVisibilityPause(tweens: gsap.core.Tween[]): void {
   if (tweens.length === 0) return;
   document.addEventListener("visibilitychange", () => {
@@ -186,6 +200,27 @@ export function initHomeMotion(): void {
     if (heroChars.length === 0 || isMobile) return;
 
     const brand = document.querySelector("#hero-brand");
+    let brandRectCache: DOMRect | null = null;
+    function updateBrandRectCache(): void {
+      if (brand) brandRectCache = brand.getBoundingClientRect();
+    }
+    updateBrandRectCache();
+
+    let scrollRafPending = false;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (scrollRafPending) return;
+        scrollRafPending = true;
+        requestAnimationFrame(() => {
+          scrollRafPending = false;
+          updateBrandRectCache();
+        });
+      },
+      { passive: true },
+    );
+    window.addEventListener("resize", updateBrandRectCache);
+
     let rafPending = false;
     let lastMouseX = 0;
     let lastMouseY = 0;
@@ -201,8 +236,8 @@ export function initHomeMotion(): void {
 
         const pad = 110;
         let inside = false;
-        if (brand) {
-          const br = brand.getBoundingClientRect();
+        if (brandRectCache) {
+          const br = brandRectCache;
           inside =
             lastMouseX >= br.left - pad &&
             lastMouseX <= br.right + pad &&
@@ -403,6 +438,8 @@ export function initHomeMotion(): void {
   });
 
   if (worksSection && pinWrap && !isMobile) {
+    let pinEndX = computePinEndX(pinWrap);
+
     const worksTl = gsap.timeline({
       scrollTrigger: {
         trigger: worksSection,
@@ -412,23 +449,14 @@ export function initHomeMotion(): void {
         scrub: 1,
         anticipatePin: 1,
         invalidateOnRefresh: true,
+        onRefresh: () => {
+          pinEndX = computePinEndX(pinWrap);
+        },
       },
     });
 
     worksTl.to(pinWrap, {
-      x: () => {
-        const iw = window.innerWidth;
-        const maxNatural = pinWrap.scrollWidth - iw;
-        const buffer = Math.round(iw * 0.06);
-        const last = pinWrap.querySelector<HTMLElement>(
-          ".project-card:last-of-type",
-        );
-        if (!last) return -(maxNatural + buffer);
-        const lastCenter = last.offsetLeft + last.offsetWidth / 2;
-        // Scroll until last card is centered (or further) plus buffer before unpinning
-        const scrollToRestLast = lastCenter - iw / 2 + buffer;
-        return -Math.max(maxNatural + buffer, scrollToRestLast);
-      },
+      x: () => pinEndX,
       ease: "none",
     });
 

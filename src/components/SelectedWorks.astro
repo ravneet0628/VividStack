@@ -60,12 +60,12 @@ import { portfolioProjects } from "../data/home";
                 src={project.image}
                 alt={project.title}
                 class="desktop-screenshot-img"
-                widths={[600, 1200, 1800]}
-                sizes="(max-width: 1024px) 90vw, 60vw"
+                widths={[480, 720, 1200, 1800]}
+                sizes="(max-width: 1023px) 68vw, 44vw"
                 loading="lazy"
                 fetchpriority="low"
                 decoding="async"
-                quality={95}
+                quality={85}
               />
             </div>
 
@@ -76,13 +76,12 @@ import { portfolioProjects } from "../data/home";
                 <Image
                   src={project.mobileImage}
                   alt={`${project.title} mobile`}
-                  class="phone-screenshot-img"
-                  widths={[390, 780]}
-                  sizes="(max-width: 1024px) 30vw, 15vw"
+                  widths={[320, 390, 780]}
+                  sizes="(max-width: 1023px) 20.4vw, 13.2vw"
                   loading="lazy"
                   fetchpriority="low"
                   decoding="async"
-                  quality={90}
+                  quality={85}
                 />
               </div>
               <div class="phone-home-bar"></div>

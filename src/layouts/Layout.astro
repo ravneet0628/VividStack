@@ -72,6 +72,10 @@ const ogImageUrl = ogImageProp
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Space+Grotesk:wght@300..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     </noscript>
 
+    <!-- Web3Forms loads hCaptcha when #contact is in view; warm TLS (2 Google Fonts + 2 = 4 preconnects) -->
+    <link rel="preconnect" href="https://js.hcaptcha.com" crossorigin />
+    <link rel="preconnect" href="https://api.hcaptcha.com" crossorigin />
+
     <meta name="generator" content={Astro.generator} />
     <title>{title} | VividStack</title>
   </head>
