@@ -128,62 +128,74 @@ import heroCode from "../assets/hero_code.png";
   </div>
 
   <div
-    class="tech-node absolute top-[18%] right-[4%] lg:right-[5%] bg-white backdrop-blur-md border border-vivid-navy p-4 rounded-none shadow-brutalist-navy-xl hidden lg:flex items-center gap-5 opacity-0"
+    class="tech-node absolute top-[18%] right-[4%] lg:right-[5%] bg-white backdrop-blur-md border border-vivid-navy p-2.5 rounded-none shadow-brutalist-navy-md hidden lg:flex items-center gap-3 opacity-0"
   >
     <div
-      class="w-10 h-10 flex items-center justify-center bg-vivid-navy text-vivid-mint text-base font-black shadow-brutalist-mint-sm" style="font-family: 'Space Grotesk', sans-serif;"
+      class="w-8 h-8 flex shrink-0 items-center justify-center bg-vivid-navy text-vivid-mint text-sm font-black shadow-brutalist-mint-sm"
+      style="font-family: 'Space Grotesk', sans-serif;"
     >
       100
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col gap-0.5">
       <span
-        class="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-vivid-navy"
+        class="text-[0.55rem] font-bold uppercase tracking-[0.22em] text-vivid-navy"
         >Lighthouse</span
       >
       <span
-        class="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-vivid-navy/40"
+        class="text-[0.5rem] font-bold uppercase tracking-[0.18em] text-vivid-navy/40"
         >Perfect Score</span
       >
     </div>
   </div>
 
   <div class="z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
-    <div id="hero-brand" class="mb-4">
+    <p
+      id="hero-eyebrow"
+      class="mb-3 md:mb-5 text-[0.65rem] sm:text-xs md:text-sm font-bold uppercase tracking-[0.22em] sm:tracking-[0.25em] text-vivid-navy/75 opacity-0 text-center max-w-3xl px-4 leading-relaxed"
+    >
+      <span class="inline-flex tracking-tight">
+        <span class="text-vivid-navy">Vivid</span><span class="text-vivid-mint"
+          >Stack</span
+        >
+      </span>
+      <span class="text-vivid-navy/40 mx-1.5" aria-hidden="true">·</span>
+      <span class="text-vivid-navy/90">Web design for growing businesses</span>
+    </p>
+    <div id="hero-brand" class="mb-0 w-full px-1">
       <h1
-        class="text-6xl sm:text-8xl md:text-[7rem] lg:text-[9rem] font-extrabold tracking-tighter uppercase leading-none drop-shadow-sm flex flex-wrap justify-center gap-x-[2vw]"
+        class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem] font-extrabold tracking-tighter uppercase leading-[1.05] drop-shadow-sm flex flex-wrap justify-center gap-x-[0.35em] gap-y-2 text-center mx-auto"
       >
-        <span class="text-vivid-navy flex">
+        <span class="text-vivid-navy inline-block text-center">
           {
-            "Vivid"
+            "We build websites that "
               .split("")
               .map((char) => (
-                <span class="hero-char inline-block opacity-0">{char}</span>
+                <span class="hero-char inline-block whitespace-pre opacity-0"
+                  >{char}</span
+                >
               ))
           }
         </span>
-        <span class="text-vivid-mint flex">
+        <span class="text-vivid-mint inline-block text-center">
           {
-            "Stack"
+            "win customers"
               .split("")
               .map((char) => (
-                <span class="hero-char inline-block opacity-0">{char}</span>
+                <span class="hero-char inline-block whitespace-pre opacity-0"
+                  >{char}</span
+                >
               ))
           }
         </span>
       </h1>
     </div>
-    <h2
-      id="hero-title"
-      class="text-lg sm:text-xl md:text-2xl font-bold tracking-[0.2em] text-vivid-navy uppercase opacity-0 mt-2"
-    >
-      WE BUILD WEBSITES THAT <span class="text-vivid-mint">WIN CUSTOMERS.</span>
-    </h2>
 
     <p
       id="hero-subtitle"
-      class="mt-8 md:mt-10 text-base sm:text-xl md:text-2xl lg:text-3xl text-vivid-navy/70 font-medium tracking-wide opacity-0 max-w-3xl px-2"
+      class="mt-6 md:mt-8 text-base sm:text-xl md:text-2xl lg:text-3xl text-vivid-navy/70 font-medium tracking-wide opacity-0 max-w-3xl px-2"
     >
-      Beautiful, fast websites for businesses that want to grow.
+      Fast, mobile-ready sites that help you look professional, get found on
+      Google, and keep ongoing costs low.
     </p>
 
     <div id="hero-cta" class="mt-12 md:mt-16 opacity-0">
