@@ -89,6 +89,9 @@ function initContactForm(): void {
         method: "POST",
         body: formData,
         mode: "cors",
+        headers: {
+          Accept: "application/json",   // ← add this
+          },
       });
 
       const raw = await response.text();
