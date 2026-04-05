@@ -26,6 +26,21 @@ function resetTurnstileWidget(form: HTMLFormElement): void {
   }
 }
 
+/** After redirects, FormZero may land on /error?... or similar; treat as failure even if status is 200. */
+function urlIndicatesFormFailure(response: Response): boolean {
+  try {
+    const u = new URL(response.url);
+    const pathAndQuery = `${u.pathname}${u.search}`.toLowerCase();
+    return (
+      pathAndQuery.includes("/error") ||
+      pathAndQuery.includes("turnstile_failed") ||
+      /\berror=/.test(pathAndQuery)
+    );
+  } catch {
+    return false;
+  }
+}
+
 function initContactForm(): void {
   const contactForm = document.getElementById("contact-form");
   const submitBtn = document.getElementById("submit-btn");
@@ -76,25 +91,30 @@ function initContactForm(): void {
         mode: "cors",
       });
 
-      let ok = response.ok;
+      const raw = await response.text();
+      const trimmed = raw.trim();
+
+      const httpSuccessBand =
+        response.status >= 200 && response.status < 300 && !urlIndicatesFormFailure(response);
+
+      let ok = httpSuccessBand;
       let errMessage: string | undefined;
-      const contentType = response.headers.get("content-type");
-      if (contentType?.includes("application/json")) {
-        const raw = await response.text();
-        if (raw) {
-          try {
-            const result = JSON.parse(raw) as {
-              success?: boolean;
-              message?: string;
-              error?: string;
-            };
-            if (typeof result.success === "boolean") {
-              ok = result.success;
-            }
-            errMessage = result.message ?? result.error;
-          } catch {
-            if (!response.ok) ok = false;
-          }
+
+      if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
+        try {
+          const result = JSON.parse(trimmed) as {
+            success?: boolean;
+            message?: string;
+            error?: string;
+          };
+          errMessage = result.message ?? result.error;
+          // Prefer explicit API signal when present; otherwise trust HTTP + final URL (handles JSON without `success`)
+          ok =
+            typeof result.success === "boolean"
+              ? result.success
+              : httpSuccessBand;
+        } catch {
+          ok = httpSuccessBand;
         }
       }
 
