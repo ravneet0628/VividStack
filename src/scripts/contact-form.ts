@@ -1,4 +1,31 @@
-// Contact form — Web3Forms + hCaptcha (widget loads with Web3Forms when #contact is in view)
+// Contact form — forms.vividstack.ca + Cloudflare Turnstile (script loads when #contact is in view)
+
+const SUBMIT_URL =
+  "https://forms.vividstack.ca/api/forms/vividstack/submissions";
+
+type TurnstileApi = {
+  reset: (widgetId?: string) => void;
+};
+
+function getTurnstileToken(form: HTMLFormElement): string {
+  const input = form.querySelector<HTMLInputElement | HTMLTextAreaElement>(
+    'input[name="cf-turnstile-response"], textarea[name="cf-turnstile-response"]',
+  );
+  return input?.value?.trim() ?? "";
+}
+
+function resetTurnstileWidget(form: HTMLFormElement): void {
+  const api = (window as Window & { turnstile?: TurnstileApi }).turnstile;
+  if (!api?.reset) return;
+  const el = form.querySelector(".cf-turnstile");
+  const widgetId = el?.getAttribute("data-widget-id") ?? undefined;
+  try {
+    api.reset(widgetId);
+  } catch {
+    /* ignore */
+  }
+}
+
 function initContactForm(): void {
   const contactForm = document.getElementById("contact-form");
   const submitBtn = document.getElementById("submit-btn");
@@ -27,23 +54,12 @@ function initContactForm(): void {
     if (errorTitleEl) errorTitleEl.textContent = defaultErrorTitle;
     if (errorDetailEl) errorDetailEl.textContent = defaultErrorDetail;
 
-    const hCaptchaResponse = contactForm.querySelector(
-      'textarea[name="h-captcha-response"]',
-    );
-    if (!(hCaptchaResponse instanceof HTMLTextAreaElement)) {
+    if (!getTurnstileToken(contactForm)) {
       errorEl?.classList.remove("hidden");
       if (errorTitleEl) errorTitleEl.textContent = "Verification loading";
       if (errorDetailEl)
         errorDetailEl.textContent =
           "Please wait for the security check to finish loading, then try again.";
-      return;
-    }
-    if (!hCaptchaResponse.value.trim()) {
-      errorEl?.classList.remove("hidden");
-      if (errorTitleEl) errorTitleEl.textContent = "Verification required";
-      if (errorDetailEl)
-        errorDetailEl.textContent =
-          "Complete the captcha below, then send again.";
       return;
     }
 
@@ -54,16 +70,35 @@ function initContactForm(): void {
 
     try {
       const formData = new FormData(contactForm);
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch(SUBMIT_URL, {
         method: "POST",
         body: formData,
+        mode: "cors",
       });
-      const result = (await response.json()) as {
-        success?: boolean;
-        message?: string;
-      };
 
-      if (result.success) {
+      let ok = response.ok;
+      let errMessage: string | undefined;
+      const contentType = response.headers.get("content-type");
+      if (contentType?.includes("application/json")) {
+        const raw = await response.text();
+        if (raw) {
+          try {
+            const result = JSON.parse(raw) as {
+              success?: boolean;
+              message?: string;
+              error?: string;
+            };
+            if (typeof result.success === "boolean") {
+              ok = result.success;
+            }
+            errMessage = result.message ?? result.error;
+          } catch {
+            if (!response.ok) ok = false;
+          }
+        }
+      }
+
+      if (ok) {
         successEl?.classList.remove("hidden");
 
         const formFields = contactForm.querySelectorAll(
@@ -82,6 +117,7 @@ function initContactForm(): void {
 
         setTimeout(() => {
           contactForm.reset();
+          resetTurnstileWidget(contactForm);
           formFields.forEach((el) => {
             if (!(el instanceof HTMLElement)) return;
             el.style.opacity = "1";
@@ -93,7 +129,7 @@ function initContactForm(): void {
           successEl?.classList.add("hidden");
         }, 5000);
       } else {
-        throw new Error(result.message || "Submission failed");
+        throw new Error(errMessage || "Submission failed");
       }
     } catch {
       errorEl?.classList.remove("hidden");
@@ -102,6 +138,7 @@ function initContactForm(): void {
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
       submitBtn.classList.remove("is-loading");
+      resetTurnstileWidget(contactForm);
     }
   });
 }
