@@ -7,42 +7,54 @@ import { processPhases } from "../data/home";
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="mb-24 md:mb-32">
-      <span class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm mb-4 inline-block pb-1.5 border-b-[3px] border-vivid-mint">How We Work</span>
+      <div class="inline-flex flex-col items-stretch gap-0 mb-4">
+        <span
+          id="process-eyebrow"
+          class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm inline-block pb-1.5 opacity-0"
+          >How We Work</span
+        >
+        <div class="process-eyebrow-line h-[3px] w-full bg-vivid-mint" aria-hidden="true"></div>
+      </div>
       <h2
         class="text-6xl md:text-8xl font-black tracking-tighter uppercase text-black leading-[0.85] select-none"
         style="font-family: 'Space Grotesk', sans-serif;"
       >
-        The <span class="text-vivid-mint">Process</span>
+        <span id="process-title-prefix" class="opacity-0 inline">The </span><span
+          id="process-title-accent"
+          class="text-vivid-mint opacity-0 inline">Process</span
+        >
       </h2>
     </div>
 
     <div class="process-split-container relative">
-      <!-- Central Vertical Line -->
-      <div class="process-vertical-line"></div>
+      <div class="process-vertical-line" aria-hidden="true">
+        <div class="process-vertical-line-inner"></div>
+      </div>
 
       {processPhases.map((item) => (
         <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 relative mb-24 last:mb-0">
-          <div class="process-stage-label">PHASE {item.phase}</div>
-          
-          <!-- Left: YOU (Client) -->
+          <div class="process-stage-label opacity-0">PHASE {item.phase}</div>
+
           <div class="process-column-you">
-            <div class="process-card glass-panel text-left">
+            <div
+              class="process-card process-card-client glass-panel text-left opacity-0"
+            >
               <span class="process-label client">YOU</span>
               <h3 class="process-title">{item.clientTitle}</h3>
               <p class="process-description">{item.clientDesc}</p>
             </div>
           </div>
 
-          <!-- Central Icon -->
           <div class="process-icon-wrapper">
-            <div class="process-icon-glow">
+            <div class="process-phase-icon process-icon-glow opacity-0">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="0" set:html={item.iconSVG}></svg>
             </div>
           </div>
 
-          <!-- Right: WE (Vivid Stack) -->
           <div class="process-column-we">
-            <div class="process-card glass-panel agency-card text-left">
+            <div
+              class="process-card process-card-agency glass-panel agency-card text-left opacity-0"
+            >
               <span class="process-label agency">WE</span>
               <h3 class="process-title">{item.agencyTitle}</h3>
               <p class="process-description">{item.agencyDesc}</p>
@@ -68,6 +80,19 @@ import { processPhases } from "../data/home";
     bottom: 0;
     left: 50%;
     width: 2px;
+    transform: translateX(-50%);
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .process-vertical-line-inner {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform-origin: top center;
     background: linear-gradient(
       to bottom,
       transparent,
@@ -76,13 +101,14 @@ import { processPhases } from "../data/home";
       rgba(149, 203, 208, 0.35) 85%,
       transparent
     );
-    transform: translateX(-50%);
-    z-index: 1;
   }
 
   @media (max-width: 767px) {
     .process-vertical-line {
       left: 1.5rem;
+    }
+
+    .process-vertical-line-inner {
       background: linear-gradient(
         to bottom,
         transparent,
@@ -162,13 +188,13 @@ import { processPhases } from "../data/home";
     border: 2px solid var(--color-brutalist);
     background: var(--color-white);
     position: relative;
-    box-shadow: 8px 8px 0 0 rgba(0,0,0,0.05);
+    box-shadow: 8px 8px 0 0 rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .process-card:hover {
     transform: translateY(-4px);
-    box-shadow: 12px 12px 0 0 rgba(0,0,0,0.1);
+    box-shadow: 12px 12px 0 0 rgba(0, 0, 0, 0.1);
   }
 
   .agency-card {

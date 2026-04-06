@@ -8,7 +8,8 @@
  *   then clearProps for CSS hover:-translate-y-1),
  *   #services scroll timeline (tracer + header + triad cards + bullets + CTAs + ribbon; then clearProps),
  *   .pin-wrap + .blueprint-terminal (desktop pin),
- *   .section-tracer (except #services — owned by services timeline), #ambient-elements > div (float loop)
+ *   .section-tracer (except #services, #process — owned by their timelines), #ambient-elements > div (float loop)
+ *   #process intro + row ScrollTriggers (registered after works pin + final ScrollTrigger.refresh so starts are correct)
  * - CSS only: Navbar scroll-driven background (nav-fill), component hover transitions, Tailwind transitions
  *
  * Breakpoint: DESKTOP_LG_MIN_PX aligns with Tailwind `lg` (1024px). Lenis + heavy GSAP run when
@@ -76,6 +77,30 @@ function applyReducedMotionInstantState(): void {
     clearProps: "transform",
   });
   gsap.set(".service-popular-ribbon", { clearProps: "all" });
+
+  document
+    .querySelectorAll(
+      "#process-eyebrow, #process-title-prefix, #process-title-accent",
+    )
+    .forEach((el) => {
+      el.classList.remove("opacity-0");
+    });
+  gsap.set(".process-eyebrow-line", {
+    scaleX: 1,
+    clearProps: "transform",
+  });
+  gsap.set(".process-vertical-line-inner", {
+    scaleY: 1,
+    clearProps: "transform",
+  });
+  document
+    .querySelectorAll(
+      "#process .process-stage-label, #process .process-card-client, #process .process-card-agency, #process .process-phase-icon",
+    )
+    .forEach((el) => {
+      el.classList.remove("opacity-0");
+      gsap.set(el, { clearProps: "all" });
+    });
 
   gsap.set(".section-tracer", { scaleX: 1 });
   gsap.set("#hero-background", { opacity: 1 });
@@ -831,8 +856,236 @@ export async function initHomeMotion(): Promise<void> {
     window.addEventListener("resize", debouncedScrollTriggerRefresh);
   }
 
+  /* Process motion runs after works pin is registered so ScrollTrigger positions
+   * include pin spacer layout (otherwise triggers never cross their start). */
+  gsap.set("#process .section-tracer", {
+    scaleX: 0,
+    transformOrigin: "left center",
+  });
+  gsap.set("#process-eyebrow", { y: 18 });
+  gsap.set(".process-eyebrow-line", {
+    scaleX: 0,
+    transformOrigin: "left center",
+  });
+  gsap.set("#process-title-prefix", { y: 22 });
+  gsap.set("#process-title-accent", { y: 18 });
+  gsap.set(".process-vertical-line-inner", {
+    scaleY: 0,
+    transformOrigin: "top center",
+    force3D: true,
+  });
+
+  const processIntroTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#process",
+      start: "top 88%",
+      once: true,
+      fastScrollEnd: true,
+      invalidateOnRefresh: true,
+    },
+    onComplete: () => {
+      requestAnimationFrame(() => {
+        document
+          .querySelectorAll("#process-eyebrow, #process-title-prefix, #process-title-accent")
+          .forEach((el) => {
+            el.classList.remove("opacity-0");
+          });
+        gsap.set(
+          "#process-eyebrow, #process-title-prefix, #process-title-accent",
+          { clearProps: "transform,opacity,visibility" },
+        );
+        gsap.set(".process-eyebrow-line", { clearProps: "transform" });
+        const processTracer = document.querySelector("#process .section-tracer");
+        if (processTracer) {
+          processTracer.classList.remove("scale-x-0");
+          gsap.set(processTracer, { clearProps: "transform" });
+        }
+        gsap.set(".process-vertical-line-inner", { clearProps: "transform" });
+      });
+    },
+  });
+
+  processIntroTl
+    .to("#process .section-tracer", {
+      scaleX: 1,
+      duration: 0.65,
+      ease: "power3.inOut",
+      force3D: true,
+    })
+    .to(
+      "#process-eyebrow",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power3.out",
+      },
+      0.05,
+    )
+    .to(
+      ".process-eyebrow-line",
+      {
+        scaleX: 1,
+        duration: 0.45,
+        ease: "power2.out",
+      },
+      0.1,
+    )
+    .to(
+      "#process-title-prefix",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.65,
+        ease: "power3.out",
+      },
+      0.1,
+    )
+    .to(
+      "#process-title-accent",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.55,
+        ease: "power3.out",
+      },
+      0.22,
+    )
+    .to(
+      ".process-vertical-line-inner",
+      {
+        scaleY: 1,
+        duration: 1.05,
+        ease: "power2.inOut",
+        force3D: true,
+      },
+      0.15,
+    );
+
+  const processMdUp =
+    typeof window !== "undefined" &&
+    window.matchMedia(`(min-width: ${MD_MIN_PX}px)`).matches;
+
+  document.querySelectorAll("#process .process-row").forEach((row) => {
+    const label = row.querySelector<HTMLElement>(".process-stage-label");
+    const cardYou = row.querySelector<HTMLElement>(".process-card-client");
+    const cardWe = row.querySelector<HTMLElement>(".process-card-agency");
+    const icon = row.querySelector<HTMLElement>(".process-phase-icon");
+    if (!label || !cardYou || !cardWe || !icon) return;
+
+    if (processMdUp) {
+      gsap.set(label, { autoAlpha: 0 });
+      gsap.set(cardYou, { autoAlpha: 0, x: -40, force3D: true });
+      gsap.set(cardWe, { autoAlpha: 0, x: 40, force3D: true });
+      gsap.set(icon, { autoAlpha: 0, scale: 0.88, force3D: true });
+    } else {
+      gsap.set(label, { autoAlpha: 0 });
+      gsap.set(cardYou, { autoAlpha: 0, y: 18, force3D: true });
+      gsap.set(cardWe, { autoAlpha: 0, y: 18, force3D: true });
+      gsap.set(icon, { autoAlpha: 0, scale: 0.9, force3D: true });
+    }
+
+    function clearRowMotionTargets(): void {
+      [label, cardYou, cardWe, icon].forEach((el) => {
+        el.classList.remove("opacity-0");
+        gsap.set(el, {
+          clearProps: "transform,opacity,visibility,willChange",
+        });
+      });
+    }
+
+    const rowTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: row,
+        start: "top 90%",
+        once: true,
+        fastScrollEnd: true,
+        invalidateOnRefresh: true,
+      },
+      onComplete: () => {
+        requestAnimationFrame(clearRowMotionTargets);
+      },
+    });
+
+    if (processMdUp) {
+      rowTl
+        .to(label, {
+          autoAlpha: 1,
+          duration: 0.42,
+          ease: "power2.out",
+        })
+        .to(
+          cardYou,
+          {
+            autoAlpha: 1,
+            x: 0,
+            duration: 0.62,
+            ease: "power3.out",
+          },
+          "-=0.18",
+        )
+        .to(
+          cardWe,
+          {
+            autoAlpha: 1,
+            x: 0,
+            duration: 0.62,
+            ease: "power3.out",
+          },
+          "-=0.42",
+        )
+        .to(
+          icon,
+          {
+            autoAlpha: 1,
+            scale: 1,
+            duration: 0.48,
+            ease: "power3.out",
+          },
+          "-=0.38",
+        );
+    } else {
+      rowTl
+        .to(label, {
+          autoAlpha: 1,
+          duration: 0.4,
+          ease: "power2.out",
+        })
+        .to(
+          icon,
+          {
+            autoAlpha: 1,
+            scale: 1,
+            duration: 0.44,
+            ease: "power3.out",
+          },
+          "-=0.12",
+        )
+        .to(
+          cardYou,
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.52,
+            ease: "power3.out",
+          },
+          "-=0.22",
+        )
+        .to(
+          cardWe,
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.52,
+            ease: "power3.out",
+          },
+          "-=0.32",
+        );
+    }
+  });
+
   gsap.utils.toArray<Element>(".section-tracer-target").forEach((section) => {
-    if (section.id === "services") return;
+    if (section.id === "services" || section.id === "process") return;
     const tracer = section.querySelector(".section-tracer");
     if (tracer) {
       gsap.to(tracer, {
@@ -859,4 +1112,10 @@ export async function initHomeMotion(): Promise<void> {
       ease: "power2.out",
     });
   }
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+  });
 }
