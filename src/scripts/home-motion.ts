@@ -6,9 +6,9 @@
  *   #hero-eyebrow, #hero-subtitle, #hero-cta, .tech-node (intro + optional float loop),
  *   #hero-background, #advantage scroll timeline (.advantage-card reveal + header; .advantage-card-icon, .free-badge;
  *   then clearProps for CSS hover:-translate-y-1),
- *   #services .service-tier-card (scroll reveal only; not in intro willChange batch — avoids idle layers vs Process),
+ *   #services scroll timeline (tracer + header + triad cards + bullets + CTAs + ribbon; then clearProps),
  *   .pin-wrap + .blueprint-terminal (desktop pin),
- *   .section-tracer, #ambient-elements > div (float loop)
+ *   .section-tracer (except #services — owned by services timeline), #ambient-elements > div (float loop)
  * - CSS only: Navbar scroll-driven background (nav-fill), component hover transitions, Tailwind transitions
  *
  * Breakpoint: DESKTOP_LG_MIN_PX aligns with Tailwind `lg` (1024px). Lenis + heavy GSAP run when
@@ -21,6 +21,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 
 export const DESKTOP_LG_MIN_PX = 1024;
+
+/** Tailwind `md` — matches `md:grid-cols-3` on service cards. */
+const MD_MIN_PX = 768;
 
 function prefersReducedMotion(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -60,6 +63,20 @@ function applyReducedMotionInstantState(): void {
     el.classList.remove("opacity-0");
     gsap.set(el, { clearProps: "all" });
   });
+
+  document
+    .querySelectorAll(
+      "#services-eyebrow, #services-title-prefix, #services-title-accent, #services-lede, .service-tier-bullet, .service-tier-cta",
+    )
+    .forEach((el) => {
+      el.classList.remove("opacity-0");
+    });
+  gsap.set(".services-eyebrow-line", {
+    scaleX: 1,
+    clearProps: "transform",
+  });
+  gsap.set(".service-popular-ribbon", { clearProps: "all" });
+
   gsap.set(".section-tracer", { scaleX: 1 });
   gsap.set("#hero-background", { opacity: 1 });
 
@@ -526,15 +543,68 @@ export async function initHomeMotion(): Promise<void> {
 
   wireVisibilityPause(ambientTweens);
 
-  gsap.set("#services .service-tier-card", { y: 52, force3D: true });
-  gsap.to("#services .service-tier-card", {
-    autoAlpha: 1,
-    y: 0,
-    duration: 1.25,
-    stagger: 0.08,
-    ease: "power3.out",
-    force3D: true,
-    overwrite: "auto",
+  gsap.set("#services .section-tracer", {
+    scaleX: 0,
+    transformOrigin: "left center",
+  });
+  gsap.set("#services-eyebrow", { y: 18 });
+  gsap.set(".services-eyebrow-line", {
+    scaleX: 0,
+    transformOrigin: "left center",
+  });
+  gsap.set("#services-title-prefix", { y: 24 });
+  gsap.set("#services-title-accent", { y: 20 });
+  gsap.set("#services-lede", { y: 22 });
+  gsap.set(".service-tier-bullet", { y: 8 });
+  gsap.set(".service-tier-cta", { y: 14 });
+
+  const serviceCards = gsap.utils.toArray<HTMLElement>("#services .service-tier-card");
+  const servicesTriadBehind =
+    typeof window !== "undefined" &&
+    window.matchMedia(`(min-width: ${MD_MIN_PX}px)`).matches &&
+    serviceCards.length >= 3;
+
+  if (servicesTriadBehind) {
+    const [leftCard, centerCard, rightCard] = serviceCards;
+    gsap.set(leftCard, {
+      y: 52,
+      xPercent: 112,
+      zIndex: 1,
+      force3D: true,
+    });
+    gsap.set(centerCard, {
+      y: 56,
+      xPercent: 0,
+      scale: 0.94,
+      zIndex: 30,
+      force3D: true,
+    });
+    gsap.set(rightCard, {
+      y: 52,
+      xPercent: -112,
+      zIndex: 1,
+      force3D: true,
+    });
+    serviceCards.forEach((card, i) => {
+      if (i > 2) gsap.set(card, { y: 52, xPercent: 0, zIndex: 1, force3D: true });
+    });
+  } else {
+    serviceCards.forEach((card, i) => {
+      const base = { y: 52, force3D: true };
+      if (i === 0) gsap.set(card, { ...base, x: -20 });
+      else if (i === 1) gsap.set(card, { ...base, x: 0, scale: 0.98 });
+      else if (i === 2) gsap.set(card, { ...base, x: 20 });
+      else gsap.set(card, { ...base, x: 0 });
+    });
+  }
+
+  const popularRibbon = document.querySelector(".service-popular-ribbon");
+  if (popularRibbon) {
+    gsap.set(popularRibbon, { y: -14, autoAlpha: 0, force3D: true });
+  }
+
+  const svcStagger = 0.1;
+  const servicesTl = gsap.timeline({
     scrollTrigger: {
       trigger: "#services",
       start: "top 88%",
@@ -545,17 +615,187 @@ export async function initHomeMotion(): Promise<void> {
       gsap.set("#services .service-tier-card", { willChange: "transform" });
     },
     onComplete: () => {
-      const cards = document.querySelectorAll("#services .service-tier-card");
       requestAnimationFrame(() => {
-        cards.forEach((el) => {
+        document
+          .querySelectorAll(
+            "#services-eyebrow, #services-title-prefix, #services-title-accent, #services-lede",
+          )
+          .forEach((el) => {
+            el.classList.remove("opacity-0");
+          });
+        document.querySelectorAll(".service-tier-bullet, .service-tier-cta").forEach((el) => {
+          el.classList.remove("opacity-0");
+        });
+        document.querySelectorAll("#services .service-tier-card").forEach((el) => {
           el.classList.remove("opacity-0");
           gsap.set(el, {
-            clearProps: "transform,opacity,visibility,willChange",
+            clearProps: "transform,opacity,visibility,willChange,zIndex",
           });
         });
+        gsap.set(".service-tier-bullet", {
+          clearProps: "transform,opacity,visibility",
+        });
+        gsap.set(".service-tier-cta", {
+          clearProps: "transform,opacity,visibility",
+        });
+        if (popularRibbon) {
+          gsap.set(popularRibbon, {
+            clearProps: "transform,opacity,visibility,willChange",
+          });
+        }
+        gsap.set(
+          "#services-eyebrow, #services-title-prefix, #services-title-accent, #services-lede",
+          { clearProps: "transform,opacity,visibility" },
+        );
+        gsap.set(".services-eyebrow-line", { clearProps: "transform" });
+        gsap.set("#services .section-tracer", { clearProps: "transform" });
       });
     },
   });
+
+  servicesTl
+    .to("#services .section-tracer", {
+      scaleX: 1,
+      duration: 0.68,
+      ease: "power3.inOut",
+      force3D: true,
+    })
+    .to(
+      "#services-eyebrow",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.52,
+        ease: "power3.out",
+      },
+      0.06,
+    )
+    .to(
+      ".services-eyebrow-line",
+      {
+        scaleX: 1,
+        duration: 0.48,
+        ease: "power2.out",
+      },
+      0.12,
+    )
+    .to(
+      "#services-title-prefix",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.68,
+        ease: "power3.out",
+      },
+      0.12,
+    )
+    .to(
+      "#services-title-accent",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.58,
+        ease: "power3.out",
+      },
+      0.24,
+    )
+    .to(
+      "#services-lede",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.62,
+        ease: "power3.out",
+      },
+      "-=0.34",
+    );
+
+  if (servicesTriadBehind) {
+    const [leftCard, centerCard, rightCard] = serviceCards;
+    servicesTl.to(
+      centerCard,
+      {
+        autoAlpha: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.78,
+        ease: "power3.out",
+        force3D: true,
+        overwrite: "auto",
+      },
+      "svcCards",
+    );
+    servicesTl.to(
+      [leftCard, rightCard],
+      {
+        autoAlpha: 1,
+        xPercent: 0,
+        y: 0,
+        duration: 0.95,
+        ease: "power3.out",
+        force3D: true,
+        overwrite: "auto",
+      },
+      "svcCards+=0.1",
+    );
+  } else {
+    servicesTl.to(
+      serviceCards,
+      {
+        autoAlpha: 1,
+        x: 0,
+        y: 0,
+        scale: 1,
+        duration: 0.92,
+        stagger: svcStagger,
+        ease: "power3.out",
+        force3D: true,
+        overwrite: "auto",
+      },
+      "svcCards",
+    );
+  }
+
+  if (popularRibbon) {
+    servicesTl.to(
+      popularRibbon,
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.44,
+        ease: "back.out(1.28)",
+        force3D: true,
+        overwrite: "auto",
+      },
+      "svcCards+=0.68",
+    );
+  }
+
+  servicesTl
+    .to(
+      ".service-tier-bullet",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.32,
+        stagger: 0.038,
+        ease: "power2.out",
+        overwrite: "auto",
+      },
+      "svcCards+=0.44",
+    )
+    .to(
+      ".service-tier-cta",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.48,
+        stagger: 0.11,
+        ease: "power3.out",
+        overwrite: "auto",
+      },
+      ">",
+    );
 
   if (worksSection && pinWrap && !isMobile) {
     let pinEndX = computePinEndX(pinWrap);
@@ -592,6 +832,7 @@ export async function initHomeMotion(): Promise<void> {
   }
 
   gsap.utils.toArray<Element>(".section-tracer-target").forEach((section) => {
+    if (section.id === "services") return;
     const tracer = section.querySelector(".section-tracer");
     if (tracer) {
       gsap.to(tracer, {

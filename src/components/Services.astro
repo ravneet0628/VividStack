@@ -7,22 +7,37 @@ import { services } from "../data/home";
 
   <div class="relative z-10 max-w-7xl mx-auto px-6">
     <div class="mb-14 md:mb-16 max-w-4xl">
-      <span
-        class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm mb-4 inline-block pb-1.5 border-b-[3px] border-vivid-mint"
-        >Our Service</span
-      >
+      <div class="inline-flex flex-col items-stretch gap-0 mb-4">
+        <span
+          id="services-eyebrow"
+          class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm inline-block pb-1.5 opacity-0"
+          >Our Service</span
+        >
+        <div
+          class="services-eyebrow-line h-[3px] w-full bg-vivid-mint"
+          aria-hidden="true"
+        />
+      </div>
       <h2
         class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase text-black leading-[0.9] select-none"
         style="font-family: 'Space Grotesk', sans-serif;"
       >
-        Ways we can <span class="text-vivid-mint">work together</span>
+        <span id="services-title-prefix" class="opacity-0 inline">Select a </span><span
+          id="services-title-accent"
+          class="text-vivid-mint opacity-0 inline">plan</span
+        >
       </h2>
-      <p class="text-vivid-navy/60 font-medium text-lg md:text-xl tracking-tight max-w-2xl mt-8">
+      <p
+        id="services-lede"
+        class="text-vivid-navy/60 font-medium text-lg md:text-xl tracking-tight max-w-2xl mt-8 opacity-0"
+      >
         Three packages for design, build, and search visibility. Pick what fits; we quote the rest.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+    <div
+      class="services-cards-grid relative isolate grid md:grid-cols-3 gap-6 lg:gap-8"
+    >
       {services.map((tier) => (
         <article
           class:list={[
@@ -33,11 +48,13 @@ import { services } from "../data/home";
           ]}
         >
           {tier.highlight && (
-            <span
-              class="absolute -top-3 left-1/2 -translate-x-1/2 bg-vivid-mint text-vivid-navy font-black text-[10px] px-3 py-1 border-2 border-black tracking-widest uppercase whitespace-nowrap"
-            >
-              Most popular
-            </span>
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+              <span
+                class="service-popular-ribbon block bg-vivid-mint text-vivid-navy font-black text-[10px] px-3 py-1 border-2 border-black tracking-widest uppercase whitespace-nowrap"
+              >
+                Most popular
+              </span>
+            </div>
           )}
           <h3
             class:list={[
@@ -59,7 +76,7 @@ import { services } from "../data/home";
           </p>
           <ul class="space-y-3 mb-10 text-left" role="list">
             {tier.features.map((line) => (
-              <li class="flex gap-3 items-start">
+              <li class="service-tier-bullet flex gap-3 items-start opacity-0">
                 <span class="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full bg-vivid-mint" aria-hidden="true" />
                 <span
                   class:list={[
@@ -76,7 +93,7 @@ import { services } from "../data/home";
           <a
             href="#contact"
             class:list={[
-              "inline-flex items-center justify-center w-full font-bold uppercase tracking-[0.15em] text-xs md:text-sm py-4 px-4 border-2 transition-colors duration-200 no-underline mt-auto",
+              "service-tier-cta inline-flex items-center justify-center w-full font-bold uppercase tracking-[0.15em] text-xs md:text-sm py-4 px-4 border-2 transition-colors duration-200 no-underline mt-auto opacity-0",
               tier.highlight
                 ? "bg-vivid-mint text-vivid-navy border-black hover:bg-white"
                 : "bg-vivid-navy text-vivid-mint border-black hover:bg-black hover:text-vivid-mint",
