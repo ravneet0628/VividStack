@@ -5,17 +5,30 @@ import { advantages } from "../data/home";
 <section id="advantage" class="relative py-24 bg-white overflow-x-clip border-b border-black/5 bg-grid-tech">
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="mb-16 text-center">
-      <span
-        class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm mb-4 inline-block pb-1.5 border-b-[3px] border-vivid-mint"
-        >Why Choose Us</span
-      >
+      <div class="inline-flex flex-col items-center gap-0 mb-4">
+        <span
+          id="advantage-eyebrow"
+          class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm inline-block pb-1.5 opacity-0"
+          >Why Choose Us</span
+        >
+        <div
+          class="advantage-eyebrow-line h-[3px] w-full max-w-full bg-vivid-mint"
+          aria-hidden="true"
+        />
+      </div>
       <h2
         class="text-6xl md:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85]"
         style="font-family: 'Space Grotesk', sans-serif;"
       >
-        THE VIVID <span class="text-vivid-mint">ADVANTAGE</span>
+        <span id="advantage-title-prefix" class="opacity-0 inline">THE VIVID </span><span
+          id="advantage-title-accent"
+          class="text-vivid-mint opacity-0 inline">ADVANTAGE</span
+        >
       </h2>
-      <p class="text-vivid-navy/60 font-medium text-lg md:text-xl tracking-tight max-w-2xl mx-auto mt-8">
+      <p
+        id="advantage-lede"
+        class="text-vivid-navy/60 font-medium text-lg md:text-xl tracking-tight max-w-2xl mx-auto mt-8 opacity-0"
+      >
         Partnership, clear updates, and results you can see, without drowning you in jargon.
       </p>
     </div>
@@ -45,7 +58,7 @@ import { advantages } from "../data/home";
                 {item.badge}
               </div>
             )}
-            <div class={iconBoxClass}>
+            <div class:list={[iconBoxClass, "advantage-card-icon"]}>
               <svg
                 viewBox="0 0 24 24"
                 fill="none"

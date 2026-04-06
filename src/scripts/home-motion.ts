@@ -4,7 +4,8 @@
  * Selector ownership (do not let Tailwind transforms fight GSAP on these):
  * - GSAP transform/opacity: .hero-char (intro + magnetic hover); #main-nav stays CSS-only (no intro — avoids load flicker),
  *   #hero-eyebrow, #hero-subtitle, #hero-cta, .tech-node (intro + optional float loop),
- *   #hero-background, .advantage-card (reveal; then clearProps for CSS hover:-translate-y-1),
+ *   #hero-background, #advantage scroll timeline (.advantage-card reveal + header; .advantage-card-icon, .free-badge;
+ *   then clearProps for CSS hover:-translate-y-1),
  *   #services .service-tier-card (scroll reveal only; not in intro willChange batch — avoids idle layers vs Process),
  *   .pin-wrap + .blueprint-terminal (desktop pin),
  *   .section-tracer, #ambient-elements > div (float loop)
@@ -41,6 +42,19 @@ function applyReducedMotionInstantState(): void {
     el.classList.remove("opacity-0");
     gsap.set(el, { clearProps: "all" });
   });
+
+  document
+    .querySelectorAll(
+      "#advantage-eyebrow, #advantage-title-prefix, #advantage-title-accent, #advantage-lede",
+    )
+    .forEach((el) => {
+      el.classList.remove("opacity-0");
+    });
+  gsap.set(".advantage-eyebrow-line", {
+    scaleX: 1,
+    clearProps: "transform",
+  });
+  gsap.set(".advantage-card-icon, .free-badge", { clearProps: "all" });
 
   document.querySelectorAll("#services .service-tier-card").forEach((el) => {
     el.classList.remove("opacity-0");
@@ -341,15 +355,20 @@ export async function initHomeMotion(): Promise<void> {
       window.setTimeout(initHeroCharMagnetic, 50);
     });
 
+  gsap.set("#advantage-eyebrow", { y: 18 });
+  gsap.set(".advantage-eyebrow-line", {
+    scaleX: 0,
+    transformOrigin: "left center",
+  });
+  gsap.set("#advantage-title-prefix", { y: 26 });
+  gsap.set("#advantage-title-accent", { y: 22 });
+  gsap.set("#advantage-lede", { y: 22 });
   gsap.set(".advantage-card", { y: 52, force3D: true });
-  gsap.to(".advantage-card", {
-    autoAlpha: 1,
-    y: 0,
-    duration: 1.25,
-    stagger: 0.08,
-    ease: "power3.out",
-    force3D: true,
-    overwrite: "auto",
+  gsap.set(".advantage-card-icon", { scale: 0.88, force3D: true });
+  gsap.set(".free-badge", { scale: 0.82, autoAlpha: 0, force3D: true });
+
+  const cardStagger = 0.09;
+  const advantageTl = gsap.timeline({
     scrollTrigger: {
       trigger: "#advantage",
       start: "top 88%",
@@ -360,17 +379,119 @@ export async function initHomeMotion(): Promise<void> {
       gsap.set(".advantage-card", { willChange: "transform" });
     },
     onComplete: () => {
-      const cards = document.querySelectorAll(".advantage-card");
       requestAnimationFrame(() => {
-        cards.forEach((el) => {
+        document
+          .querySelectorAll(
+            "#advantage-eyebrow, #advantage-title-prefix, #advantage-title-accent, #advantage-lede",
+          )
+          .forEach((el) => {
+            el.classList.remove("opacity-0");
+          });
+        document.querySelectorAll(".advantage-card").forEach((el) => {
           el.classList.remove("opacity-0");
           gsap.set(el, {
             clearProps: "transform,opacity,visibility,willChange",
           });
         });
+        gsap.set(".advantage-card-icon", {
+          clearProps: "transform,willChange",
+        });
+        gsap.set(".free-badge", {
+          clearProps: "transform,opacity,visibility,willChange",
+        });
+        gsap.set(
+          "#advantage-eyebrow, #advantage-title-prefix, #advantage-title-accent, #advantage-lede",
+          { clearProps: "transform,opacity,visibility" },
+        );
+        gsap.set(".advantage-eyebrow-line", { clearProps: "transform" });
       });
     },
   });
+
+  advantageTl
+    .to("#advantage-eyebrow", {
+      opacity: 1,
+      y: 0,
+      duration: 0.55,
+      ease: "power3.out",
+    })
+    .to(
+      ".advantage-eyebrow-line",
+      {
+        scaleX: 1,
+        duration: 0.52,
+        ease: "power2.out",
+      },
+      0.08,
+    )
+    .to(
+      "#advantage-title-prefix",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.72,
+        ease: "power3.out",
+      },
+      0.1,
+    )
+    .to(
+      "#advantage-title-accent",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.62,
+        ease: "power3.out",
+      },
+      0.22,
+    )
+    .to(
+      "#advantage-lede",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.65,
+        ease: "power3.out",
+      },
+      "-=0.38",
+    )
+    .to(
+      ".advantage-card",
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.95,
+        stagger: cardStagger,
+        ease: "power3.out",
+        force3D: true,
+        overwrite: "auto",
+      },
+      "advCards",
+    )
+    .to(
+      ".advantage-card-icon",
+      {
+        scale: 1,
+        duration: 0.48,
+        stagger: cardStagger,
+        ease: "power3.out",
+        force3D: true,
+        overwrite: "auto",
+      },
+      "advCards+=0.32",
+    )
+    .to(
+      ".free-badge",
+      {
+        scale: 1,
+        autoAlpha: 1,
+        duration: 0.42,
+        stagger: 0.08,
+        ease: "back.out(1.35)",
+        force3D: true,
+        overwrite: "auto",
+      },
+      "advCards+=0.88",
+    );
 
   const ambientTweens: gsap.core.Tween[] = [];
 
