@@ -151,9 +151,9 @@ import heroCode from "../assets/hero_code.png";
     </div>
   </div>
 
-  <!-- Flow layout: top padding clears fixed nav + absolute stat row on mobile; flex-1 centers copy in remaining dvh -->
+  <!-- Mobile-only layout fix: drop the old 15rem top pad; use same nav + safe-area inset as desktop so the hero stack centers in the viewport and sits closer to the stat row. -->
   <div
-    class="relative z-10 flex w-full flex-1 flex-col px-6 pb-[max(1.25rem,env(safe-area-inset-bottom,0px))] pt-[calc(15rem+env(safe-area-inset-top,0px))] md:pt-[calc(4.5rem+env(safe-area-inset-top,0px))] md:pb-10"
+    class="relative z-10 flex w-full flex-1 flex-col px-6 pb-[max(1.25rem,env(safe-area-inset-bottom,0px))] pt-[calc(4.5rem+env(safe-area-inset-top,0px))] md:pb-10"
   >
     <div
       class="mx-auto flex w-full max-w-7xl min-h-0 flex-1 flex-col items-center justify-center py-2 md:py-4"
