@@ -8,8 +8,9 @@
  *   then clearProps for CSS hover:-translate-y-1),
  *   #services scroll timeline (tracer + header + triad cards + bullets + CTAs + ribbon; then clearProps),
  *   .pin-wrap + .blueprint-terminal (desktop pin),
- *   .section-tracer (except #services, #process — owned by their timelines), #ambient-elements > div (float loop)
+ *   .section-tracer (except #services, #process, #capabilities — owned by their timelines), #ambient-elements > div (float loop)
  *   #process intro + row ScrollTriggers (registered after works pin + final ScrollTrigger.refresh so starts are correct)
+ *   #capabilities scroll timeline (tracer + header + bento-perf-main + .perf-gauge-arc + .bento-satellite stagger)
  * - CSS only: Navbar scroll-driven background (nav-fill), component hover transitions, Tailwind transitions
  *
  * Breakpoint: DESKTOP_LG_MIN_PX aligns with Tailwind `lg` (1024px). Lenis + heavy GSAP run when
@@ -101,6 +102,24 @@ function applyReducedMotionInstantState(): void {
       el.classList.remove("opacity-0");
       gsap.set(el, { clearProps: "all" });
     });
+
+  document
+    .querySelectorAll(
+      "#capabilities-eyebrow, #capabilities-title-prefix, #capabilities-title-amp, #capabilities-title-suffix, #capabilities .bento-perf-main, #capabilities .bento-satellite",
+    )
+    .forEach((el) => {
+      el.classList.remove("opacity-0");
+    });
+  gsap.set(".capabilities-eyebrow-line", {
+    scaleX: 1,
+    clearProps: "transform",
+  });
+  gsap.set("#capabilities .section-tracer", { scaleX: 1 });
+  document.querySelectorAll("#capabilities .bento-card").forEach((el) => {
+    gsap.set(el, { clearProps: "all" });
+  });
+  const capGaugeArcRm = document.querySelector("#capabilities .perf-gauge-arc");
+  if (capGaugeArcRm) gsap.set(capGaugeArcRm, { clearProps: "all" });
 
   gsap.set(".section-tracer", { scaleX: 1 });
   gsap.set("#hero-background", { opacity: 1 });
@@ -1084,8 +1103,188 @@ export async function initHomeMotion(): Promise<void> {
     }
   });
 
+  const capGaugeArc = document.querySelector<SVGCircleElement>("#capabilities .perf-gauge-arc");
+  const capSatellites = gsap.utils.toArray<HTMLElement>("#capabilities .bento-satellite");
+  const capPerfMain = document.querySelector<HTMLElement>("#capabilities .bento-perf-main");
+
+  gsap.set("#capabilities .section-tracer", {
+    scaleX: 0,
+    transformOrigin: "left center",
+  });
+  gsap.set("#capabilities-eyebrow", { y: 18 });
+  gsap.set(".capabilities-eyebrow-line", {
+    scaleX: 0,
+    transformOrigin: "left center",
+  });
+  gsap.set("#capabilities-title-prefix", { y: 22 });
+  gsap.set("#capabilities-title-amp", { y: 18 });
+  gsap.set("#capabilities-title-suffix", { y: 22 });
+  if (capPerfMain) {
+    gsap.set(capPerfMain, {
+      autoAlpha: 0,
+      y: 28,
+      scale: 0.98,
+      force3D: true,
+    });
+  }
+  capSatellites.forEach((el) => {
+    gsap.set(el, { autoAlpha: 0, y: 18, force3D: true });
+  });
+  if (capGaugeArc) {
+    gsap.set(capGaugeArc, {
+      attr: { "stroke-dashoffset": 352 },
+      autoAlpha: 0,
+    });
+  }
+
+  const capabilitiesTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#capabilities",
+      start: "top 88%",
+      once: true,
+      fastScrollEnd: true,
+      invalidateOnRefresh: true,
+    },
+    onComplete: () => {
+      requestAnimationFrame(() => {
+        document
+          .querySelectorAll(
+            "#capabilities-eyebrow, #capabilities-title-prefix, #capabilities-title-amp, #capabilities-title-suffix",
+          )
+          .forEach((el) => {
+            el.classList.remove("opacity-0");
+          });
+        document.querySelectorAll("#capabilities .bento-perf-main, #capabilities .bento-satellite").forEach((el) => {
+          el.classList.remove("opacity-0");
+        });
+        gsap.set(
+          "#capabilities-eyebrow, #capabilities-title-prefix, #capabilities-title-amp, #capabilities-title-suffix",
+          { clearProps: "transform,opacity,visibility" },
+        );
+        gsap.set(".capabilities-eyebrow-line", { clearProps: "transform" });
+        const capTracerEl = document.querySelector("#capabilities .section-tracer");
+        if (capTracerEl) {
+          capTracerEl.classList.remove("scale-x-0");
+          gsap.set(capTracerEl, { clearProps: "transform" });
+        }
+        document.querySelectorAll("#capabilities .bento-card").forEach((el) => {
+          gsap.set(el, {
+            clearProps: "transform,opacity,visibility,willChange",
+          });
+        });
+        if (capGaugeArc) {
+          gsap.set(capGaugeArc, { clearProps: "opacity,visibility" });
+        }
+      });
+    },
+  });
+
+  capabilitiesTl
+    .to("#capabilities .section-tracer", {
+      scaleX: 1,
+      duration: 0.65,
+      ease: "power3.inOut",
+      force3D: true,
+    })
+    .to(
+      "#capabilities-eyebrow",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power3.out",
+      },
+      0.05,
+    )
+    .to(
+      ".capabilities-eyebrow-line",
+      {
+        scaleX: 1,
+        duration: 0.45,
+        ease: "power2.out",
+      },
+      0.1,
+    )
+    .to(
+      "#capabilities-title-prefix",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.62,
+        ease: "power3.out",
+      },
+      0.1,
+    )
+    .to(
+      "#capabilities-title-amp",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.52,
+        ease: "power3.out",
+      },
+      0.2,
+    )
+    .to(
+      "#capabilities-title-suffix",
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.58,
+        ease: "power3.out",
+      },
+      0.26,
+    );
+
+  if (capPerfMain) {
+    capabilitiesTl.to(
+      capPerfMain,
+      {
+        autoAlpha: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.78,
+        ease: "power3.out",
+        force3D: true,
+        overwrite: "auto",
+      },
+      "capMain",
+    );
+  } else {
+    capabilitiesTl.addLabel("capMain", ">");
+  }
+
+  if (capGaugeArc) {
+    capabilitiesTl.to(
+      capGaugeArc,
+      {
+        attr: { "stroke-dashoffset": 0 },
+        autoAlpha: 1,
+        duration: 1.05,
+        ease: "power2.out",
+      },
+      "capMain+=0.18",
+    );
+  }
+
+  if (capSatellites.length > 0) {
+    capabilitiesTl.to(
+      capSatellites,
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.55,
+        stagger: 0.085,
+        ease: "power3.out",
+        force3D: true,
+        overwrite: "auto",
+      },
+      "capMain+=0.12",
+    );
+  }
+
   gsap.utils.toArray<Element>(".section-tracer-target").forEach((section) => {
-    if (section.id === "services" || section.id === "process") return;
+    if (section.id === "services" || section.id === "process" || section.id === "capabilities") return;
     const tracer = section.querySelector(".section-tracer");
     if (tracer) {
       gsap.to(tracer, {
