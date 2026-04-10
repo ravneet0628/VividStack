@@ -612,20 +612,20 @@ export async function initHomeMotion(): Promise<void> {
     const [leftCard, centerCard, rightCard] = serviceCards;
     gsap.set(leftCard, {
       y: 52,
-      xPercent: 112,
+      xPercent: 132,
       zIndex: 1,
       force3D: true,
     });
     gsap.set(centerCard, {
       y: 56,
       xPercent: 0,
-      scale: 0.94,
+      scale: 1.02,
       zIndex: 30,
       force3D: true,
     });
     gsap.set(rightCard, {
       y: 52,
-      xPercent: -112,
+      xPercent: -132,
       zIndex: 1,
       force3D: true,
     });
@@ -762,6 +762,7 @@ export async function initHomeMotion(): Promise<void> {
         autoAlpha: 1,
         y: 0,
         scale: 1,
+        zIndex: 30,
         duration: 0.78,
         ease: "power3.out",
         force3D: true,
@@ -775,12 +776,13 @@ export async function initHomeMotion(): Promise<void> {
         autoAlpha: 1,
         xPercent: 0,
         y: 0,
-        duration: 0.95,
+        zIndex: 1,
+        duration: 0.86,
         ease: "power3.out",
         force3D: true,
         overwrite: "auto",
       },
-      "svcCards+=0.1",
+      "svcCards+=0.24",
     );
   } else {
     servicesTl.to(
