@@ -2,12 +2,12 @@
 import { services } from "../data/home";
 ---
 
-<section id="services" class="section-tracer-target relative py-24 lg:py-32 bg-vivid-panel overflow-hidden">
+<section id="services" class="section-tracer-target relative py-8 lg:py-14 bg-vivid-panel overflow-hidden">
   <div class="section-tracer absolute top-0 left-0 w-full h-px bg-vivid-navy origin-left scale-x-0 z-20"></div>
 
-  <div class="relative z-10 max-w-7xl mx-auto px-6">
-    <div class="mb-14 md:mb-16 max-w-4xl">
-      <div class="inline-flex flex-col items-stretch gap-0 mb-4">
+  <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-6">
+    <div class="mb-5 md:mb-6 max-w-4xl">
+      <div class="inline-flex flex-col items-stretch gap-0 mb-2">
         <span
           id="services-eyebrow"
           class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm inline-block pb-1.5 opacity-0"
@@ -19,7 +19,7 @@ import { services } from "../data/home";
         />
       </div>
       <h2
-        class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase text-black leading-[0.9] select-none"
+        class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tighter uppercase text-black leading-[0.92] select-none"
         style="font-family: 'Space Grotesk', sans-serif;"
       >
         <span id="services-title-prefix" class="opacity-0 inline">Select a </span><span
@@ -29,28 +29,28 @@ import { services } from "../data/home";
       </h2>
       <p
         id="services-lede"
-        class="text-vivid-navy/60 font-medium text-lg md:text-xl tracking-tight max-w-2xl mt-8 opacity-0"
+        class="text-vivid-navy/60 font-medium text-xs sm:text-sm tracking-tight max-w-2xl mt-2 md:mt-3 opacity-0"
       >
         Three packages for design, build, and search visibility. Pick what fits; we quote the rest.
       </p>
     </div>
 
     <div
-      class="services-cards-grid relative isolate grid md:grid-cols-3 gap-6 lg:gap-8"
+      class="services-cards-grid relative isolate grid md:grid-cols-3 gap-3 md:gap-4"
     >
       {services.map((tier) => (
         <article
           class:list={[
-            "service-tier-card group flex flex-col min-h-0 opacity-0 border-2 p-8 md:p-9 transition-[transform,box-shadow,border-color] duration-300 ease-out transform hover:-translate-y-1",
+            "service-tier-card group flex flex-col min-h-0 opacity-0 border-2 p-4 md:p-5 transition-[transform,box-shadow,border-color] duration-300 ease-out transform hover:-translate-y-1",
             tier.highlight
               ? "bg-vivid-navy border-vivid-mint text-white shadow-brutalist-neon hover:shadow-brutalist-neon-lg relative"
               : "bg-vivid-cream border-black shadow-brutalist hover:shadow-brutalist-lg",
           ]}
         >
           {tier.highlight && (
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+            <div class="absolute -top-2.5 left-1/2 -translate-x-1/2 z-10">
               <span
-                class="service-popular-ribbon block bg-vivid-mint text-vivid-navy font-black text-[10px] px-3 py-1 border-2 border-black tracking-widest uppercase whitespace-nowrap"
+                class="service-popular-ribbon block bg-vivid-mint text-vivid-navy font-black text-[9px] px-2.5 py-0.5 border-2 border-black tracking-widest uppercase whitespace-nowrap"
               >
                 Most popular
               </span>
@@ -58,7 +58,7 @@ import { services } from "../data/home";
           )}
           <h3
             class:list={[
-              "text-xl md:text-2xl font-black uppercase tracking-tighter mb-2 leading-tight",
+              "text-base md:text-lg font-black uppercase tracking-tighter mb-1 leading-tight",
               tier.highlight ? "text-white" : "text-black",
             ]}
             style="font-family: 'Space Grotesk', sans-serif;"
@@ -67,20 +67,20 @@ import { services } from "../data/home";
           </h3>
           <p
             class:list={[
-              "text-sm md:text-base font-medium leading-relaxed mb-8",
+              "text-xs md:text-sm font-medium leading-snug mb-3",
               tier.highlight ? "text-white/75" : "text-vivid-navy/70",
             ]}
             style="font-family: 'Inter', sans-serif;"
           >
             {tier.tagline}
           </p>
-          <ul class="space-y-3 mb-10 text-left" role="list">
+          <ul class="space-y-1.5 mb-4 text-left" role="list">
             {tier.features.map((line) => (
-              <li class="service-tier-bullet flex gap-3 items-start opacity-0">
-                <span class="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full bg-vivid-mint" aria-hidden="true" />
+              <li class="service-tier-bullet flex gap-2.5 items-start opacity-0">
+                <span class="mt-1 shrink-0 w-1.5 h-1.5 rounded-full bg-vivid-mint" aria-hidden="true" />
                 <span
                   class:list={[
-                    "text-sm leading-relaxed",
+                    "text-xs md:text-sm leading-snug",
                     tier.highlight ? "text-white/85" : "text-vivid-navy/80",
                   ]}
                   style="font-family: 'Inter', sans-serif;"
@@ -93,7 +93,7 @@ import { services } from "../data/home";
           <a
             href="#contact"
             class:list={[
-              "service-tier-cta inline-flex items-center justify-center w-full font-bold uppercase tracking-[0.15em] text-xs md:text-sm py-4 px-4 border-2 transition-colors duration-200 no-underline mt-auto opacity-0",
+              "service-tier-cta inline-flex items-center justify-center w-full font-bold uppercase tracking-[0.12em] text-[0.65rem] md:text-xs py-2.5 px-3 min-h-[44px] border-2 transition-colors duration-200 no-underline mt-auto opacity-0",
               tier.highlight
                 ? "bg-vivid-mint text-vivid-navy border-black hover:bg-white"
                 : "bg-vivid-navy text-vivid-mint border-black hover:bg-black hover:text-vivid-mint",

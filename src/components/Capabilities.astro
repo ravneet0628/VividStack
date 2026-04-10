@@ -2,12 +2,12 @@
 import { capabilities } from "../data/home";
 ---
 
-<section id="capabilities" class="section-tracer-target relative py-24 lg:py-32 bg-vivid-cream bg-grid-tech">
+<section id="capabilities" class="section-tracer-target relative py-12 lg:py-20 bg-vivid-cream bg-grid-tech">
   <div class="section-tracer absolute top-0 left-0 w-full h-px bg-vivid-navy origin-left scale-x-0 z-20"></div>
 
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <header class="mb-12 md:mb-16 lg:mb-20 text-center">
-      <div class="inline-flex flex-col items-center gap-0 mb-4">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
+    <header class="mb-6 md:mb-8 text-center">
+      <div class="inline-flex flex-col items-center gap-0 mb-3">
         <span
           id="capabilities-eyebrow"
           class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm inline-block pb-1.5 opacity-0"
@@ -16,7 +16,7 @@ import { capabilities } from "../data/home";
         <div class="capabilities-eyebrow-line h-[3px] w-full bg-vivid-mint" aria-hidden="true"></div>
       </div>
       <h2
-        class="text-6xl md:text-8xl font-black tracking-tighter uppercase text-vivid-navy leading-[0.85] select-none"
+        class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter uppercase text-vivid-navy leading-[0.88] select-none"
         style="font-family: 'Space Grotesk', sans-serif;"
       >
         <span id="capabilities-title-prefix" class="opacity-0 inline">Speed </span><span
@@ -27,12 +27,12 @@ import { capabilities } from "../data/home";
     </header>
 
     <div
-      class="bento-grid grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 md:auto-rows-[minmax(0,auto)]"
+      class="bento-grid grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 md:auto-rows-[minmax(0,auto)]"
     >
       <div class="bento-card bento-perf-main md:col-span-2 md:row-span-2 min-h-0 opacity-0">
-        <div class="flex flex-col md:flex-row md:items-center gap-8 md:gap-10 lg:gap-12 h-full">
-          <div class="perf-visual-wrap w-full md:w-[44%] shrink-0 flex justify-center md:justify-start" aria-hidden="true">
-            <div class="perf-visual relative w-full max-w-[220px] aspect-square">
+        <div class="flex flex-col md:flex-row md:items-center gap-5 md:gap-6 lg:gap-8 h-full">
+          <div class="perf-visual-wrap w-full md:w-[40%] shrink-0 flex justify-center md:justify-start" aria-hidden="true">
+            <div class="perf-visual relative w-full max-w-[min(200px,42vw)] aspect-square">
               <svg class="perf-visual-svg w-full h-full" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="100" cy="100" r="92" stroke="rgba(255,255,255,0.08)" stroke-width="2" />
                 <circle cx="100" cy="100" r="74" stroke="rgba(255,255,255,0.1)" stroke-width="2" />
@@ -86,7 +86,7 @@ import { capabilities } from "../data/home";
   .bento-card {
     background: var(--color-white);
     border: 2px solid var(--color-vivid-navy);
-    padding: 2rem;
+    padding: clamp(1rem, 3vw, 1.35rem);
     box-shadow: 4px 4px 0 0 rgba(37, 54, 68, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
@@ -113,7 +113,7 @@ import { capabilities } from "../data/home";
   }
 
   .perf-visual-metric {
-    font-size: clamp(2.75rem, 8vw, 3.5rem);
+    font-size: clamp(2.25rem, 7vw, 3rem);
   }
 
   .bento-perf-main:hover .perf-visual {
@@ -131,47 +131,47 @@ import { capabilities } from "../data/home";
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
-    padding: 0.4rem 0.8rem;
+    padding: 0.35rem 0.65rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.65rem;
     color: var(--color-neon-mint);
   }
 
   .card-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
   }
 
   @media (min-width: 768px) {
     .card-title {
-      font-size: 2.5rem;
+      font-size: 1.875rem;
     }
   }
 
   .card-text {
     font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 0.9375rem;
+    line-height: 1.55;
     color: rgba(255, 255, 255, 0.8);
   }
 
   .card-small-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     font-weight: 700;
     color: var(--color-vivid-navy-deep);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     border-left: 3px solid var(--color-vivid-mint);
     padding-left: 0.75rem;
   }
 
   .card-small-text {
     font-family: 'Inter', sans-serif;
-    font-size: 0.875rem;
-    line-height: 1.5;
+    font-size: 0.8125rem;
+    line-height: 1.45;
   }
 </style>

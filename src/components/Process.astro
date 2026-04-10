@@ -2,12 +2,12 @@
 import { processPhases } from "../data/home";
 ---
 
-<section id="process" class="section-tracer-target relative py-32 bg-vivid-panel overflow-hidden">
+<section id="process" class="section-tracer-target relative py-12 lg:py-16 bg-vivid-panel overflow-hidden">
   <div class="section-tracer absolute top-0 left-0 w-full h-px bg-vivid-mint origin-left scale-x-0 z-20"></div>
 
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="mb-24 md:mb-32">
-      <div class="inline-flex flex-col items-stretch gap-0 mb-4">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
+    <div class="mb-8 md:mb-12">
+      <div class="inline-flex flex-col items-stretch gap-0 mb-3">
         <span
           id="process-eyebrow"
           class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm inline-block pb-1.5 opacity-0"
@@ -16,7 +16,7 @@ import { processPhases } from "../data/home";
         <div class="process-eyebrow-line h-[3px] w-full bg-vivid-mint" aria-hidden="true"></div>
       </div>
       <h2
-        class="text-6xl md:text-8xl font-black tracking-tighter uppercase text-black leading-[0.85] select-none"
+        class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter uppercase text-black leading-[0.88] select-none"
         style="font-family: 'Space Grotesk', sans-serif;"
       >
         <span id="process-title-prefix" class="opacity-0 inline">The </span><span
@@ -32,7 +32,7 @@ import { processPhases } from "../data/home";
       </div>
 
       {processPhases.map((item) => (
-        <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 relative mb-24 last:mb-0">
+        <div class="process-row grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-12 lg:gap-16 relative mb-12 md:mb-16 last:mb-0">
           <div class="process-stage-label opacity-0">PHASE {item.phase}</div>
 
           <div class="process-column-you">
@@ -71,7 +71,7 @@ import { processPhases } from "../data/home";
      PROCESS SECTION
      ============================================ */
   .process-split-container {
-    padding: 2rem 0;
+    padding: 0.75rem 0;
   }
 
   .process-vertical-line {
@@ -122,7 +122,7 @@ import { processPhases } from "../data/home";
 
   .process-stage-label {
     position: absolute;
-    top: -3rem;
+    top: -1.75rem;
     left: 50%;
     transform: translateX(-50%);
     font-family: 'Inter', monospace;
@@ -136,7 +136,7 @@ import { processPhases } from "../data/home";
     .process-stage-label {
       left: 3rem;
       transform: none;
-      top: -2rem;
+      top: -1.5rem;
     }
   }
 
@@ -147,7 +147,7 @@ import { processPhases } from "../data/home";
     transform: translate(-50%, -50%);
     z-index: 10;
     background: var(--color-vivid-panel);
-    padding: 1rem;
+    padding: 0.65rem;
   }
 
   @media (max-width: 767px) {
@@ -184,7 +184,7 @@ import { processPhases } from "../data/home";
   }
 
   .process-card {
-    padding: 2.5rem;
+    padding: 1.5rem;
     border: 2px solid var(--color-brutalist);
     background: var(--color-white);
     position: relative;
@@ -209,8 +209,8 @@ import { processPhases } from "../data/home";
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    padding: 0.4rem 0.8rem;
-    margin-bottom: 1.5rem;
+    padding: 0.35rem 0.65rem;
+    margin-bottom: 0.65rem;
     border: 1px solid currentColor;
   }
 
@@ -227,21 +227,31 @@ import { processPhases } from "../data/home";
 
   .process-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.75rem;
+    font-size: 1.35rem;
     font-weight: 800;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     line-height: 1.2;
   }
 
   .process-description {
     font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 0.9375rem;
+    line-height: 1.55;
     opacity: 0.7;
   }
 
   .process-column-you {
     text-align: right;
+  }
+
+  @media (min-width: 768px) {
+    .process-card {
+      padding: 1.65rem;
+    }
+
+    .process-title {
+      font-size: 1.5rem;
+    }
   }
 
   @media (max-width: 767px) {
@@ -253,7 +263,7 @@ import { processPhases } from "../data/home";
       padding-left: 3rem;
     }
     .process-card {
-      padding: 1.5rem;
+      padding: 1.25rem;
     }
   }
 </style>

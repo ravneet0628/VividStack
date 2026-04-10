@@ -8,7 +8,7 @@ import heroCode from "../assets/hero_code.png";
   >
   <div
     id="ambient-elements"
-    class="absolute inset-0 pointer-events-none z-[-1] opacity-5"
+    class="absolute inset-0 pointer-events-none z-[-1] opacity-5 overflow-hidden"
   >
     <div
       class="absolute top-[8%] left-[5%] w-48 h-48 md:w-64 md:h-64 text-vivid-navy -rotate-12"
@@ -49,22 +49,27 @@ import heroCode from "../assets/hero_code.png";
     </div>
   </div>
 
-  <!-- Hero Code Structure Watermark -->
+  <!-- Hero Code Structure Watermark — clip so w-[200vw] cannot widen the document -->
   <div
-    id="hero-background"
-    class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[200vw] md:w-[85vw] max-w-[1200px] opacity-10 md:opacity-[0.03] pointer-events-none z-[-1] transition-opacity duration-1000"
+    class="pointer-events-none absolute inset-0 z-[-1] overflow-hidden"
+    aria-hidden="true"
   >
-    <Image
-      src={heroCode}
-      alt=""
-      class="w-full h-auto grayscale opacity-40 md:opacity-100"
-      widths={[640, 960, 1200, 1600]}
-      sizes="(max-width: 768px) 100vw, min(85vw, 1200px)"
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
-      quality={82}
-    />
+    <div
+      id="hero-background"
+      class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[200vw] md:w-[85vw] max-w-[1200px] opacity-10 md:opacity-[0.03] transition-opacity duration-1000"
+    >
+      <Image
+        src={heroCode}
+        alt=""
+        class="w-full h-auto grayscale opacity-40 md:opacity-100"
+        widths={[640, 960, 1200, 1600]}
+        sizes="(max-width: 768px) 100vw, min(85vw, 1200px)"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        quality={82}
+      />
+    </div>
   </div>
 
   <!-- Ultra-lightweight Digital Structure Nodes -->

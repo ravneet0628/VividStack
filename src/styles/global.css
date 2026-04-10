@@ -22,6 +22,11 @@
 }
 
 @layer base {
+  html {
+    /* Decorative layers (e.g. hero watermark) must not widen the scroll width */
+    overflow-x: hidden;
+  }
+
   html,
   body {
     @apply bg-vivid-cream text-vivid-navy antialiased;

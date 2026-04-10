@@ -2,13 +2,13 @@
 import { advantages } from "../data/home";
 ---
 
-<section id="advantage" class="relative py-24 bg-white overflow-x-clip border-b border-black/5 bg-grid-tech">
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="mb-16 text-center">
-      <div class="inline-flex flex-col items-center gap-0 mb-4">
+<section id="advantage" class="relative min-w-0 py-[4.75rem] md:py-[5.7rem] bg-white overflow-x-hidden border-b border-black/5 bg-grid-tech">
+  <div class="max-w-7xl mx-auto min-w-0 px-5 sm:px-6 relative z-10">
+    <div class="mb-[2.85rem] md:mb-[3.8rem] text-center">
+      <div class="inline-flex flex-col items-center gap-0 mb-[0.95rem] max-w-full">
         <span
           id="advantage-eyebrow"
-          class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-sm inline-block pb-1.5 opacity-0"
+          class="text-vivid-navy font-bold uppercase tracking-[0.4em] text-[0.83rem] inline-block pb-1.5 opacity-0"
           >Why Choose Us</span
         >
         <div
@@ -17,7 +17,7 @@ import { advantages } from "../data/home";
         />
       </div>
       <h2
-        class="text-6xl md:text-8xl font-black uppercase tracking-tighter text-black leading-[0.85]"
+        class="max-w-full break-words px-1 text-[2.85rem] sm:text-[3.5625rem] md:text-[4.275rem] xl:text-[5.7rem] font-black uppercase tracking-tighter text-black leading-[0.85]"
         style="font-family: 'Space Grotesk', sans-serif;"
       >
         <span id="advantage-title-prefix" class="opacity-0 inline">THE VIVID </span><span
@@ -27,30 +27,30 @@ import { advantages } from "../data/home";
       </h2>
       <p
         id="advantage-lede"
-        class="text-vivid-navy/60 font-medium text-lg md:text-xl tracking-tight max-w-2xl mx-auto mt-8 opacity-0"
+        class="text-vivid-navy/60 font-medium text-[0.95rem] md:text-[1.06875rem] tracking-tight max-w-2xl mx-auto mt-[1.425rem] md:mt-[1.9rem] opacity-0"
       >
         Partnership, clear updates, and results you can see, without drowning you in jargon.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-16 pt-6 md:pt-8">
+    <div class="grid md:grid-cols-3 gap-[2.85rem] md:gap-[3.325rem] pt-[0.95rem] md:pt-[1.425rem]">
       {advantages.map((item) => {
         const isNavy = item.theme === "navy";
         const isMint = item.theme === "mint";
         const iconBoxClass = isMint
-          ? "w-12 h-12 bg-vivid-navy text-vivid-mint flex items-center justify-center mb-6 shadow-brutalist-neon-sm"
+          ? "w-12 h-12 bg-vivid-navy text-vivid-mint flex items-center justify-center mb-[1.425rem] shadow-brutalist-neon-sm"
           : isNavy
-            ? "w-12 h-12 bg-vivid-mint text-vivid-navy flex items-center justify-center mb-6 shadow-brutalist-white-sm"
-            : "w-12 h-12 bg-white text-black flex items-center justify-center mb-6 border border-black shadow-brutalist-sm";
+            ? "w-12 h-12 bg-vivid-mint text-vivid-navy flex items-center justify-center mb-[1.425rem] shadow-brutalist-white-sm"
+            : "w-12 h-12 bg-white text-black flex items-center justify-center mb-[1.425rem] border border-black shadow-brutalist-sm";
         const cardClass = isNavy
-          ? "advantage-card group min-w-0 bg-vivid-navy border border-vivid-mint p-8 md:p-10 shadow-brutalist-neon hover:shadow-brutalist-neon-lg opacity-0 transition-[transform,box-shadow] duration-300 ease-out transform hover:-translate-y-1 relative overflow-visible"
-          : "advantage-card group min-w-0 bg-vivid-cream border border-black p-8 md:p-10 shadow-brutalist hover:shadow-brutalist-lg opacity-0 transition-[transform,box-shadow] duration-300 ease-out transform hover:-translate-y-1";
+          ? "advantage-card group min-w-0 bg-vivid-navy border border-vivid-mint p-[1.66rem] md:p-[2.14rem] shadow-brutalist-neon hover:shadow-brutalist-neon-lg opacity-0 transition-[transform,box-shadow] duration-300 ease-out transform hover:-translate-y-1 relative overflow-visible"
+          : "advantage-card group min-w-0 bg-vivid-cream border border-black p-[1.66rem] md:p-[2.14rem] shadow-brutalist hover:shadow-brutalist-lg opacity-0 transition-[transform,box-shadow] duration-300 ease-out transform hover:-translate-y-1";
         const titleClass = isNavy
-          ? "text-xl font-black uppercase tracking-tighter mb-4 leading-tight text-white"
-          : "text-xl font-black uppercase tracking-tighter mb-4 leading-tight";
+          ? "text-[1.1875rem] md:text-[1.425rem] font-black uppercase tracking-tighter mb-[0.95rem] leading-tight text-white"
+          : "text-[1.1875rem] md:text-[1.425rem] font-black uppercase tracking-tighter mb-[0.95rem] leading-tight";
         const descClass = isNavy
-          ? "text-white/70 font-medium leading-relaxed break-words"
-          : "text-vivid-navy/70 font-medium leading-relaxed break-words";
+          ? "text-white/70 font-medium text-[0.95rem] leading-relaxed break-words"
+          : "text-vivid-navy/70 font-medium text-[0.95rem] leading-relaxed break-words";
         return (
           <div class={cardClass}>
             {item.badge && (
